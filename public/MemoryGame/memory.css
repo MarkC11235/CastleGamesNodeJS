@@ -1,0 +1,16 @@
+.cardContainer{
+    display: grid;
+
+    width: 500px;
+    height: 500px;
+
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
+
+    border: 3px solid black;
+}
+
+.card{
+    border: 3px solid black;
+    background-color: grey;
+}

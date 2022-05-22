@@ -1,0 +1,152 @@
+﻿
+
+a:link {
+    color: rgb(2, 167, 158);
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:visited {
+    color: rgb(137, 0, 172);
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+  a:active {
+    color: red;
+    background-color: transparent;
+    text-decoration: underline;
+  }
+  
+body { 
+    background-color: lightseagreen;
+    margin: 0;
+}
+
+
+.topnav {
+    background-color: rgb(21, 21, 201);
+    border: 8px solid rgb(0, 1, 71);
+    overflow: hidden;
+}
+.topnav a {
+    float: left;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+}
+.topnav a:hover {
+    background-color: lightseagreen;
+}
+
+.container{
+    width: 100vw;
+    height: 100vh;
+
+    display: grid;
+
+    grid-template-columns: 1fr 2fr 2fr 2fr;
+    grid-template-rows: 1fr 3fr 3fr 3fr 3fr 3fr 3fr;
+
+    size: fixed;
+}
+
+.sideBar{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 8;
+
+    border: 8px solid rgb(0, 1, 71);
+    background-color: rgb(21, 21, 201);
+}
+
+@keyframes Title {
+    0%{color: coral;text-shadow: 5px 5px 10px coral;}
+    25%{color: red;text-shadow: 5px 5px 10px red;}
+    50%{color: violet;text-shadow: 5px 5px 10px violet;}
+    75%{color: lightgreen;text-shadow: 5px 5px 10px lightgreen;}
+    100%{color: coral;text-shadow: 5px 5px 10px coral;}
+}
+
+.header{
+    grid-column-start: 2;
+    grid-column-end: 5;
+
+    font-size: 50px;
+    font-weight: bold;
+    font-family: cursive;
+
+    border: 8px solid rgb(0, 1, 71);
+    background-color: rgb(21, 21, 201);
+
+    animation-name: Title;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
+
+.game1{
+    grid-row-start: 2;
+    grid-row-end: span 1;
+    border: 8px solid rgb(0, 1, 71);
+}
+
+.game1:hover{
+    transform: scale(1.04);
+}
+
+.game2{
+    grid-row-start: 3;
+    grid-row-end: span 1;
+    border: 8px solid rgb(0, 1, 71);
+}
+
+.game2:hover{
+    transform: scale(1.04);
+}
+
+.game3{
+    grid-row-start: 4;
+    grid-row-end: span 1;
+    border: 8px solid rgb(0, 1, 71);
+}
+
+.game3:hover{
+    transform: scale(1.04);
+}
+
+.game4{
+    grid-row-start: 5;
+    grid-row-end: span 1;
+    border: 8px solid rgb(0, 1, 71);
+}
+
+.game4:hover{
+    transform: scale(1.04);
+}
+
+.game5{
+    grid-row-start: 6;
+    grid-row-end: span 1;
+    border: 8px solid rgb(0, 1, 71);
+}
+
+.game5:hover{
+    transform: scale(1.04);
+}
+
+.game6{
+    grid-row-start: 7;
+    grid-row-end: span 1;
+    border: 8px solid rgb(0, 1, 71);
+}
+
+.game6:hover{
+    transform: scale(1.04);
+}
+
+
+
+

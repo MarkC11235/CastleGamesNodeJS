@@ -1,0 +1,59 @@
+p{
+    text-align: center;
+}
+
+body{
+    background:  rgb(21, 21, 201);
+    padding: 0px;
+}
+
+.containerGame{
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+
+    grid-template-columns: 1fr 3fr 3fr 1fr;
+    grid-template-rows: 1fr 4fr 4fr 1fr;
+}
+
+.title{
+    grid-row-start: 1;
+    grid-row-end: 2;
+    grid-column-start: 2;
+    grid-column-end: 4;
+
+    font-size: 30px;
+    text-align: center;
+}
+
+.instructions{
+    grid-row-start: 2;
+    grid-row-end: 5;
+    grid-column-start: 1;
+    grid-column-end: 2;
+
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, .2);
+    border: solid black 2px;
+}
+
+.content{
+    grid-row-start: 2;
+    grid-row-end: 4;
+    grid-column-start: 2;
+    grid-column-end: 4;
+
+    font-size: 20px;
+}
+
+.ads{
+    grid-row-start: 2;
+    grid-row-end: 5;
+    grid-column-start: 4;
+    grid-column-end: 5;
+    
+}
+
+
+
