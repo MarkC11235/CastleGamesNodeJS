@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title>Serpent|Castle Games</title>
+		<link rel="icon" type="image/x-icon" href="/images/WebsiteIcon.png">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-MTH47KMST2"></script>
+		<script>
+  			window.dataLayer = window.dataLayer || [];
+  			function gtag(){dataLayer.push(arguments);}
+  			gtag('js', new Date());
+
+  			gtag('config', 'G-MTH47KMST2');
+		</script>
+
+        <!--css-->
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/gamePage.css">
+
+    </head>
+    <body>
+        <!--Navigation Bar-->
+        <div class="topnav">
+            <a href="/">Home</a>
+            <a href="/contact">Contact</a>
+            <a href="/patchnotes">Patch Notes</a>
+        </div>
+
+        <div class="containerGame">
+            <div class="title">
+                <p>Serpent</p>
+                <p id = "GameOver" style="font-size: 20px;">Click On Screen To Start</p>
+                <p id="Score"style="font-size: 20px;">HighScore : 0 :: Score : 0</p>
+            </div>
+    
+            <div class="content">
+                <center><button style = "visibility: hidden;"id = "StartButton" onclick="Start()">
+                    <canvas style = "visibility: visible;border: solid black 10px;"id="GameScreen" width="560px" height="560px"></canvas>
+                </button></center>
+            </div>
+
+            <div class="instructions">
+                <p> Instructions :  <br><br>
+                    Use w a s d or arrow keys to change direction and press p to pause
+                </p>
+                <center><button id = "snakeColor" style = "background-color: limegreen;" onclick="ChangeColor(0)">Change Snake Color - limegreen</button>
+                    <button style = "background-color: red;" id = "appleColor" onclick="ChangeColor(1)">Change Aplle Color - red</button></center>
+            </div>
+            
+            <div class="ads">
+
+            </div>
+
+        </div>
+    </body>
+    <script src="Snake/snake.js"></script>
+</html>

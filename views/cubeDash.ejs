@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CubeDash|CastleGames</title>
+    <link rel="icon" type="image/x-icon" href="/images/WebsiteIcon.png">
+
+    <script src="CubeDash/Build/UnityLoader.js"></script>
+    <script>
+      var unityInstance = UnityLoader.instantiate("unityContainer", "CubeDash/Build/CubeDash.json");
+    </script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-MTH47KMST2"></script>
+		<script>
+  			window.dataLayer = window.dataLayer || [];
+  			function gtag(){dataLayer.push(arguments);}
+  			gtag('js', new Date());
+
+  			gtag('config', 'G-MTH47KMST2');
+		</script>
+
+    <!--css-->
+    <link rel="stylesheet" href="css/styles.css">	
+    <link rel="stylesheet" href="css/gamePage.css">
+
+  </head>
+  <body>
+    <!--Navigation Bar-->
+    <div class="topnav">
+      <a href="/">Home</a>
+      <a href="/contact">Contact</a>
+      <a href="/patchnotes">Patch Notes</a>
+    </div>
+
+    <div class="containerGame">
+      <div class="title">
+          <p>Cube Dash</p>
+      </div>
+
+      <div class="content">
+        <center><div id="unityContainer" style="width: 900px; height: 600px; border: solid black 2px;"></div></center>
+      </div>
+
+      <div class="instructions">
+          <p> Instructions :  <br><br>
+            -Press on a,d or left and right arrows to move <br><br>
+            -Avoid crashing ino things
+          </p>
+      </div>
+      
+      <div class="ads">
+
+      </div>
+
+  </body>
+</html>

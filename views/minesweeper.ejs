@@ -1,0 +1,65 @@
+<html>
+    <head>
+
+        <title>Minesweeper |Castle Games</title>
+		<link rel="icon" type="image/x-icon" href="/images/WebsiteIcon.png">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-MTH47KMST2"></script>
+		<script>
+  			window.dataLayer = window.dataLayer || [];
+  			function gtag(){dataLayer.push(arguments);}
+  			gtag('js', new Date());
+
+  			gtag('config', 'G-MTH47KMST2');
+		</script>
+
+        <!--css-->
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/gamePage.css">
+        <link rel="stylesheet" href="minesweeper/minsweeper.css">
+        	
+    </head>
+    <body>
+
+        <!--Navigation Bar-->
+        <div class="topnav">
+            <a href="/">Home</a>
+            <a href="/contact">Contact</a>
+            <a href="/patchnotes">Patch Notes</a>
+        </div>
+
+        <div class="containerGame">
+            <div class="title">
+                <p>Minesweeper</p>
+                <p id = "time" style = "font-size: 20px;">Time : 0 seconds</p>
+                <button id = "difficulty" onclick="changeDifficulty()">Easy</button>
+                <button onclick="Start()">Start New Game</button>
+            </div>
+    
+            <div class="content">
+                <center>
+                    <div class = "gridEasy">
+
+                    </div>
+                </center>
+            </div>
+
+            <div class="instructions">
+                <p> Instructions :  <br><br>
+                    - Try to reveal every tile without revealing a mine <br><br>
+                    - The number on the tile is how many mines are in the adjacent squares <br><br>
+                    - Left click to reveal a square <br><br>
+                    - Right click to place or remove a flag
+                </p>
+            </div>
+            
+            <div class="ads">
+
+            </div>
+
+        </div>
+
+        <script src = "Minesweeper/minesweeper.js"></script>
+    </body>
+<html>

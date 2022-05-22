@@ -1,0 +1,65 @@
+<html>
+    <head>
+
+        <title>Target Practice |Castle Games</title>
+		<link rel="icon" type="image/x-icon" href="/images/WebsiteIcon.png">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-MTH47KMST2"></script>
+		<script>
+  			window.dataLayer = window.dataLayer || [];
+  			function gtag(){dataLayer.push(arguments);}
+  			gtag('js', new Date());
+
+  			gtag('config', 'G-MTH47KMST2');
+		</script>
+
+        <!--css-->
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/gamePage.css">
+        	
+    </head>
+    <body>
+
+        <!--Navigation Bar-->
+        <div class="topnav">
+            <a href="/">Home</a>
+            <a href="/contact">Contact</a>
+            <a href="/patchnotes">Patch Notes</a>
+        </div>
+
+        <div class="containerGame">
+            <div class="title">
+                <p>Target Practice</p>
+            </div>
+    
+            <div class="content">
+                <center><p id = "highScore" style = "font-size: 15px">High Score : 0</p></center>
+                <center><p id = "score" style = "font-size: 15px">Score : 0</p></center>
+                <center><p id = "clock" style = "font-size: 15px">Time Left : 30.00</p></center>
+                <center>
+                    <button id = "play" style = "visibility: hidden;"onclick = "Start()">
+                    <canvas id = "GameScreen" style="visibility: visible; width:700px; height: 500px; border: 2px solid black;"></canvas>
+                    </button>
+                </center>
+            </div>
+
+            <div class="instructions">
+                <p> Instructions :  <br><br>
+                    -Click on screen to start<br><br>
+                    -Try to click on targets as close to the center as you can<br><br>
+                    -Clicking anywhere besides a target will amke you lose points<br><br>
+                    -Try to hit as many targets in 30 seconds
+                </p>
+            </div>
+            
+            <div class="ads">
+
+            </div>
+
+        </div>
+
+        <script src = "TargetPractice/targetPractice.js"></script>
+        <script src="JSLibrary/Draw.js"></script>
+    </body>
+<html>

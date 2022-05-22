@@ -1,0 +1,61 @@
+<html>
+    <head>
+
+        <title>Hang Man |Castle Games</title>
+		<link rel="icon" type="image/x-icon" href="/images/WebsiteIcon.png">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-MTH47KMST2"></script>
+		<script>
+  			window.dataLayer = window.dataLayer || [];
+  			function gtag(){dataLayer.push(arguments);}
+  			gtag('js', new Date());
+
+  			gtag('config', 'G-MTH47KMST2');
+		</script>
+
+        <!--css-->
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/gamePage.css">
+        	
+    </head>
+    <body>
+
+        <!--Navigation Bar-->
+        <div class="topnav">
+            <a href="/">Home</a>
+            <a href="/contact">Contact</a>
+            <a href="/patchnotes">Patch Notes</a>
+        </div>
+
+        <div class="containerGame">
+            <div class="title">
+                <p>Hang Man</p>
+                <button onclick="Start()">New Word</button>
+            </div>
+    
+            <div class="content">
+                    <center><p id = "word" style = "font-size: 30px;">__  __  __  __</p></center>
+                    <center><p id = "guessesLeft" style = "font-size: 15px;">Guesses Left : 6</p></center>
+                    <center><p id = "notGuessedLetters">Letters Not Guessed - - - [ a , b , c , d , e , f , g , h , i ,
+                        j , k , l , m , n , o , p , q , r , s , t , u , v , w , x , y , z]</p></center>
+                    <center><img style = "height: 80%;" id = "img" src = "HangMan/images/sprite_0.png"></center>
+            </div>
+
+            <div class="instructions">
+                <p> Instructions :  <br><br>
+                    -Try to guess the letters to make the word or phrase<br><br>
+                    -Every time you guess a letter that is not in the word or phrase more of the person appears<br><br>
+                    -If the entire person is made before you guess the word you lose
+                </p>
+            </div>
+            
+            <div class="ads">
+
+            </div>
+
+        </div>
+
+        <script src = "HangMan/hangman.js"></script>
+    </body>
+<html>

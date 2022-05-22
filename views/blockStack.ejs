@@ -1,0 +1,59 @@
+<html>
+    <head>
+        <title>Block Stack|Castle Games</title>
+		<link rel="icon" type="image/x-icon" href="/images/WebsiteIcon.png">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-MTH47KMST2"></script>
+		<script>
+  			window.dataLayer = window.dataLayer || [];
+  			function gtag(){dataLayer.push(arguments);}
+  			gtag('js', new Date());
+
+  			gtag('config', 'G-MTH47KMST2');
+		</script>
+        <!--css-->
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/gamePage.css">
+
+    </head>
+    <body>
+        <!--Navigation Bar-->
+        <div class="topnav">
+            <a href="/">Home</a>
+            <a href="/contact">Contact</a>
+            <a href="/patchnotes">Patch Notes</a>
+        </div>
+
+        <div class="containerGame">
+            <div class="title">
+                <p>Block Stack</p>
+                <center><p id = "HighScore" style="font-size: 20px;">High Score : 0</p></center>
+                <center><p style="font-size: 20px;">Click On Screen To Start</p></center>
+            <center><p id="Score" style="font-size: 20px;">Score : 0 ----- Level : 0</p></center>
+            </div>
+    
+            <div class="content">
+                <center><button style = "visibility: hidden;"id = "StartButton" onclick="Start()">
+                    <canvas style = "visibility: visible;border: solid black 10px;"id="GameScreen" width="420px" height="660px"></canvas></button></center>
+            </div>
+
+            <div class="instructions">
+                <p> Instructions :  <br><br>
+                    -Use a d or left right arrow keys to move<br><br>
+                    -w and up arrow to change rotation<br><br>
+                    -s and down arrow to make piece go down faster<br><br>
+                    -press p to pause
+                </p>
+            </div>
+            
+            <div class="ads">
+
+            </div>
+
+        </div>
+
+        <script src="Tetris/tetris.js"></script>
+    </body>
+    
+</html>

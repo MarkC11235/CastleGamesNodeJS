@@ -1,0 +1,78 @@
+<html>
+    <head>
+
+        <title>Memory |Castle Games</title>
+		<link rel="icon" type="image/x-icon" href="/images/WebsiteIcon.png">
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-MTH47KMST2"></script>
+		<script>
+  			window.dataLayer = window.dataLayer || [];
+  			function gtag(){dataLayer.push(arguments);}
+  			gtag('js', new Date());
+
+  			gtag('config', 'G-MTH47KMST2');
+		</script>
+
+        <!--css-->
+        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/gamePage.css">
+        <link rel="stylesheet" href="MemoryGame/memory.css">
+        	
+    </head>
+    <body>
+
+        <!--Navigation Bar-->
+        <div class="topnav">
+            <a href="/">Home</a>
+            <a href="/contact">Contact</a>
+            <a href="/patchnotes">Patch Notes</a>
+        </div>
+
+        <div class="containerGame">
+            <div class="title">
+                <p>Memory</p>
+            </div>
+    
+            <div class="content">
+                <center>
+                    <p id = "bestTime">- seconds</p>
+                    <p id = "timer">0 seconds</p>
+                    <button onclick="Start()">Start</button>
+                    <div class = "cardContainer">
+                        <div id = "0" class = "card"></div>
+                        <div id = "1" class = "card"></div>
+                        <div id = "2" class = "card"></div>
+                        <div id = "3" class = "card"></div>
+                        <div id = "4" class = "card"></div>
+                        <div id = "5" class = "card"></div>
+                        <div id = "6" class = "card"></div>
+                        <div id = "7" class = "card"></div>
+                        <div id = "8" class = "card"></div>
+                        <div id = "9" class = "card"></div>
+                        <div id = "10" class = "card"></div>
+                        <div id = "11" class = "card"></div>
+                        <div id = "12" class = "card"></div>
+                        <div id = "13" class = "card"></div>
+                        <div id = "14" class = "card"></div>
+                        <div id = "15" class = "card"></div>
+                    </div>
+                </center>
+            </div>
+
+            <div class="instructions">
+                <p> Instructions :  <br><br>
+                    -When you click start the cards will be revealed for 3 seconds then hidden<br><br>
+                    -Then try to match together each pair of colors 
+                </p>
+            </div>
+            
+            <div class="ads">
+
+            </div>
+
+        </div>
+
+        <script src = "MemoryGame/memory.js"></script>
+    </body>
+<html>
