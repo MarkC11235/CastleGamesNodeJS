@@ -2,7 +2,7 @@ const http = require('http');
 //const https = require('https');
 const express = require('express');
 const app = express();
-const fs = require('fs');
+//const fs = require('fs');
 
 app.use(express.static("public"));
 
@@ -13,10 +13,12 @@ app.set('view engine', 'ejs');
 //var credentials = {key: privateKey, cert: certificate};
 
 //listen for requests
+/*
 var httpServer = http.createServer(app);
 httpServer.listen(80, function(){
     console.log('listening on port 80');
 });
+*
 
 /*var httpsServer = https.createServer(credentials, app);
 httpsServer.listen(443, function(){
