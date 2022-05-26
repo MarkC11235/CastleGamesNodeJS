@@ -1,30 +1,10 @@
 const http = require('http');
-//const https = require('https');
 const express = require('express');
 const app = express();
-//const fs = require('fs');
 
 app.use(express.static("public"));
 
 app.set('view engine', 'ejs');
-
-//var privateKey  = fs.readFileSync('sslcert/server.key', 'utf8');
-//var certificate = fs.readFileSync('sslcert/server.crt', 'utf8');
-//var credentials = {key: privateKey, cert: certificate};
-
-//listen for requests
-/*
-var httpServer = http.createServer(app);
-httpServer.listen(80, function(){
-    console.log('listening on port 80');
-});
-*
-
-/*var httpsServer = https.createServer(credentials, app);
-httpsServer.listen(443, function(){
-    console.log('listening on port 443');
-});*/
-
 
 app.listen(5000, err => {
     if (err) {
@@ -33,7 +13,6 @@ app.listen(5000, err => {
         console.log("Server is listening on port 5000");
     }
 });
-
 
 //home page
 app.get("/", function (request, response) {
