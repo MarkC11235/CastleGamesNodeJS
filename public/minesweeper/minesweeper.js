@@ -235,7 +235,7 @@ function PlaceFlag(id)
         cells[parseInt(id/cells.length)][id%cells.length].style.backgroundColor = "red";
         //alert(id);
     }
-    else
+    else if(cellReveal[parseInt(id/cells.length)][id%cells.length] == false)
     {
         cells[parseInt(id/cells.length)][id%cells.length].style.backgroundColor = "grey";
     }
@@ -264,7 +264,7 @@ function click(target, mouseButton)
     if(playing == true)
     {
         //alert(target.id+" "+mouseButton);
-        if(mouseButton == 0)
+        if(mouseButton == 0 && target.style.backgroundColor != "red")
         {
             RevealCell(target.id);
         }

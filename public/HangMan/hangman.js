@@ -41,7 +41,7 @@ function Start()
 
 
     imgNum = 0;
-    img.src = "images/sprite_"+imgNum+".png";
+    img.src = "HangMan/images/sprite_"+imgNum+".png";
 
     for(var i = 0; i < 26; i++)
     {
@@ -119,7 +119,7 @@ function checkForLetter(code)
         guessesLeftText.innerHTML = "Guesses Left : "+guessesLeft;
 
         imgNum = Math.abs(guessesLeft-6);
-        img.src = "images/sprite_"+imgNum+".png";
+        img.src = "HangMan/images/sprite_"+imgNum+".png";
     }
 
     RemoveLetter(code);
