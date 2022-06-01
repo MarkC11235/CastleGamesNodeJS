@@ -6,12 +6,95 @@ app.use(express.static("public"));
 
 app.set('view engine', 'ejs');
 
-app.listen(5000, err => {
+const server = app.listen(5000, err => {
     if (err) {
         console.log("Error: " + err);
     } else {
         console.log("Server is listening on port 5000");
     }
+});
+
+const io = require('socket.io')(server);
+
+var players = 0;
+
+io.on('connection', socket => {
+    console.log("New user connected : "+socket.id);
+
+    io.emit('newUser', socket.id);
+
+    players++;
+    if(players%2 == 0) {
+        player1.id = socket.id;
+    }
+    else {
+        player2.id = socket.id;
+    }
+
+    socket.on("kd", (data) => {
+        console.log(data);
+        switch (data.id) {
+            case player1.id:
+                var oldx = player1.x;
+                var oldy = player1.y;
+                switch (data.event) {
+                    case 37:
+                        player1.x -= 3;
+                        break;
+                    case 38:
+                        player1.y -= 3;
+                        break;
+                    case 39:
+                        player1.x += 3;
+                        break;
+                    case 40:
+                        player1.y += 3;
+                        break;
+                }
+                io.emit("move", {x: player1.x, y: player1.y, oldx : oldx, oldy : oldy, num : 1});
+                break;
+            case player2.id:
+                var oldx = player2.x;
+                var oldy = player2.y;
+                switch (data.event) {
+                    case 37:
+                        player2.x -= 3;
+                        break;
+                    case 38:
+                        player2.y -= 3;
+                        break;
+                    case 39:
+                        player2.x += 3;
+                        break;
+                    case 40:
+                        player2.y += 3;
+                        break;
+                }
+                io.emit("move", {x: player2.x, y: player2.y, oldx : oldx, oldy : oldy, num : 2});
+                break;
+        }
+        
+    });
+});
+
+
+var player1 = {
+    x: 200,
+    y: 250,
+    color: "red",
+    id: "",
+};
+
+var player2 = {
+    x: 300,
+    y: 250,
+    color: "black",
+    id: "",
+};
+
+
+app.get("/test-", function (request, response) {
+    response.render('onlineMultiplayer.ejs');
 });
 
 //home page
