@@ -79,6 +79,7 @@ socket.on("die", (data) => {
         if(players[i].id == data.id){
             players[i].isAlive = false;
             temp = i;
+            break;
         }
     }
     if(players[temp].id == socket.id){
@@ -98,6 +99,7 @@ socket.on("respawn", (data) => {
             players[i].x = data.x;
             players[i].y = data.y;
             players[i].score = data.score;
+            break;
         }
     }
 });
@@ -118,18 +120,15 @@ socket.on('newBullet', function (data) {
 });
 
 socket.on('removeBullet', function (data) {
-    var temp;
     for(var i = 0; i < bullets.length; i++){
         if(bullets[i].id == data.id){
-            temp = i;
+            bullets.splice(i, 1);
             break;
         }
     }
-    bullets.splice(temp, 1);
 });
 
 socket.on("bullet", function (data) {
-    var temp;
     for(var i = 0; i < bullets.length; i++){
         if(bullets[i].id == data.id){
             bullets[i].x = data.x;
@@ -140,7 +139,6 @@ socket.on("bullet", function (data) {
 });
 
 socket.on("score", function (data) {
-    var temp;
     for(var i = 0; i < players.length; i++){
         if(players[i].id == data.id){
             players[i].score = data.score;
@@ -171,5 +169,7 @@ function update(){
     }
 }
 
-
-var clock = setInterval(update, 1000/60);
+var clock;
+socket.on("clock", function (data) {
+    clock = setInterval(update, 1000/60);
+});
