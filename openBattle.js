@@ -32,7 +32,7 @@ module.exports.start = function Start(IO)
             this.y = y;
             this.xMove = xMove;
             this.yMove = yMove;
-            this.id = id +"-"+ Math.floor(Math.random()*10000);
+            this.id = id +"#"+ Math.floor(Math.random()*1000);
         }
         updatePosition(){
             this.x = this.xMove + this.x;
@@ -52,8 +52,9 @@ module.exports.start = function Start(IO)
         console.log("New user connected : "+socket.id);
         players.push(new player(socket.id));
         for(var i = 0; i < players.length; i++){
-            io.emit('newUser', {isAlive : true, id : players[i].id, score : players[i].score, color : players[i].color, x : players[i].x, y : players[i].y});
+            io.emit('newUser', {isAlive : players[i].isAlive, id : players[i].id, score : players[i].score, color : players[i].color, x : players[i].x, y : players[i].y});
         }
+        io.sockets.to(socket.id).emit("clock");
 
         socket.on("kd", (data) => {
             var find = players.find(i => i.id == data.id);
@@ -121,7 +122,6 @@ module.exports.start = function Start(IO)
             var find = players.find(i => i.id == data.id);
             find.isAlive = true;
             find.score = 0;
-            //find.color = "rgb(+" + Math.floor(Math.random() * 255) + ", +" + Math.floor(Math.random() * 255) + ", +" + Math.floor(Math.random() * 255) + ")";
             find.x = Math.floor(Math.random() * 400 + 50);
             find.y = Math.floor(Math.random() * 400 + 50);
             find.xMove = 0;
@@ -144,17 +144,18 @@ module.exports.start = function Start(IO)
 
         for(var i = 0; i < bullets.length; i++){
             bullets[i].updatePosition();
-            io.emit("bullet", {x : bullets[i].x, y : bullets[i].y, id : bullets[i].id});
+            //io.emit("bullet", {x : bullets[i].x, y : bullets[i].y, id : bullets[i].id});
+            var check = false;
             for(var j = 0; j < players.length; j++){
                 //console.log(bullets[i].x + " " + bullets[i].y + " " + players[j].x + " " + players[j].y);
                 if(bullets[i].x >= players[j].x && bullets[i].x <= players[j].x + 50 && bullets[i].y >= players[j].y && bullets[i].y <= players[j].y + 50){
-                    if(players[j].id == bullets[i].id.split("-")[0] || players[j].isAlive == false){
+                    if(players[j].id == bullets[i].id.split("#")[0] || players[j].isAlive == false){
                         continue;
                     }
                     else
                     {
                         for(var k = 0; k < players.length; k++){
-                            if(players[k].id == bullets[i].id.split("-")[0]){
+                            if(players[k].id == bullets[i].id.split("#")[0]){
                                 players[k].score++;
                                 io.emit("score", {id : players[k].id, score : players[k].score});
                             }
@@ -163,15 +164,19 @@ module.exports.start = function Start(IO)
                         bullets.splice(i, 1);
                         io.emit("die", {id : players[j].id});
                         players[j].isAlive = false;
+                        check = true;
                         break;
                     }
                 }
                 else if(bullets[i].x < 0 || bullets[i].x > 500 || bullets[i].y < 0 || bullets[i].y > 500){
                     io.emit("removeBullet", {id : bullets[i].id});
                     bullets.splice(i, 1);
+                    check = true;
                     break;
                 }
             }
+            if(!check)
+                io.emit("bullet", {x : bullets[i].x, y : bullets[i].y, id : bullets[i].id});
         }
     }
 }
