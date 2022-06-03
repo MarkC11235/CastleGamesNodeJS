@@ -51,7 +51,7 @@ module.exports.start = function Start(IO)
                 for(var i = 0; i < bullets.length; i++){
                     if(bullets[i].id == this.id){
                         bullets.splice(i, 1);
-                        console.log("removed bullet");
+                        //console.log("removed bullet");
                         return true;
                     }
                 }
