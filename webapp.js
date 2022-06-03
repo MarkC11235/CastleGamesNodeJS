@@ -15,8 +15,8 @@ const server = app.listen(5000, err => {
 });
 
 const io = require('socket.io')(server);
-//module.exports.IO = io;
-var s = require("./openBattle.js");
+
+var s = require("./gamesServers/openBattle.js");
 s.start(io);
 
 //home page
