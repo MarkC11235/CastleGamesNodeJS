@@ -235,6 +235,12 @@ function update(){
         ctx.font = "20px Arial";
         ctx.fillText("x: " + (find.x).toFixed(0) + " y: " + (-find.y).toFixed(0), 10, 20);
 
+        //draw player count
+        ctx.fillStyle = "grey";
+        ctx.fillRect(0, 30, 170, 30);
+        ctx.fillStyle = "black";
+        ctx.font = "20px Arial";
+        ctx.fillText("Players: " + players.length, 10, 50);
     }
 }
 
