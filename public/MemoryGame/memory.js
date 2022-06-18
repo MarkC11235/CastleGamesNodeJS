@@ -187,6 +187,7 @@ function GameOver()
     clearInterval(timerInterval);
     timerInterval = 0;
     alreadyPlayed = true;
+    /*
     if(localStorage.getItem("bestTime") != null)
     {
         if(parseFloat(localStorage.getItem("bestTime")) > timer)
@@ -200,6 +201,45 @@ function GameOver()
         localStorage.setItem("bestTime",timer);
         bestTimeText.innerHTML = "Best Time : " + timer.toFixed(2) + " seconds";
     }
+    */
+    SetHighScore(timer);
 }
 
-//window.onload = Start();
+async function GetHighScore()
+{
+    var temp;
+    await fetch("/MemoryHighScore", {method : "Get"}).then(response => response.json()).then(data => {
+        temp = data;
+        if(isNaN(temp))
+            bestTimeText.innerHTML = "Best Time : " + (parseFloat(temp[0].highscore).toFixed(2)) + " seconds";
+        else
+            bestTimeText.innerHTML = "Best Time : " + (parseFloat(temp).toFixed(2)) + " seconds";
+    });
+    //console.log(temp);
+    if(isNaN(temp)){
+        return temp[0].highscore;
+    }
+    else{
+        return temp;
+    }
+}
+async function SetHighScore(time)
+{
+    var hs = await GetHighScore();
+    hs = (hs == null ? 9999 : parseFloat(hs));
+    if(time < hs)
+    {
+        fetch("/MemoryHighScore", {
+            method : "Post", 
+            headers : {
+                "Content-Type" : "application/json"
+            },
+            body : JSON.stringify({
+                highscore : time+""
+            })
+        });
+        bestTimeText.innerHTML = "Best Time : " + time.toFixed(2) + " seconds";
+    }
+}
+
+GetHighScore();
