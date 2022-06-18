@@ -2,7 +2,7 @@ const http = require('http');
 const express = require('express');
 const app = express();
 require("dotenv").config();
-const path = require('path');
+const p = require('path');
 
 //save login
 const session = require('express-session');
@@ -12,8 +12,8 @@ app.use(session({
     saveUninitialized: true
 }));
 
-app.use(express.static(path.join(__dirname, 'public')));
-app.set("views", path.join(__dirname, "views"));
+app.use(express.static(p.join(__dirname, 'public')));
+app.set("views", p.join(__dirname, "views"));
 
 app.set('view engine', 'ejs');
 
