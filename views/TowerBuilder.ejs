@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <%- include('partials/head.ejs') %>
+    </head>
+    <body>
+        <%- include('partials/topnav.ejs') %>
+
+        <div class="containerGame">
+            <div class="title">
+                <p><%=title.substring(0,title.indexOf("|"))%></p>
+                <p id = "Score" style = "font-size: 25px">High Score : 0 :::: Score : 0</p>
+            </div>
+    
+            <div class="content">
+                <center><canvas id = "GameScreen" style = "width: 600px; height: 600px; border: solid black 5px"></canvas></center>
+            </div>
+
+            <div class="instructions">
+                <p> Instructions :  <br><br>
+                    -Try to stop the block on top of the previous block  <br><br>
+                    -Press space to stop the block  <br><br>
+                    -Blocks can spawn on the left or the right side <br><br>
+                    -Press space to start
+                </p>
+            </div>
+            
+            <div class="ads">
+
+            </div>
+
+        </div>
+
+        <script src = "Tower/tower.js"></script>
+    </body>
+<html>

@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <%- include('partials/head.ejs') %>
+
+        <link rel="stylesheet" href = "2048/2048.css">
+
+    </head>
+
+    <body onload="Start()">
+
+        <%- include('partials/topnav.ejs') %>
+
+        <div class="containerGame">
+            <div class="title">
+                <p><%=title.substring(0,title.indexOf("|"))%></p>
+                <p id = "Score" style="font-size: 20px;">Score : 0</p>
+                <button onclick = "Restart()">Start a new Game</button>
+            </div>
+    
+            <div class="content">
+            <center><div class="GameScreen">
+                <div class = "section"><p id = "0"></p></div>
+                <div class = "section"><p id = "1"></p></div>
+                <div class = "section"><p id = "2"></p></div>
+                <div class = "section"><p id = "3"></p></div>
+                <div class = "section"><p id = "4"></p></div>
+                <div class = "section"><p id = "5"></p></div>
+                <div class = "section"><p id = "6"></p></div>
+                <div class = "section"><p id = "7"></p></div>
+                <div class = "section"><p id = "8"></p></div>
+                <div class = "section"><p id = "9"></p></div>
+                <div class = "section"><p id = "10"></p></div>
+                <div class = "section"><p id = "11"></p></div>
+                <div class = "section"><p id = "12"></p></div>
+                <div class = "section"><p id = "13"></p></div>
+                <div class = "section"><p id = "14"></p></div>
+                <div class = "section"><p id = "15"></p></div>
+                </div> </center>
+            </div>
+
+            <div class="instructions">
+                <p> Instructions :  <br><br>
+                    -use w a s d or arrow keys to move squares<br><br>
+                    -try to add cubes that have the same value together to make bigger tiles
+                </p>
+            </div>
+            
+            <div class="ads">
+
+            </div>
+
+        </div>
+
+        <script src="2048/2048.js"></script>
+
+    </body>
+</html>

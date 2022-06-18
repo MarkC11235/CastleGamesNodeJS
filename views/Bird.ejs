@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="Bird/Build/UnityLoader.js"></script>
+    <script>
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Bird/Build/Bird.json");
+    </script>
+
+    <%- include('partials/head.ejs') %>
+  </head>
+
+  <body>
+    <%- include('partials/topnav.ejs') %>
+
+    <div class="containerGame">
+      <div class="title">
+          <p>Bird</p>
+      </div>
+
+      <div class="content">
+        <center><div id="unityContainer" style="width: 900px; height: 600px; border: solid black 2px"></div></center>
+      </div>
+
+      <div class="instructions">
+          <p> Instructions :  <br><br>
+            -Press space or tap on the screen to jump <br><br>
+            -Avoid crashing into things
+          </p>
+      </div>
+      
+      <div class="ads">
+
+      </div>
+
+    </div>
+
+  </body>
+</html>
