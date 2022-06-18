@@ -66,13 +66,11 @@ function direct(request, response)
         path = path.substring(1,path.length-1);
         title = path + "|"+title;
         game = true;
-        path.charAt(0).toUpperCase();
     }
     else{
         path = path.substring(1);
         title = path + "|"+title;
         game = true;
-        path.charAt(0).toUpperCase();
     }
    
     response.render(path, {
