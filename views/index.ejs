@@ -1,31 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-        <link rel="stylesheet" href="css/styles.css">	
-		
-		<title>Castle Games</title>
-		<link rel="icon" type="image/x-icon" href="images/WebsiteIcon.png">
-
-		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=G-MTH47KMST2"></script>
-		<script>
-  			window.dataLayer = window.dataLayer || [];
-  			function gtag(){dataLayer.push(arguments);}
-  			gtag('js', new Date());
-
-  			gtag('config', 'G-MTH47KMST2');
-		</script>
+	<%- include('partials/head.ejs') %>
 </head>
 
 <body id = "body" style = "background-color : lightseagreen";>
 
-	<button style=" position:absolute; height: 10x; width: 10px; top: 0px;right:0px; background: transparent; border: transparent;" onclick = "changeTheme()"></button>
-
-	<div class="topnav">
-		<a href="/">Home</a>
-		<a href="/contact">Contact</a>
-		<a href="/patchnotes">Patch Notes</a>
-	</div>
+	<%- include('partials/topnav.ejs') %>
 
 	<div class = "container">
 		
@@ -37,19 +18,20 @@
 
 		<div class ="sideBar">
 			<center><p style="font-weight: bold;font-size: 25px;"> Games A-Z </p></center>
-			<center><a href="/2048-"><p>16384</p></a></center>
+			<!--<center><a href="/lobbyGame-"><p>lobbyBasedGame</p></a></center>-->
+			<center><a href="/2048-"><p>2048</p></a></center>
 			<center><a href="/Bird-"><p>Bird</p></a></center>
 			<center><a href="/CubeDash-"><p>Cube Dash</p></a></center>
 			<center><a href="/HangMan-"><p>Hang Man</p></a></center>
 			<center><a href="/Minesweeper-"><p>Minesweeper</p></a></center>
 			<center><a href="/Memory-"><p>Memory</p></a></center>
 			<center><a href="/MeteorShower-"><p>Meteor Shower</p></a></center>
-			<center><a href="/IdleGame-"><p>Muffin Maker</p></a></center>
+			<center><a href="/MuffinMaker-"><p>Muffin Maker</p></a></center>
 			<center><a href="/openBattle-"><p>Open Battle</p></a></center>
 			<center><a href="/Pong-"><p>Ping Pong</p></a></center>
 			<center><a href="/Rocket-"><p>Rocket</p></a></center>
 			<center><a href="/Serpent-"><p>Serpent</p></a></center>
-			<center><a href="/Platformer-"><p>Super Jump Man</p></a></center>
+			<center><a href="/SuperJumpMan-"><p>Super Jump Man</p></a></center>
 			<center><a href="/TargetPractice-"><p>Target Practice</p></a></center>
 			<center><a href="/BlockStack-"><p>Block Stack</p></a></center>
 			<center><a href="/TowerBuilder-"><p>Tower Builder</p></a></center>
@@ -63,7 +45,7 @@
 		
 		<div class = "game1">
 		<center><p style = "font-size : 30px";>Super Jump Man</p></center>
-		<center><a href="/Platformer-"><img src="images/superJumpMan.gif"></a><center>
+		<center><a href="/SuperJumpMan-"><img src="images/superJumpMan.gif"></a><center>
 		</div>
 
 		<div class = "game1">
@@ -73,7 +55,7 @@
 
 		<div class = "game2">
 		<center><p style = "font-size : 30px";>Open Battle</p></center>
-		<center><a href="/openBattle-"><img src="images/openBattle.gif"></a><center>
+		<center><a href="/OpenBattle-"><img src="images/openBattle.gif"></a><center>
 		</div>
 
 		<div class = "game2">
@@ -102,7 +84,7 @@
 		</div>		
 
 		<div class = "game4">
-		<center><p style = "font-size : 30px";>16384</p></center>
+		<center><p style = "font-size : 30px";>2048</p></center>
 		<center><a href="/2048-"><img src="images/2048.gif"></a><center>
 		</div>
 
@@ -128,7 +110,7 @@
 
 		<div class = "game5">
 		<center><p style = "font-size : 30px";>Muffin Maker</p></center>
-		<center><a href="/IdleGame-"><img src="images/blueberryMuffin.png"></a><center>
+		<center><a href="/MuffinMaker-"><img src="images/blueberryMuffin.png"></a><center>
 		</div>
 
 		<div class = "game6">
@@ -143,8 +125,6 @@
 
 	</div>
 
-	<!--<script src = "/socket.io/socket.io.js"></script>
-	<script src = "main.js";></script>-->
-	
+	<script src = "main.js";></script>
 </body>
 </html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+   <head>
+    <script src="Zombie/Build/UnityLoader.js"></script>
+    <script>
+      var unityInstance = UnityLoader.instantiate("unityContainer", "Zombie/Build/Zombie.json");
+    </script>
+    
+    <%- include('partials/head.ejs') %>
+  </head>
+  <body>
+    <%- include('partials/topnav.ejs') %>
+
+    <div class="containerGame">
+      <div class="title">
+          <p><%=title.substring(0,title.indexOf("|"))%></p>
+      </div>
+
+      <div class="content">
+        <center><div id="unityContainer" style="border: solid black 2px; width: 700px; height: 700px;"></div></center>
+      </div>
+
+      <div class="instructions">
+          <p> Instructions :  <br><br>
+            -w a s d to move <br><br>
+            -e to switch weapons <br><br>
+            -r to reload <br><br>
+          </p>
+      </div>
+      
+      <div class="ads">
+
+      </div>
+
+  </div>
+
+  </body>
+</html>

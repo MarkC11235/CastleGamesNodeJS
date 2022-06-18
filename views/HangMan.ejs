@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <%- include('partials/head.ejs') %>
+    </head>
+    <body>
+        <%- include('partials/topnav.ejs') %>
+        
+        <div class="containerGame">
+            <div class="title">
+                <p><%=title.substring(0,title.indexOf("|"))%></p>
+                <button onclick="Start()">New Word</button>
+            </div>
+    
+            <div class="content">
+                    <center><p id = "word" style = "font-size: 30px;">__  __  __  __</p></center>
+                    <center><p id = "guessesLeft" style = "font-size: 15px;">Guesses Left : 6</p></center>
+                    <center><p id = "notGuessedLetters">Letters Not Guessed - - - [ a , b , c , d , e , f , g , h , i ,
+                        j , k , l , m , n , o , p , q , r , s , t , u , v , w , x , y , z]</p></center>
+                    <center><img style = "height: 80%;" id = "img" src = "HangMan/images/sprite_0.png"></center>
+            </div>
+
+            <div class="instructions">
+                <p> Instructions :  <br><br>
+                    -Try to guess the letters to make the word or phrase<br><br>
+                    -Every time you guess a letter that is not in the word or phrase more of the person appears<br><br>
+                    -If the entire person is made before you guess the word you lose
+                </p>
+            </div>
+            
+            <div class="ads">
+
+            </div>
+
+        </div>
+
+        <script src = "HangMan/hangman.js"></script>
+    </body>
+<html>

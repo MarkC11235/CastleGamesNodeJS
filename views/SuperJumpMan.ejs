@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <script src="Platformer/Build/UnityLoader.js"></script>
+        <script>
+             var unityInstance = UnityLoader.instantiate("unityContainer", "Platformer/Build/Platformer.json");
+        </script>
+
+        <%- include('partials/head.ejs') %>
+    </head>
+    <body>
+        <%- include('partials/topnav.ejs') %>
+
+        <div class="containerGame">
+            <div class="title">
+                <p><%=title.substring(0,title.indexOf("|"))%></p>
+            </div>
+    
+            <div class="content">
+                <center><div id="unityContainer" style="width: 900px; height: 600px"></div></center>
+            </div>
+
+            <div class="instructions">
+                <p> Instructions :  <br><br>
+                    - Use the left and right arrow keys or a and d to move<br>
+                    - Use the up arrow key or w to jump<br>
+                    - Use p to reset the current level <br>
+                </p>
+            </div>
+            
+            <div class="ads">
+
+            </div>
+
+        </div>
+
+        <script src = "blank.js"></script>
+    </body>
+<html>
+    
