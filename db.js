@@ -14,11 +14,11 @@ module.exports.db = function DB(app){
     console.log("Connected!");
     con.query("CREATE DATABASE IF NOT EXISTS users", function (err, result) {
         if (err) throw err;
-        console.log("Database created");
+        //console.log("Database created");
     });
     con.query("CREATE TABLE IF NOT EXISTS accounts (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(255), password VARCHAR(255), email VARCHAR(100))", function (err, result) {
         if (err) throw err;
-        console.log("Table created");
+        //console.log("Table created");
     });
     //con.end();
     });
@@ -83,6 +83,64 @@ module.exports.db = function DB(app){
         response.redirect('/error');
         response.end();
     }
+    });
+
+
+    //game data
+    app.get("/MemoryHighScore", function (request, response) {
+        if(request.session.loggedin == true)
+        {
+            con.query("CREATE TABLE IF NOT EXISTS MEMORYHS (username VARCHAR(255), password VARCHAR(255), highscore VARCHAR(50), UNIQUE(username))", function (err, result) {
+                if (err) throw err;
+                //console.log("Table created");
+            });
+            con.query('SELECT * FROM MEMORYHS WHERE username = ? AND password = ?', [request.session.username,request.session.password], function (error, results, fields) {
+                if (error) 
+                    throw error;
+
+                if(results.length > 0)
+                {
+                    //console.log(results);
+                    response.json(results);
+                }
+                else
+                {
+                    var highscore = 9999;
+                    response.json(highscore);
+                }
+            });
+        }
+    });
+    app.post("/MemoryHighScore", function (request, response) {
+        if(request.session.loggedin == true)
+        {
+            con.query("CREATE TABLE IF NOT EXISTS MEMORYHS (username VARCHAR(255), password VARCHAR(255), highscore VARCHAR(50), UNIQUE(username))", function (err, result) {
+                if (err) console.log(err);
+                //console.log("Table created");
+            });
+            con.query('SELECT * FROM MEMORYHS WHERE username = ? AND password = ?', [request.session.username,request.session.password], function (error, results, fields) {
+                if (error) 
+                    throw error;
+
+                if(results.length > 0){
+                    con.query('UPDATE MEMORYHS SET highscore = ? WHERE username = ? AND password = ?',
+                    [request.body.highscore, request.session.username, request.session.password],
+                    function (error, results, fields) {
+                        if (error) console.log(error);
+                        //console.log("Highscore updated " + request.body.highscore);
+                    });
+                }
+                else{
+                    con.query('INSERT INTO MEMORYHS (username, password, highscore) VALUES (?, ?, ?)',
+                    [request.session.username, request.session.password, request.body.highscore],
+                    function (error, results, fields) {
+                        if (error) console.log(error);
+                        //console.log("Highscore updated " + request.body.highscore);
+                    });
+                }
+            });
+            
+        }
     });
 
 }

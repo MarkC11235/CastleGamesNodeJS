@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 require("dotenv").config();
 const p = require('path');
+const bodyParser = require('body-parser');
 
 //save login
 const session = require('express-session');
@@ -16,6 +17,9 @@ app.use(express.static(p.join(__dirname, 'public')));
 app.set("views", p.join(__dirname, "views"));
 
 app.set('view engine', 'ejs');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const server = app.listen(process.env.SITE_PORT, err => {
     if (err) {
@@ -81,7 +85,7 @@ function direct(request, response)
     });
 }
 
-//home page
+//accessing all pages except game pages
 app.get("/", function (request, response) {
     direct(request,response);
 });
@@ -107,7 +111,7 @@ app.get("/logout", function (request, response){
     direct(request,response);
 });
 
-//games 
+//accessing games 
 app.get("/2048-", function (request, response) {
     direct(request,response);
 });
