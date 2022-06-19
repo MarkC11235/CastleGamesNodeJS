@@ -115,7 +115,7 @@ module.exports.db = function DB(app){
         if(request.session.loggedin == true)
         {
             con.query("CREATE TABLE IF NOT EXISTS MEMORYHS (username VARCHAR(255), password VARCHAR(255), highscore VARCHAR(50), UNIQUE(username))", function (err, result) {
-                if (err) console.log(err);
+                if (err) throw err;
                 //console.log("Table created");
             });
             con.query('SELECT * FROM MEMORYHS WHERE username = ? AND password = ?', [request.session.username,request.session.password], function (error, results, fields) {
@@ -126,7 +126,7 @@ module.exports.db = function DB(app){
                     con.query('UPDATE MEMORYHS SET highscore = ? WHERE username = ? AND password = ?',
                     [request.body.highscore, request.session.username, request.session.password],
                     function (error, results, fields) {
-                        if (error) console.log(error);
+                        if (error) throw error;
                         //console.log("Highscore updated " + request.body.highscore);
                     });
                 }
@@ -134,7 +134,7 @@ module.exports.db = function DB(app){
                     con.query('INSERT INTO MEMORYHS (username, password, highscore) VALUES (?, ?, ?)',
                     [request.session.username, request.session.password, request.body.highscore],
                     function (error, results, fields) {
-                        if (error) console.log(error);
+                        if (error) throw error;
                         //console.log("Highscore updated " + request.body.highscore);
                     });
                 }
