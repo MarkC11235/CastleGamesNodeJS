@@ -5,12 +5,20 @@ require("dotenv").config();
 const p = require('path');
 const bodyParser = require('body-parser');
 
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
 //save login
 const session = require('express-session');
+app.set("trust proxy", 1);
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: true,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7,
+        secure: "auto"
+    }
 }));
 
 app.use(express.static(p.join(__dirname, 'public')));
@@ -32,7 +40,7 @@ const server = app.listen(process.env.SITE_PORT, err => {
 //handle uncaught errors
 process.on('uncaughtException', err => {
     console.error('There was an uncaught error', err);
-    process.exit(1); // mandatory (as per the Node.js docs)
+    process.exit(1);
 });
 
 //data base
@@ -62,6 +70,12 @@ function direct(request, response)
     var path = request.path;
     var title = "Castle Games"
     var game = false;
+    if(request.cookies.username != undefined)
+    {
+        request.session.loggedin = true;
+        request.session.username = request.cookies.username;
+        request.session.password = request.cookies.password;
+    }
 
     if(path == "/"){
         path = "index.ejs";
@@ -71,6 +85,8 @@ function direct(request, response)
         request.session.loggedin = false;
         request.session.username = "";
         request.session.password = "";
+        response.clearCookie("username");
+        response.clearCookie("password");
     }
     else if(path.substring(path.length-1) == "-") {
         path = path.substring(1,path.length-1);

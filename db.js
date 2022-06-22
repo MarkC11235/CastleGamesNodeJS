@@ -28,6 +28,7 @@ module.exports.db = function DB(app){
 	// Capture the input fields
 	let username = request.body.username;
 	let password = request.body.password;
+    let keepLoggedIn = request.body.keepLoggedIn;
 	// Ensure the input fields exists and are not empty
 	if (username && password) {
 		// Execute SQL query that'll select the account from the database based on the specified username and password
@@ -39,6 +40,10 @@ module.exports.db = function DB(app){
                 request.session.username = username;
                 request.session.password = password;
                 request.session.loggedin = true;
+                if(keepLoggedIn){
+                    response.cookie('username', username);
+                    response.cookie('password', password);
+                }
 				response.redirect('/');
 			} else {
 				response.redirect('/error');
@@ -56,6 +61,7 @@ module.exports.db = function DB(app){
     let username = request.body.username;
     let password = request.body.password;
     let email = request.body.email;
+    let keepLoggedIn = request.body.keepLoggedIn;
     // Ensure the input fields exists and are not empty
     if (username && password && email) {
         // Execute SQL query that'll select the account from the database based on the specified username and password
@@ -74,6 +80,10 @@ module.exports.db = function DB(app){
                     request.session.username = username;
                     request.session.password = password;
                     request.session.loggedin = true;
+                    if(keepLoggedIn){
+                        response.cookie('username', username);
+                        response.cookie('password', password);
+                    }
                     response.redirect('/');
                 });
             }
@@ -87,6 +97,35 @@ module.exports.db = function DB(app){
 
 
     //game data
+    function getGameData(request, response){
+        var path = request.path;
+        path = path.substring(1);
+        if(request.session.loggedin){
+            con.query('SELECT * FROM '+path+' WHERE username = ? AND password = ?', [request.session.username, request.session.password], function(error, results, fields) {
+                if (error) throw error;
+                // If the account exists
+                if (results.length > 0) {
+                    response.json(results);
+                } else {
+                    response.json([]);
+                }
+                response.end();
+            });
+        }
+        else{
+            response.json([]);
+            response.end();
+        }
+    }
+
+
+
+    app.get('/SnakeData', function(request, response) {
+        getGameData(request, response);
+    });
+    
+
+    //memory game
     app.get("/MemoryHighScore", function (request, response) {
         if(request.session.loggedin == true)
         {
@@ -142,5 +181,7 @@ module.exports.db = function DB(app){
             
         }
     });
+
+    //snake game
 
 }
