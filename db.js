@@ -41,8 +41,8 @@ module.exports.db = function DB(app){
                 request.session.password = password;
                 request.session.loggedin = true;
                 if(keepLoggedIn){
-                    response.cookie('username', username);
-                    response.cookie('password', password);
+                    response.cookie('username', username, {secure : "auto", maxAge : 1000 * 60 * 60 * 24 * 7});
+                    response.cookie('password', password, {secure : "auto", maxAge : 1000 * 60 * 60 * 24 * 7});
                 }
 				response.redirect('/');
 			} else {
