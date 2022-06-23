@@ -45,8 +45,10 @@ process.on('uncaughtException', err => {
 
 //data base
 app.use(express.urlencoded({ extended: true }));
+/*
 const db = require('./db.js');
 db.db(app);
+*/
 
 //socket.io
 const s = require('socket.io');
