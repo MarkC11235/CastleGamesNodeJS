@@ -1,0 +1,13 @@
+<div class="topnav">
+    <a href="/">Home</a>
+    <a href="/contact">Contact</a>
+    <a href="/patchnotes">Patch Notes</a>
+    
+    <% if (loggedIn == true) { %>
+        <a style="font-size: 20px; float: right;" href = "/user">User : <%= username %></a>
+    <%} else { %>
+        <a id = "login" style = "float : right"; href="/login">Login</a>
+        <a id = "register" style = "float : right"; href="/register">Register</a>
+    <% } %>
+    
+</div>
