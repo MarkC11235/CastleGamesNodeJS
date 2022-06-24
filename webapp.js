@@ -11,6 +11,7 @@ app.use(cookieParser());
 //save login
 const session = require('express-session');
 app.set("trust proxy", 1);
+/*
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: true,
@@ -20,6 +21,7 @@ app.use(session({
         secure: "auto"
     }
 }));
+*/
 
 app.use(express.static(p.join(__dirname, 'public')));
 app.set("views", p.join(__dirname, "views"));
@@ -72,23 +74,27 @@ function direct(request, response)
     var path = request.path;
     var title = "Castle Games"
     var game = false;
+    /*
     if(request.cookies.username != undefined)
     {
         request.session.loggedin = true;
         request.session.username = request.cookies.username;
         request.session.password = request.cookies.password;
     }
+    */
 
     if(path == "/"){
         path = "index.ejs";
     }
     else if (path == "/logout"){
+        /*
         path = "index.ejs";
         request.session.loggedin = false;
         request.session.username = "";
         request.session.password = "";
         response.clearCookie("username");
         response.clearCookie("password");
+        */
     }
     else if(path.substring(path.length-1) == "-") {
         path = path.substring(1,path.length-1);
@@ -102,8 +108,8 @@ function direct(request, response)
     }
    
     response.render(path, {
-        loggedIn: request.session.loggedin, 
-        username: request.session.username, 
+        //loggedIn: request.session.loggedin, 
+        //username: request.session.username, 
         title : title,
         game : game
     });
