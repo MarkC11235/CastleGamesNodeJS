@@ -2,10 +2,11 @@ module.exports.db = function DB(app){
     const mysql = require('mysql');
 
     const con = mysql.createConnection({
-        user: "admin",
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
         password: process.env.DB_PASSWORD,
         port : process.env.DB_PORT,
-        database: "users"
+        database: process.env.DB_NAME
     });
 
     con.connect(function(err) {
@@ -47,11 +48,9 @@ module.exports.db = function DB(app){
 			} else {
 				response.redirect('/error');
 			}			
-			response.end();
 		});
 	} else {
 		response.redirect('/error');
-		response.end();
 	}
     });
 
@@ -66,9 +65,13 @@ module.exports.db = function DB(app){
         // Execute SQL query that'll select the account from the database based on the specified username and password
         con.query('SELECT * FROM accounts WHERE username = ? OR email = ?', [username, email], function(error, results, fields) {
             // If there is an issue with the query, output the error
-            if (error) throw error;
+            if (error){
+                console.log("Error: " + error);
+                throw error;
+            } 
             // If the account exists
-            if (results.length > 0) {
+            else if (results.length > 0) {
+                console.log("Account already exists");
                 response.redirect('/error');
             } else {
                 // Execute SQL query that'll insert the account into the database
@@ -83,14 +86,13 @@ module.exports.db = function DB(app){
                         response.cookie('username', username, {secure : "auto", maxAge : 1000 * 60 * 60 * 24 * 365});
                         response.cookie('password', password, {secure : "auto", maxAge : 1000 * 60 * 60 * 24 * 365});
                     }
+                    console.log("Account created");
                     response.redirect('/');
                 });
             }
-            response.end();
         });
     } else {
         response.redirect('/error');
-        response.end();
     }
     });
 
