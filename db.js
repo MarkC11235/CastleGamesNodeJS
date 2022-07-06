@@ -2,11 +2,10 @@ module.exports.db = function DB(app){
     const mysql = require('mysql');
 
     const con = mysql.createConnection({
-    host: "database1-castlegames-instance-1.cgi37eybluoy.us-east-2.rds.amazonaws.com",
-    user: "admin",
-    password: process.env.DB_PASSWORD,
-    port : process.env.DB_PORT,
-    database: "users"
+        user: "admin",
+        password: process.env.DB_PASSWORD,
+        port : process.env.DB_PORT,
+        database: "users"
     });
 
     con.connect(function(err) {
@@ -41,8 +40,8 @@ module.exports.db = function DB(app){
                 request.session.password = password;
                 request.session.loggedin = true;
                 if(keepLoggedIn){
-                    response.cookie('username', username, {secure : "true", maxAge : 1000 * 60 * 60 * 24 * 7});
-                    response.cookie('password', password, {secure : "true", maxAge : 1000 * 60 * 60 * 24 * 7});
+                    response.cookie('username', username, {secure : "auto", maxAge : 1000 * 60 * 60 * 24 * 365});
+                    response.cookie('password', password, {secure : "auto", maxAge : 1000 * 60 * 60 * 24 * 365});
                 }
 				response.redirect('/');
 			} else {
@@ -81,8 +80,8 @@ module.exports.db = function DB(app){
                     request.session.password = password;
                     request.session.loggedin = true;
                     if(keepLoggedIn){
-                        response.cookie('username', username);
-                        response.cookie('password', password);
+                        response.cookie('username', username, {secure : "auto", maxAge : 1000 * 60 * 60 * 24 * 365});
+                        response.cookie('password', password, {secure : "auto", maxAge : 1000 * 60 * 60 * 24 * 365});
                     }
                     response.redirect('/');
                 });
@@ -101,7 +100,11 @@ module.exports.db = function DB(app){
         var path = request.path;
         path = path.substring(1);
         if(request.session.loggedin){
-            con.query('SELECT * FROM '+path+' WHERE username = ? AND password = ?', [request.session.username, request.session.password], function(error, results, fields) {
+            con.query('CREATE TABLE IF NOT EXISTS ' + path + ' (username VARCHAR(255), password VARCHAR(255), data VARCHAR(255), UNIQUE(username))', function (err, result) {
+                if (err) throw err;
+                //console.log("Table created");
+            });
+            con.query('SELECT * FROM ' + path + ' WHERE username = ? AND password = ?', [request.session.username, request.session.password], function(error, results, fields) {
                 if (error) throw error;
                 // If the account exists
                 if (results.length > 0) {
@@ -118,12 +121,74 @@ module.exports.db = function DB(app){
         }
     }
 
+    function postGameData(request, response){
+        var path = request.path;
+        path = path.substring(1);
+        if(request.session.loggedin){
+            con.query('CREATE TABLE IF NOT EXISTS ' + path + ' (username VARCHAR(255), password VARCHAR(255), data VARCHAR(255), UNIQUE(username))', function (err, result) {
+                if (err) throw err;
+                //console.log("Table created");
+            });
+            con.query('SELECT * FROM ' + path + ' WHERE username = ? AND password = ?',
+            [request.session.username, request.session.password], function(error, results, fields) {
+                if (error) throw error;
+                // If the account exists
+                if (results.length > 0) {
+                    con.query('UPDATE ' + path + ' SET data = ? WHERE username = ? AND password = ?',
+                    [request.body.data, request.session.username, request.session.password], function(error, results, fields) {
+                        if (error) throw error;
+                        //console.log("Data updated" + path + " " + request.body.data);
+                        response.end();
+                    });
+                }
+                else{
+                    con.query('INSERT INTO '+path+' (username, password, data) VALUES (?, ?, ?)',
+                     [request.session.username, request.session.password, request.body.data], function(error, results, fields) {
+                        if (error) throw error;
+                        //console.log("Data inserted" + path);
+                        response.end();
+                    });
+                }
+            });
+        }
+        else{
+            response.end();
+        }
+    }
 
-
-    app.get('/SnakeData', function(request, response) {
+    //get data
+    app.get('/BlockStackData', function(request, response) {
+        getGameData(request, response); 
+    });
+    app.get('/MeteorShowerData', function(request, response) {
+        getGameData(request, response); //*
+    });
+    app.get('/SerpentData', function(request, response) {
+        getGameData(request, response); //*
+    });
+    app.get('/TargetPracticeData', function(request, response) {
         getGameData(request, response);
     });
-    
+    app.get('/TowerBuilderData', function(request, response) {
+        getGameData(request, response);
+    });
+
+    //post data
+    app.post('/BlockStackData', function(request, response) {
+        postGameData(request, response);
+    });
+    app.post('/MeteorShowerData', function(request, response) {
+        postGameData(request, response);
+    });
+    app.post('/SerpentData', function(request, response) {
+        postGameData(request, response);
+    });
+    app.post('/TargetPracticeData', function(request, response) {
+        postGameData(request, response);
+    });
+    app.post('/TowerBuilderData', function(request, response) {
+        postGameData(request, response);
+    });
 
     //memory game
     app.get("/MemoryHighScore", function (request, response) {
@@ -157,7 +222,8 @@ module.exports.db = function DB(app){
                 if (err) throw err;
                 //console.log("Table created");
             });
-            con.query('SELECT * FROM MEMORYHS WHERE username = ? AND password = ?', [request.session.username,request.session.password], function (error, results, fields) {
+            con.query('SELECT * FROM MEMORYHS WHERE username = ? AND password = ?', 
+            [request.session.username,request.session.password], function (error, results, fields) {
                 if (error) 
                     throw error;
 
@@ -181,7 +247,5 @@ module.exports.db = function DB(app){
             
         }
     });
-
-    //snake game
 
 }

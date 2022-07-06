@@ -11,7 +11,7 @@ app.use(cookieParser());
 //save login
 const session = require('express-session');
 app.set("trust proxy", 1);
-/*
+
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: true,
@@ -21,7 +21,7 @@ app.use(session({
         secure: "auto"
     }
 }));
-*/
+
 
 app.use(express.static(p.join(__dirname, 'public')));
 app.set("views", p.join(__dirname, "views"));
@@ -47,10 +47,10 @@ process.on('uncaughtException', err => {
 
 //data base
 app.use(express.urlencoded({ extended: true }));
-/*
+
 const db = require('./db.js');
 db.db(app);
-*/
+
 
 //socket.io
 const s = require('socket.io');
