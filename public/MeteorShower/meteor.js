@@ -7,7 +7,7 @@ ctx.fillStyle = "lightblue";
 ctx.fillRect(0,0,600,600);
 
 var scoreText = document.getElementById("Score");
-var highScoreText = document.getElementById("HighScore");
+const highScoreText = document.getElementById("HighScore");
 var highScore = 0;
 
 async function GetHighScore(){
