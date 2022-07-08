@@ -38,11 +38,6 @@ window.addEventListener("keyup",function(e){
     }
 })
 
-if(localStorage.getItem("HighScore")!=null)
-{
-    document.getElementById("HighScore").innerHTML = "High Score : "+localStorage.getItem("HighScore");
-}
-
 var playing = false;
 var paused = false;
 
@@ -62,6 +57,9 @@ var linesCleared = 0;
 
 var score = 0;
 var scoreText = document.getElementById("Score");
+
+var highScore = 0;
+var highScoreText = document.getElementById("HighScore");
 
 var canvas = document.getElementById("GameScreen");
 var ctx = canvas.getContext("2d");
@@ -188,8 +186,10 @@ function SpawnPiece()
                     {
                         GameOver();
                     }
-                    grid[pieces[0].row + y][pieces[0].col + x] = 1;
-                    colorGrid[pieces[0].row + y][pieces[0].col + x] = pieces[0].color;
+                    else{
+                        grid[pieces[0].row + y][pieces[0].col + x] = 1;
+                        colorGrid[pieces[0].row + y][pieces[0].col + x] = pieces[0].color;
+                    }
                 }
             }
         }
@@ -394,7 +394,7 @@ function Score(rows)
     scoreText.innerHTML = "Score : "+score+" ----- Level : "+level;
 }
 
-function GameOver()
+async function GameOver()
 {
     clearInterval(updateTimer);
     updateTimer = 0;
@@ -404,15 +404,11 @@ function GameOver()
     colorGrid = Array.from(Array(22), _ => Array(14).fill("black"));
     pieces = [];
 
-    if(localStorage.getItem("HighScore")==null)
+    if(score > highScore)
     {
-        localStorage.setItem("HighScore",score);
-        document.getElementById("HighScore").innerHTML = "High Score : "+localStorage.getItem("HighScore");
-    }
-    else if(score > parseInt(localStorage.getItem("HighScore")))
-    {
-        localStorage.setItem("HighScore",score);
-        document.getElementById("HighScore").innerHTML = "High Score : "+localStorage.getItem("HighScore");
+        highScore = score;
+        highScoreText.innerHTML = "High Score : "+highScore;
+        await postGameData("BlockStack", highScore);
     }
 
     score = 0;
@@ -433,3 +429,14 @@ function Pause()
         paused = false;
     }
 }
+
+async function getData(){
+    var temp = await getGameData("BlockStack");
+    if(temp != null)
+    {
+        highScore = temp;
+        highScoreText.innerHTML = "High Score : "+highScore;
+    }
+}
+
+getData();

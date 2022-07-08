@@ -13,8 +13,8 @@ var timer = 0;
 const timerText = document.getElementById("timer");
 var timerInterval = 0;
 
+var bestTime = 9999;
 const bestTimeText = document.getElementById("bestTime");
-bestTimeText.innerHTML = "Best Time : " + (localStorage.getItem("bestTime") != null ? parseFloat(localStorage.getItem("bestTime")).toFixed(2) : "-") + " seconds";
 
 var playing = false;
 var alreadyPlayed = false;
@@ -181,65 +181,29 @@ async function CheckMatch()
     cardsUp = 0;
 }
 
-function GameOver()
+async function GameOver()
 {
     playing = false;
     clearInterval(timerInterval);
     timerInterval = 0;
     alreadyPlayed = true;
-    /*
-    if(localStorage.getItem("bestTime") != null)
+   
+    if(timer < bestTime)
     {
-        if(parseFloat(localStorage.getItem("bestTime")) > timer)
-        {
-            localStorage.setItem("bestTime",timer);
-            bestTimeText.innerHTML = "Best Time : " + timer.toFixed(2) + " seconds";
-        }
-    }
-    else
-    {
-        localStorage.setItem("bestTime",timer);
-        bestTimeText.innerHTML = "Best Time : " + timer.toFixed(2) + " seconds";
-    }
-    */
-    SetHighScore(timer);
-}
-
-async function GetHighScore()
-{
-    var temp;
-    await fetch("/MemoryHighScore", {method : "Get"}).then(response => response.json()).then(data => {
-        temp = data;
-        if(isNaN(temp))
-            bestTimeText.innerHTML = "Best Time : " + (parseFloat(temp[0].highscore).toFixed(2)) + " seconds";
-        else
-            bestTimeText.innerHTML = "Best Time : " + (parseFloat(temp).toFixed(2)) + " seconds";
-    });
-    //console.log(temp);
-    if(isNaN(temp)){
-        return temp[0].highscore;
-    }
-    else{
-        return temp;
-    }
-}
-async function SetHighScore(time)
-{
-    var hs = await GetHighScore();
-    hs = (hs == null ? 9999 : parseFloat(hs));
-    if(time < hs)
-    {
-        fetch("/MemoryHighScore", {
-            method : "Post", 
-            headers : {
-                "Content-Type" : "application/json"
-            },
-            body : JSON.stringify({
-                highscore : time+""
-            })
-        });
-        bestTimeText.innerHTML = "Best Time : " + time.toFixed(2) + " seconds";
+        bestTime = timer;
+        bestTimeText.innerHTML = "Best Time: " + bestTime.toFixed(2) + " seconds";
+        await postGameData("Memory", bestTime);
     }
 }
 
-GetHighScore();
+async function getData()
+{
+    var temp = await getGameData("Memory");
+    if(temp != null)
+    {
+        bestTime = parseFloat(temp);
+    }
+    bestTimeText.innerHTML = "Best Time: " + bestTime.toFixed(2) + " seconds";
+}
+
+getData();

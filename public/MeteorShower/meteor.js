@@ -7,6 +7,19 @@ ctx.fillStyle = "lightblue";
 ctx.fillRect(0,0,600,600);
 
 var scoreText = document.getElementById("Score");
+var highScoreText = document.getElementById("HighScore");
+var highScore = 0;
+
+async function GetHighScore(){
+    var temp = await getGameData("MeteorShower");
+    if(temp != null)
+    {
+        highScore = temp;
+        highScoreText.innerHTML = "High Score : " + highScore;
+    }
+}
+
+GetHighScore();
 
 var updateLoop = 0;
 var spawnMetorLoop = 0;
@@ -342,7 +355,7 @@ function Draw()
     ctx.fillRect(player.x, player.y, 50, 50);
 }
 
-function GameOver()
+async function GameOver()
 {
     //alert("GameOver");
     ctx.fillStyle = "lightblue";
@@ -355,10 +368,16 @@ function GameOver()
     meteors.splice(0,100);
     bullets.splice(0,100);
     player.x = 300;
-    player.score = 0;
     player.level = 1;
     player.guns = 1;
     document.getElementById('Gamescreen').style.cursor = "default";
+    if(player.score > highScore)
+    {
+        highScore = player.score;
+        await postGameData("MeteorShower", highScore);
+        highScoreText.innerHTML = "High Score : " + highScore;
+    }
+    player.score = 0;
 }
 
 document.addEventListener("keydown", function(e){

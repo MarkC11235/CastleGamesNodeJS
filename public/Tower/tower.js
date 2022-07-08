@@ -41,14 +41,16 @@ var pieces = [];
 var updateClock = 0;
 var playing = false;
 
-var highScore;
+var highScore = 0;
 
-if(isNaN(parseInt(localStorage.getItem("HighScore1"))) == true)
+async function getData()
 {
-    highScore = 0;
-}
-else{
-    highScore = parseInt(localStorage.getItem("HighScore1"));
+    var temp = await getGameData("TowerBuilder");
+    if(temp != null)
+    {
+        highScore = temp;
+        scoreText.innerHTML = "High Score : " + highScore + " :::: Score : " + score;
+    }
 }
 
 var score = 0;
@@ -211,7 +213,7 @@ function ClearBoard()
     pieces.push(temp1);
 }
 
-function GameOver()
+async function GameOver()
 {
     playing = false;
     clearInterval(updateClock);
@@ -240,9 +242,9 @@ function GameOver()
 
     if(score > highScore)
     {
-        localStorage.setItem("HighScore1", score);
         highScore = score;
         scoreText.innerHTML = "High Score : " + highScore + " :::: Score : " + score;
+        await postGameData("TowerBuilder", highScore);
     }
 }
 
@@ -260,3 +262,5 @@ function Draw()
         ctx.fillRect(x.x + 2, x.y + 2, x.len - 4, x.height - 4);
     }
 }
+
+getData();

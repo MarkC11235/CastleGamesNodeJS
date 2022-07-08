@@ -19,7 +19,7 @@ var playing = false;
 var playButton = document.getElementById("play");
 
 const highScoreText = document.getElementById("highScore");
-var highScore = (localStorage.getItem("highScore") != null ? parseInt(localStorage.getItem("highScore")) : 0);
+var highScore = 0;
 highScoreText.innerHTML = "High Score : "+highScore;
 
 class target{
@@ -133,25 +133,18 @@ async function EndGame()
     UpdateClock = 0;
     ctx.clearRect(0,0,700,500);
     canvas.style.cursor = "default";
-    
-    if(localStorage.getItem("highScore") != null)
-    {
-        if(score > parseInt(localStorage.getItem("highScore")))
-        {
-            localStorage.setItem("highScore",score);
-            highScore = score;
-        }
-    }
-    else{
-        localStorage.setItem("highScore",score);
-        highScore = score;
-    }
-
-    highScoreText.innerHTML = "High Score : "+highScore;
 
     ctx.font = "50px Arial";
     ctx.fillStyle = "black";
     ctx.fillText("Time's up", 250, 200);
+
+    if(score > highScore)
+    {
+        highScore = score;
+        highScoreText.innerHTML = "High Score : "+highScore;
+        await postGameData("TargetPractice", highScore);
+    }
+
     await sleep(1000);
     playing = false;
 }
@@ -191,4 +184,15 @@ document.addEventListener("mousedown",function(e){
         score -= 2;
 })
 
-//window.onload = Start();
+async function getData()
+{
+    var temp = await getGameData("TargetPractice");
+    console.log(temp);
+    if(temp != null)
+    {
+        highScore = temp;
+        highScoreText.innerHTML = "High Score : "+highScore;
+    }
+}
+
+getData();

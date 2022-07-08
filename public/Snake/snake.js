@@ -45,11 +45,18 @@ function ChangeColor(x)
     }
 }
 
-if(localStorage.getItem("HighScore") != null)
+async function GetHighScore()
 {
-    highScore = localStorage.getItem("HighScore");
-    document.getElementById("Score").innerHTML = "High Score : " + highScore + " :: Score : "+score;
+    var temp = await getGameData("Serpent");
+    if(temp != null)
+    {
+        highScore = temp;
+        document.getElementById("Score").innerHTML = "High Score : " + highScore + " :: Score : "+score;
+    }
+    return temp;
 }
+
+GetHighScore();
 
 function Start()
 {
@@ -234,10 +241,11 @@ function GameOver()
     ang = 0;
     character = [[3,8],[2,8],[1,8]];
     playing = false;
-    if(localStorage.getItem("HighScore") == null || score > localStorage.getItem("HighScore"))
+
+    if(score > highScore)
     {
-        localStorage.setItem("HighScore",score);
         highScore = score;
+        postGameData("Serpent", highScore);
+        document.getElementById("Score").innerHTML = "High Score : " + highScore + " :: Score : "+score;
     }
-    document.getElementById("Score").innerHTML = "High Score : " + highScore + " :: Score : "+score;
 }
