@@ -1,0 +1,63 @@
+.dealer{
+    padding: 1em;
+    display: flex;
+}
+
+.player{
+    padding: 1em;
+    display: flex;
+}
+
+.playerActive{
+    padding: 1em;
+    display: flex;
+    border: .3em;
+
+    animation-name: activeHand;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes activeHand {
+    0%{background-color: rgb(21, 21, 201);}
+    25%{background-color: rgb(70, 62, 186);}
+    50%{background-color: rgb(21, 21, 201);}
+    100%{background-color: rgb(21, 21, 201);}
+}
+
+.card {
+    width: 5em;
+    height: 8em;
+    border: .1em solid black;
+    background-color: whitesmoke;
+
+    display: grid;
+
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-rows: 1fr 2fr 1fr;   
+    
+}
+
+.img {
+    text-align: center;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
+}
+
+.topLeftVal {
+    text-align: center;
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.bottomRightVal {
+    text-align: center;
+    grid-column-start: 3;
+    grid-column-end: 4;
+    grid-row-start: 3;
+    grid-row-end: 4;
+}
