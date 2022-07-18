@@ -380,6 +380,7 @@ async function split()
     {
         if(currentGame.player[0].length == 2 && (currentGame.player[0][0].substring(2) == currentGame.player[0][1].substring(2)))
         {
+            chips -= currentGame.ante;
             var temp = currentGame.player[0].splice(1,1);
             currentGame.player[1] = temp;
             currentGame.update();
