@@ -186,6 +186,10 @@ module.exports.db = function DB(app){
     app.get('/TowerBuilderData', function(request, response) {
         getGameData(request, response);
     });
+    app.get('/ChipCountData', function(request, response) {
+        getGameData(request, response);
+    });
+
 
     //post data
     app.post('/BlockStackData', function(request, response) {
@@ -204,6 +208,9 @@ module.exports.db = function DB(app){
         postGameData(request, response);
     });
     app.post('/TowerBuilderData', function(request, response) {
+        postGameData(request, response);
+    });
+    app.post('/ChipCountData', function(request, response) {
         postGameData(request, response);
     });
 }

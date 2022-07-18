@@ -147,6 +147,9 @@ app.get("/2048-", function (request, response) {
 app.get("/Bird-", function (request, response) {
     direct(request,response);
 });
+app.get("/BlackJack-", function (request, response) {
+    direct(request,response);
+});
 app.get("/BlockStack-", function (request, response) {
     direct(request,response);
 });
