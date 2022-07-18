@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <%- include('partials/head.ejs') %>
+        <link rel="stylesheet" href="BlackJack/BlackJack.css">
+    </head>
+    <body>
+        <%- include('partials/topnav.ejs') %>
+
+        <div class="containerGame">
+            <div class="title">
+                <p><img id = "heart" src = "BlackJack/images/heart.png"><img id = "diamond" src = "BlackJack/images/diamond.png">
+                    <%=title.substring(0,title.indexOf("|"))%>
+                    <img id = "club" src = "BlackJack/images/club.png"><img id = "spade" src = "BlackJack/images/spade.png">
+                </p>
+            </div>
+    
+            <div class="content">
+                <center>
+                    <button onclick="NewGame()">New Game</button>
+                    <p id = "chips">Chips : 100</p>
+                    <p>Ante - $ <input type = "number" id = "ante" value="1"></p>
+                    <p id = "buttons" style = "display : none"><button id = "hit" onclick = "hit()">Hit</button><button id = "stay" onclick = "stay()">Stay</button><button id = "split" onclick = "split()">Split</button></p>
+                    <p id = "end" style = "display : none"></p>
+                    <p id = "dealerVal"></p>
+                    <div id = "dealer" class = "dealer"></div>
+                    <p id = "playerVal"></p>
+                    <div id = "player" class = "player"></div>
+                    <p id = "playerVal2"></p>
+                    <div id = "player2nd" class = "player"></div>
+                </center>
+            </div>
+
+            <div class="instructions">
+                <p> Instructions :  <br><br>
+                    
+                </p>
+            </div>
+            
+            <div class="ads">
+
+            </div>
+ 
+        </div>
+
+        <script src = "BlackJack/BlackJack.js"></script>
+    </body>
+<html>
