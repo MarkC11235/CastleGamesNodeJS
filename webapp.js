@@ -118,6 +118,9 @@ function direct(request, response)
 app.get("/", function (request, response) {
     direct(request,response);
 });
+// app.get("/categories", function (request, response) {
+//     direct(request,response);
+// });
 app.get("/contact", function (request, response) {
     direct(request,response);
 });
