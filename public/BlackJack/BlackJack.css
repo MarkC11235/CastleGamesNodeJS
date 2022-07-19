@@ -1,3 +1,12 @@
+button{
+    width: 8em; 
+    height: 4em; 
+    border-radius: 1em;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+
 .dealer{
     padding: 1em;
     display: flex;

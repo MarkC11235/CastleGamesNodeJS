@@ -11,6 +11,8 @@ const endText = document.getElementById("end");
 
 const chipsText = document.getElementById("chips");
 var chips = 100;
+var lastChipsRecieved = null;
+
 var currentGame;
 
 const cards = [["d", "h", "c", "s"], ["A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"]];
@@ -395,14 +397,40 @@ async function getData()
     var temp = await getGameData("ChipCount");
     if(temp != null)
     {
-        chips = parseInt(temp);
+        if(temp.indexOf("-") != -1)
+        {
+            chips = parseInt(temp.substring(0, temp.indexOf("-")));
+            lastChipsRecieved = parseInt(temp.substring(temp.indexOf("-")+1));
+        }
+        else
+        {
+            chips = parseInt(temp);
+        }
+        chipsText.innerHTML = "Chips : "+chips;
+        await freeChips();
         chipsText.innerHTML = "Chips : "+chips;
     }
 }
 
 async function postData()
 {
-    postGameData("ChipCount", chips);
+    postGameData("ChipCount", chips + "-" + lastChipsRecieved);
+}
+
+async function freeChips()
+{
+    if(lastChipsRecieved == null || new Date().getTime() - lastChipsRecieved > 1000*60*60)
+    {
+        chips += 10;
+        lastChipsRecieved = new Date().getTime();
+        await postData();
+        alert("You have recieved free chips! Come back in an hour to claim more!");
+    }
+    else{
+        var temp = 1000*60*60 - (new Date().getTime() - lastChipsRecieved);
+        temp = (temp/60000).toFixed(0) + " minutes";
+        alert("You have already recieved free chips! Come back in " + temp + " to claim more!");
+    }
 }
 
 //Decoration
