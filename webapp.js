@@ -103,7 +103,8 @@ function direct(request, response)
         game = true;
     }
     else if(path.indexOf("sitemap.xml") != -1) {
-        path = "sitemap.xml";
+        response.sendFile(p.join(__dirname, "sitemap.xml"));
+        return;
     }
     else{
         path = path.substring(1);
