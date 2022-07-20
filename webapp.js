@@ -198,3 +198,8 @@ app.get("/TowerBuilder-", function (request, response) {
 app.get("/ZombieSurvival-", function (request, response) {
     direct(request,response);
 });
+
+//sitemap
+app.get("/sitemap.xml", function (request, response) {
+    direct(request,response);
+});
