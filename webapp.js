@@ -5,6 +5,8 @@ require("dotenv").config();
 const p = require('path');
 const bodyParser = require('body-parser');
 
+app.use(express.static('sitemap.xml'));
+
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
@@ -99,6 +101,9 @@ function direct(request, response)
         path = path.substring(1,path.length-1);
         title = path + "|"+title;
         game = true;
+    }
+    else if(path.indexOf("sitemap.xml") != -1) {
+        path = "sitemap.xml";
     }
     else{
         path = path.substring(1);
