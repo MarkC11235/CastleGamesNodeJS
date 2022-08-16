@@ -62,9 +62,6 @@ const io = s(server);
 var openBattle = require("./gamesServers/openBattle.js");
 openBattle.start(io);
 
-var zombieWorld = require("./gamesServers/zombieWorld.js");
-zombieWorld.start(io);
-
 
 /*
 var l = require("./gamesServers/lobbyBasedGame.js");
