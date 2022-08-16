@@ -53,14 +53,18 @@ app.use(express.urlencoded({ extended: true }));
 const db = require('./db.js');
 db.db(app);
 
+const path = require('path');
 
 //socket.io
 const s = require('socket.io');
 const io = s(server);
 
 var openBattle = require("./gamesServers/openBattle.js");
-const path = require('path');
 openBattle.start(io);
+
+var zombieWorld = require("./gamesServers/zombieWorld.js");
+zombieWorld.start(io);
+
 
 /*
 var l = require("./gamesServers/lobbyBasedGame.js");
@@ -181,6 +185,9 @@ app.get("/MuffinMaker-", function (request, response) {
     direct(request,response);
 });
 app.get("/OpenBattle-", function (request, response) {
+    direct(request,response);
+});
+app.get("/OppositesAttract-", function (request, response) {
     direct(request,response);
 });
 app.get("/Pong-", function (request, response) {

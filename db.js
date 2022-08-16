@@ -102,7 +102,6 @@ module.exports.db = function DB(app){
         }
     });
 
-
     //game data
     function getGameData(request, response){
         var path = request.path;
