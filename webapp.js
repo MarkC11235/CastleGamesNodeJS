@@ -178,6 +178,9 @@ app.get("/Memory-", function (request, response) {
 app.get("/MeteorShower-", function (request, response) {
     direct(request,response);
 });
+app.get("/MiniGolf-", function (request, response) {
+    direct(request,response);
+});
 app.get("/MuffinMaker-", function (request, response) {
     direct(request,response);
 });
@@ -194,6 +197,9 @@ app.get("/Rocket-", function (request, response) {
     direct(request,response);
 });
 app.get("/Serpent-", function (request, response) {
+    direct(request,response);
+});
+app.get("/Slots-", function (request, response) {
     direct(request,response);
 });
 app.get("/SuperJumpMan-", function (request, response) {

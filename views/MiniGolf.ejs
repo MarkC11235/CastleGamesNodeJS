@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <%- include('partials/head.ejs') %>
+        <script src="MiniGolf/Build/UnityLoader.js"></script>
+        <script>
+            var unityInstance = UnityLoader.instantiate("unityContainer", "MiniGolf/Build/MiniGolf.json");
+        </script>
+        <link rel = "stylesheet" href = "MiniGolf/click.css";>
+    </head>
+    <body>
+        <%- include('partials/topnav.ejs') %>
+
+        <div class="containerGame">
+            <div class="title noselect">
+                <p><%=title.substring(0,title.indexOf("|"))%></p>
+            </div>
+    
+            <div class="content">
+                <center><div id="unityContainer" style="width: 900px; height: 510px; border: solid black 2px"></div></center>
+            </div>
+
+            <div class="instructions noselect">
+                <p> Instructions :  <br><br>
+                    - Click and drag in the opposite direction you want the ball to launch <br><br>
+                    - Release click to shoot the ball <br><br>
+                    - press r to reset the level <br><br>
+                    - press q to return to the main menu
+                </p>
+            </div>
+            
+            <div class="ads">
+
+            </div>
+
+        </div>
+
+        <script src = "MiniGolf/click.js"></script>
+    </body>
+<html>
