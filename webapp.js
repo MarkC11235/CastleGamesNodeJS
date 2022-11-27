@@ -24,10 +24,10 @@ app.use(session({
     }
 }));
 
-
 app.use(express.static(p.join(__dirname, 'public')));
 app.set("views", p.join(__dirname, "views"));
 
+//sets the expressjs view engine to ejs
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.json());
@@ -50,7 +50,9 @@ process.on('uncaughtException', err => {
 //data base
 app.use(express.urlencoded({ extended: true }));
 
+//requires the database file
 const db = require('./db.js');
+//calls the function to open the connection to the database
 db.db(app);
 
 const path = require('path');
@@ -59,7 +61,9 @@ const path = require('path');
 const s = require('socket.io');
 const io = s(server);
 
+//requires the openBattle file
 var openBattle = require("./gamesServers/openBattle.js");
+//calls function to start open battle server using socket.io (io)
 openBattle.start(io);
 
 
@@ -85,21 +89,24 @@ function direct(request, response)
         request.session.password = request.cookies.password;
     }
 
+    //path 
+    // "/" is home page
+    // "route-" is a game page
+    // "route_" is any other page
+    // "routeData" is a request to the database
     if(path == "/"){
         path = "index.ejs";
     }
-    else if (path == "/logout"){
-        
+    else if (path == "/logout"){     
         path = "index.ejs";
         request.session.loggedin = false;
         request.session.username = "";
         request.session.password = "";
         response.clearCookie("username");
-        response.clearCookie("password");
-        
+        response.clearCookie("password");  
     }
     else if(path.substring(path.length-1) == "-") {
-        path = path.substring(1,path.length-1);
+        path = path.substring(1, path.length-1);
         title = path + "|"+title;
         game = true;
     }
@@ -107,10 +114,13 @@ function direct(request, response)
         response.sendFile(p.join(__dirname, "sitemap.xml"));
         return;
     }
-    else{
-        path = path.substring(1);
+    else if(path.substring(path.length-1) == "_"){
+        path = path.substring(1, path.length-1);
         title = path + "|"+title;
         game = true;
+    }
+    else{
+        path = "index.ejs";
     }
    
     response.render(path, {
@@ -118,104 +128,22 @@ function direct(request, response)
         username: request.session.username, 
         title : title,
         game : game
+    }, function(err, html) {
+        //if the page doesn't exist 
+        //this returns the user to the home page
+        //or if there is an error
+        //sends response 404 Not Found
+        if(err) {
+            console.log(err);
+            response.status(404).send("404 Not Found");
+        }
+        else {
+            response.send(html);
+        }
     });
 }
 
-//accessing all pages except game pages
-app.get("/", function (request, response) {
-    direct(request,response);
-});
-// app.get("/categories", function (request, response) {
-//     direct(request,response);
-// });
-app.get("/contact", function (request, response) {
-    direct(request,response);
-});
-app.get("/patchnotes", function (request, response) {
-    direct(request,response);
-});
-app.get("/login", function (request, response) {
-    direct(request,response);
-});
-app.get("/register", function (request, response) {
-    direct(request,response);
-});
-app.get("/error", function (request, response) {
-    direct(request,response);
-});
-app.get("/user", function (request, response) {
-    direct(request,response);
-});
-app.get("/logout", function (request, response){
-    direct(request,response);
-});
-
-//accessing games 
-app.get("/2048-", function (request, response) {
-    direct(request,response);
-});
-app.get("/Bird-", function (request, response) {
-    direct(request,response);
-});
-app.get("/BlackJack-", function (request, response) {
-    direct(request,response);
-});
-app.get("/BlockStack-", function (request, response) {
-    direct(request,response);
-});
-app.get("/CubeDash-", function (request, response) {
-    direct(request,response);
-});
-app.get("/HangMan-", function (request, response) {
-    direct(request,response);
-});
-app.get("/MineSweeper-", function (request, response) {
-    direct(request,response);
-});
-app.get("/Memory-", function (request, response) {
-    direct(request,response);
-});
-app.get("/MeteorShower-", function (request, response) {
-    direct(request,response);
-});
-app.get("/MiniGolf-", function (request, response) {
-    direct(request,response);
-});
-app.get("/MuffinMaker-", function (request, response) {
-    direct(request,response);
-});
-app.get("/OpenBattle-", function (request, response) {
-    direct(request,response);
-});
-app.get("/OppositesAttract-", function (request, response) {
-    direct(request,response);
-});
-app.get("/Pong-", function (request, response) {
-    direct(request,response);
-});
-app.get("/Rocket-", function (request, response) {
-    direct(request,response);
-});
-app.get("/Serpent-", function (request, response) {
-    direct(request,response);
-});
-app.get("/Slots-", function (request, response) {
-    direct(request,response);
-});
-app.get("/SuperJumpMan-", function (request, response) {
-    direct(request,response);
-});
-app.get("/TargetPractice-", function (request, response) {
-    direct(request,response);
-});
-app.get("/TowerBuilder-", function (request, response) {
-    direct(request,response);
-});
-app.get("/ZombieSurvival-", function (request, response) {
-    direct(request,response);
-});
-
-//sitemap
-app.get("/sitemap.xml", function (request, response) {
+//takes any get request and sends it to the direct function
+app.get(/.*/, function(request, response) {
     direct(request,response);
 });

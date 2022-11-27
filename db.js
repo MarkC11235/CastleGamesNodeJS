@@ -1,6 +1,7 @@
 module.exports.db = function DB(app){
     const mysql = require('mysql');
 
+    //creates a pool of connections to the database
     const pool = mysql.createPool({
         host: process.env.DB_HOST,
         user: process.env.DB_USER,
@@ -10,78 +11,19 @@ module.exports.db = function DB(app){
         connectionLimit: process.env.DB_CONNECTION_LIMIT
     });
 
-    /*
-    con.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-    con.query("CREATE DATABASE IF NOT EXISTS users", function (err, result) {
-        if (err) throw err;
-        //console.log("Database created");
-    });
-    con.query("CREATE TABLE IF NOT EXISTS accounts (id INT AUTO_INCREMENT PRIMARY KEY, username VARCHAR(255), password VARCHAR(255), email VARCHAR(100))", function (err, result) {
-        if (err) throw err;
-        //console.log("Table created");
-    });
-    //con.end();
-    });
-    */
-
     //register and login 
     app.post('/login', function(request, response) {
-	let username = request.body.username;
-	let password = request.body.password;
-    let keepLoggedIn = request.body.keepLoggedIn;
+        let username = request.body.username;
+        let password = request.body.password;
+        let keepLoggedIn = request.body.keepLoggedIn;
 
-	if (username && password) {
-        pool.getConnection(function(err, con) {
-		    con.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {	
-			    if (error)
-                    throw error;
+        if (username && password) {
+            pool.getConnection(function(err, con) {
+                con.query('SELECT * FROM accounts WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {	
+                    if (error)
+                        throw error;
 
-			    if (results.length > 0) {
-                    request.session.username = username;
-                    request.session.password = password;
-                    request.session.loggedin = true;
-                    if(keepLoggedIn){
-                        response.cookie('username', username, {secure : "auto", maxAge : 1000 * 60 * 60 * 24 * 365});
-                        response.cookie('password', password, {secure : "auto", maxAge : 1000 * 60 * 60 * 24 * 365});
-                    }
-				    response.redirect('/');
-			    } 
-                else {
-			    	response.redirect('/error');
-			    }			
-		    });
-            con.release();
-        });
-	}
-    else {
-		response.redirect('/error');
-	}
-
-    });
-
-    app.post('/register', function(request, response) {
-    let username = request.body.username;
-    let password = request.body.password;
-    let email = request.body.email;
-    let keepLoggedIn = request.body.keepLoggedIn;
-
-    if (username && password && email) {
-        pool.getConnection(function(err, con) {
-            con.query('SELECT * FROM accounts WHERE username = ? OR email = ?', [username, email], function(error, results, fields) {
-                if (error){
-                    console.log("Error: " + error);
-                    throw error;
-                }  
-                else if (results.length > 0) {
-                    console.log("Account already exists");
-                    response.redirect('/error');
-                } else {
-                    con.query('INSERT INTO accounts (username, password, email) VALUES (?, ?, ?)', [username, password, email], function(error, results, fields) {
-                    
-                        if (error) throw error;
-                    
+                    if (results.length > 0) {
                         request.session.username = username;
                         request.session.password = password;
                         request.session.loggedin = true;
@@ -89,17 +31,59 @@ module.exports.db = function DB(app){
                             response.cookie('username', username, {secure : "auto", maxAge : 1000 * 60 * 60 * 24 * 365});
                             response.cookie('password', password, {secure : "auto", maxAge : 1000 * 60 * 60 * 24 * 365});
                         }
-                        console.log("Account created");
                         response.redirect('/');
-                    });
-                }
+                    } 
+                    else {
+                        response.redirect('/error');
+                    }			
+                });
+                con.release();
             });
-            con.release();
-        });
         }
         else {
             response.redirect('/error');
         }
+    });
+
+    app.post('/register', function(request, response) {
+        let username = request.body.username;
+        let password = request.body.password;
+        let email = request.body.email;
+        let keepLoggedIn = request.body.keepLoggedIn;
+
+        if (username && password && email) {
+            pool.getConnection(function(err, con) {
+                con.query('SELECT * FROM accounts WHERE username = ? OR email = ?', [username, email], function(error, results, fields) {
+                    if (error){
+                        console.log("Error: " + error);
+                        throw error;
+                    }  
+                    else if (results.length > 0) {
+                        console.log("Account already exists");
+                        response.redirect('/error');
+                    } else {
+                        con.query('INSERT INTO accounts (username, password, email) VALUES (?, ?, ?)', [username, password, email], function(error, results, fields) {
+                        
+                            if (error) throw error;
+                        
+                            request.session.username = username;
+                            request.session.password = password;
+                            request.session.loggedin = true;
+                            if(keepLoggedIn){
+                                response.cookie('username', username, {secure : "auto", maxAge : 1000 * 60 * 60 * 24 * 365});
+                                response.cookie('password', password, {secure : "auto", maxAge : 1000 * 60 * 60 * 24 * 365});
+                            }
+                            console.log("Account created");
+                            response.redirect('/');
+                        });
+                    }
+                });
+                con.release();
+            });
+            }
+            else {
+                response.redirect('/error');
+            }
     });
 
     //game data
@@ -107,10 +91,9 @@ module.exports.db = function DB(app){
         var path = request.path;
         path = path.substring(1);
         if(request.session.loggedin){
+            //gets one connection from connection pool
             pool.getConnection(function(err, con) {
-                con.query('CREATE TABLE IF NOT EXISTS ' + path + ' (username VARCHAR(255), password VARCHAR(255), data VARCHAR(255), UNIQUE(username))', function (err, results) {
-                    if (err) throw err;
-                });
+                //query database for game data
                 con.query('SELECT * FROM ' + path + ' WHERE username = ? AND password = ?', [request.session.username, request.session.password], function(error, results, fields) {
                     if (error) throw error;
                     // If the account exists
@@ -135,14 +118,13 @@ module.exports.db = function DB(app){
         path = path.substring(1);
         if(request.session.loggedin){
             pool.getConnection(function(err, con) {
-                con.query('CREATE TABLE IF NOT EXISTS ' + path + ' (username VARCHAR(255), password VARCHAR(255), data VARCHAR(255), UNIQUE(username))', function (err, result) {
-                    if (err) 
-                        throw err;     
-                });
+                //query database for game data
                 con.query('SELECT * FROM ' + path + ' WHERE username = ? AND password = ?', [request.session.username, request.session.password], function(error, results, fields) {
                     if (error) 
                         throw error;
 
+                    // If the account exists and the data is not empty
+                    // update the data
                     if (results.length > 0) {
                         con.query('UPDATE ' + path + ' SET data = ? WHERE username = ? AND password = ?', [request.body.data, request.session.username, request.session.password], function(error, results, fields) {
                             if (error) 
@@ -150,6 +132,8 @@ module.exports.db = function DB(app){
                             response.end();
                         });
                     }
+                    // If the account exists and the data is empty
+                    // insert the data
                     else{
                         con.query('INSERT INTO '+path+' (username, password, data) VALUES (?, ?, ?)', [request.session.username, request.session.password, request.body.data], function(error, results, fields) {
                             if (error) 
@@ -167,49 +151,13 @@ module.exports.db = function DB(app){
     }
 
     //get data
-    app.get('/BlockStackData', function(request, response) {
-        getGameData(request, response); 
-    });
-    app.get('/MemoryData', function(request, response) {
+    app.get(/.*Data/, function(request, response){
         getGameData(request, response);
     });
-    app.get('/MeteorShowerData', function(request, response) {
-        getGameData(request, response); //*
-    });
-    app.get('/SerpentData', function(request, response) {
-        getGameData(request, response); //*
-    });
-    app.get('/TargetPracticeData', function(request, response) {
-        getGameData(request, response);
-    });
-    app.get('/TowerBuilderData', function(request, response) {
-        getGameData(request, response);
-    });
-    app.get('/ChipCountData', function(request, response) {
-        getGameData(request, response);
-    });
-
-
+   
     //post data
-    app.post('/BlockStackData', function(request, response) {
+    app.post(/.*Data/, function(request, response){
         postGameData(request, response);
     });
-    app.post('/MemoryData', function(request, response) {
-        postGameData(request, response);
-    });
-    app.post('/MeteorShowerData', function(request, response) {
-        postGameData(request, response);
-    });
-    app.post('/SerpentData', function(request, response) {
-        postGameData(request, response);
-    });
-    app.post('/TargetPracticeData', function(request, response) {
-        postGameData(request, response);
-    });
-    app.post('/TowerBuilderData', function(request, response) {
-        postGameData(request, response);
-    });
-    app.post('/ChipCountData', function(request, response) {
-        postGameData(request, response);
-    });
+    
 }

@@ -1,14 +1,15 @@
 <div class="topnav">
     <a href="/">Home</a>
     <!-- <a href="/categories">Game Categories</a> -->
-    <a href="/contact">Contact</a>
-    <a href="/patchnotes">Patch Notes</a>
+    <a href="/contact_">Contact</a>
+    <a href="/patchnotes_">Patch Notes</a>
+    <a href="/downloads_">Downloads</a>
     
     <% if (loggedIn == true) { %>
-        <a style="font-size: 20px; float: right;" href = "/user">User : <%= username %></a>
+        <a style="font-size: 20px; float: right;" href = "/user_">User : <%= username %></a>
     <%} else { %>
-        <a id = "login" style = "float : right"; href="/login">Login</a>
-        <a id = "register" style = "float : right"; href="/register">Register</a>
+        <a id = "login" style = "float : right"; href="/login_">Login</a>
+        <a id = "register" style = "float : right"; href="/register_">Register</a>
     <% } %>
     
 </div>
