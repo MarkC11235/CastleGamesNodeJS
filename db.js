@@ -1,4 +1,6 @@
 module.exports.db = function DB(app){
+
+    //requires the mysql module
     const mysql = require('mysql');
 
     //creates a pool of connections to the database
@@ -12,6 +14,11 @@ module.exports.db = function DB(app){
     });
 
     //register and login 
+
+    //called when the user clicks the login button
+    //checks if the user exists in the database
+    //if the user exists and the given username and password are coorect, the user is logged in
+    //if the user does not exist or the given username and password are incorrect, the user is redirected to the error page
     app.post('/login', function(request, response) {
         let username = request.body.username;
         let password = request.body.password;
@@ -45,6 +52,10 @@ module.exports.db = function DB(app){
         }
     });
 
+    //called when the user clicks the register button
+    //checks if the user already exists in the database
+    //if the user does not exist, the user is registered
+    //if the user already exists, the user is redirected to the error page
     app.post('/register', function(request, response) {
         let username = request.body.username;
         let password = request.body.password;
@@ -86,7 +97,9 @@ module.exports.db = function DB(app){
             }
     });
 
-    //game data
+    //takes request from user to get data from database
+    //then queries the database for the data
+    //then sends the data back to the user
     function getGameData(request, response){
         var path = request.path;
         path = path.substring(1);
@@ -113,6 +126,10 @@ module.exports.db = function DB(app){
         }
     }
 
+    //takes request from user to post data to database
+    //then queries the database to see if data already exists
+    //if data exists, update the data
+    //if data does not exist, insert the data
     function postGameData(request, response){
         var path = request.path;
         path = path.substring(1);
@@ -151,13 +168,14 @@ module.exports.db = function DB(app){
     }
 
     //get data
+    //uses regex to match any path that ends with Data
     app.get(/.*Data/, function(request, response){
         getGameData(request, response);
     });
    
     //post data
+    //uses regex to match any path that ends with Data
     app.post(/.*Data/, function(request, response){
         postGameData(request, response);
-    });
-    
+    }); 
 }
