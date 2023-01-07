@@ -1,5 +1,10 @@
 module.exports.db = function DB(app){
 
+    //TODO:
+    // make a function that validates that the user is logged in to use in all the other functions
+    // make more utility functions for the database, to make it easier to use and more secure
+
+
     //requires the mysql module
     const mysql = require('mysql');
 
@@ -13,7 +18,31 @@ module.exports.db = function DB(app){
         connectionLimit: process.env.DB_CONNECTION_LIMIT
     });
 
-    //register and login 
+    //Helper functions
+    function isLoggedin(request){
+        if(request.session.loggedin){
+            return true;
+        } 
+        return false;
+    }
+
+    //fucntion to gather all data for a specific game and return the top 3 scores
+    function getTop3GameScores(game){
+        let results = [];
+        pool.getConnection(function(err, con) {
+            con.query('SELECT * FROM ' + game + 'Data WHERE username = ? AND password = ?', ["mark", "MagicFish7"], function(error, results, fields) {
+                if (error){
+                    throw error;
+                }
+                results = results;
+            });
+            con.release();
+        });
+        return results;
+    }
+    //console.log(getTop3GameScores("ChipCount"));
+
+    //Register and Login 
 
     //called when the user clicks the login button
     //checks if the user exists in the database
@@ -97,13 +126,16 @@ module.exports.db = function DB(app){
             }
     });
 
+
+    //Game Data
+
     //takes request from user to get data from database
     //then queries the database for the data
     //then sends the data back to the user
     function getGameData(request, response){
         var path = request.path;
         path = path.substring(1);
-        if(request.session.loggedin){
+        if(request.session.loggedin){          
             //gets one connection from connection pool
             pool.getConnection(function(err, con) {
                 //query database for game data

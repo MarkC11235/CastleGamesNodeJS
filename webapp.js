@@ -16,6 +16,7 @@
 // make database easier and more flexible to query
 // add more functionality to profiles 
 // add more games
+// write tests for the server that need to be passed before it launches
 
 //imports the dotenv module
 //dotenv is a zero-dependency module that loads environment variables from a .env file into process.env
@@ -85,6 +86,7 @@ const server = app.listen(process.env.SITE_PORT, err => {
         console.log("Server is listening on port 5000");
     }
 });
+
 
 //handle uncaught errors by exiting the process
 //TODO: (probably should fix)************************************************

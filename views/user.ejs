@@ -1,23 +1,25 @@
 <html>
     <head>
         <%- include('partials/head.ejs') %>
+        <link rel="stylesheet" href="css/user.css">
     </head>
     <body>
         <%- include('partials/topnav.ejs') %>
         <%- include('partials/title.ejs') %>
 
-        <div class="containerGame">
+        <div class="container">
             <div class="title">
                 <p>User : <%=username%></p>
             </div>
     
-            <div class="content">
+            <div class="gamedata">
                 <p>Game Data</p>
                 <div class = "display">
                   
                 </div>
-                <center><a href = "/logout">logout</a></center>
             </div>
+
+            <center><a href = "/logout">logout</a></center>
 
         </div>
 

@@ -1,4 +1,11 @@
-﻿a:link {
+﻿:root{
+    --background-main:  lightseagreen;
+    --background-secondary: rgb(21, 21, 201);
+    --border-color: rgb(0, 1, 71);
+    --text-color: black;
+}
+
+a:link {
     color: rgb(2, 167, 158);
     background-color: transparent;
     text-decoration: underline;
@@ -17,26 +24,26 @@
   }
   
 body { 
-    background-color: lightseagreen;
+    background-color: var(--background-main);
     margin: 0;
 }
 
 
 .topnav {
-    background-color: rgb(21, 21, 201);
-    border: 8px solid rgb(0, 1, 71);
+    background-color: var(--background-secondary);
+    border: 8px solid var(--border-color);
     overflow: hidden;
 }
 .topnav a {
     float: left;
-    color: black;
+    color: var(--text-color);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
     font-size: 20px;
 }
 .topnav a:hover {
-    background-color: lightseagreen;
+    background-color: var(--background-main);
 }
 
 .container{
@@ -45,8 +52,8 @@ body {
 
     display: grid;
 
-    grid-template-columns: 1fr 2fr 2fr 2fr;
-    grid-template-rows: 1fr 3fr 3fr 3fr 3fr 3fr 3fr 3fr;
+    grid-template-columns: 1fr repeat(3, 2fr);
+    grid-template-rows: 1fr repeat(8, 1fr);
 
     size: fixed;
 }
@@ -55,10 +62,10 @@ body {
     grid-column-start: 1;
     grid-column-end: 2;
     grid-row-start: 1;
-    grid-row-end: 9;
+    grid-row-end: span 100;
 
-    border: 8px solid rgb(0, 1, 71);
-    background-color: rgb(21, 21, 201);
+    border: 8px solid var(--border-color);
+    background-color: var(--background-secondary);
 }
 
 @keyframes Title {
@@ -77,8 +84,8 @@ body {
     font-weight: bold;
     font-family: cursive;
 
-    border: 8px solid rgb(0, 1, 71);
-    background-color: rgb(21, 21, 201);
+    border: 8px solid var(--border-color);
+    background-color: var(--background-secondary);
 
     animation-name: Title;
     animation-duration: 10s;
@@ -90,77 +97,14 @@ img{
     height: max-content;
 }
 
-
-.game1{
-    grid-row-start: 2;
+.game{
+    grid-row-start: span 1;
     grid-row-end: span 1;
-    border: 8px solid rgb(0, 1, 71);
+    grid-column-start: span 1;
+    grid-column-end: span 1;
+    border: 8px solid var(--border-color);
 }
 
-.game1:hover{
+.game:hover{
     transform: scale(1.04);
 }
-
-.game2{
-    grid-row-start: 3;
-    grid-row-end: span 1;
-    border: 8px solid rgb(0, 1, 71);
-}
-
-.game2:hover{
-    transform: scale(1.04);
-}
-
-.game3{
-    grid-row-start: 4;
-    grid-row-end: span 1;
-    border: 8px solid rgb(0, 1, 71);
-}
-
-.game3:hover{
-    transform: scale(1.04);
-}
-
-.game4{
-    grid-row-start: 5;
-    grid-row-end: span 1;
-    border: 8px solid rgb(0, 1, 71);
-}
-
-.game4:hover{
-    transform: scale(1.04);
-}
-
-.game5{
-    grid-row-start: 6;
-    grid-row-end: span 1;
-    border: 8px solid rgb(0, 1, 71);
-}
-
-.game5:hover{
-    transform: scale(1.04);
-}
-
-.game6{
-    grid-row-start: 7;
-    grid-row-end: span 1;
-    border: 8px solid rgb(0, 1, 71);
-}
-
-.game6:hover{
-    transform: scale(1.04);
-}
-
-.game7{
-    grid-row-start: 8;
-    grid-row-end: span 1;
-    border: 8px solid rgb(0, 1, 71);
-}
-
-.game7:hover{
-    transform: scale(1.04);
-}
-
-
-
-
