@@ -142,6 +142,7 @@ function direct(request, response)
         request.session.password = "";
         response.clearCookie("username");
         response.clearCookie("password");  
+        response.clearCookie("theme");
     }
     else if(path.substring(path.length-1) == "-") {
         path = path.substring(1, path.length-1);
@@ -169,7 +170,8 @@ function direct(request, response)
         loggedIn: request.session.loggedin, 
         username: request.session.username, 
         title : title,
-        game : game
+        game : game,
+        theme : request.cookies.theme == undefined ? "blue" : request.cookies.theme
     }, function(err, html) {
         //if the page doesn't exist 
         //this returns the user to the home page

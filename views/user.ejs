@@ -8,22 +8,30 @@
         <%- include('partials/title.ejs') %>
 
         <div class="container">
-            <div class="title">
+            <div class="item">
                 <p>User : <%=username%></p>
+                <p>Theme</p>
+                <center><button onclick = "themeButton('blue')" id = "blue">Blue</button></center>
+                <center><button onclick = "themeButton('purple')" id = "purple">Purple</button></center>
+                <!-- <center><button onclick = "themeButton('green')" id = "green">Green</button></center> -->
+                <center><button onclick = "themeButton('brown')" id = "brown">Brown</button></center>
+                <br>
+                <br>
+                <br>
+                <br>
+                <center><a href = "/logout">logout</a></center>
             </div>
     
-            <div class="gamedata">
+            <div class="item">
                 <p>Game Data</p>
                 <div class = "display">
                   
                 </div>
             </div>
 
-            <center><a href = "/logout">logout</a></center>
-
         </div>
 
         <script src="JSLibrary/ServerComms.js"></script>
-        <script src="user/user.js"></script>
+        <script src="user/gameData.js"></script>
     </body>
 <html>
