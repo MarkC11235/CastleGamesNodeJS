@@ -6,7 +6,9 @@
     <a href="/downloads_">Downloads</a>
     
     <% if (loggedIn == true) { %>
-        <a style="font-size: 20px; float: right;" href = "/user_">User : <%= username %></a>
+        <div class = "profilePicture" id = "profilePicture">
+            <a href = "/user_"></a>
+        </div>
     <%} else { %>
         <a id = "login" style = "float : right"; href="/login_">Login</a>
         <a id = "register" style = "float : right"; href="/register_">Register</a>

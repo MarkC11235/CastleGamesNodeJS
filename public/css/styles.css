@@ -5,6 +5,7 @@
     --text-color: black;
 }
 
+
 a:link {
     color: rgb(2, 167, 158);
     background-color: transparent;
@@ -64,6 +65,8 @@ body {
     grid-row-start: 1;
     grid-row-end: span 100;
 
+    color: var(--text-color);
+
     border: 8px solid var(--border-color);
     background-color: var(--background-secondary);
 }
@@ -103,8 +106,28 @@ img{
     grid-column-start: span 1;
     grid-column-end: span 1;
     border: 8px solid var(--border-color);
+    color: var(--text-color);
 }
 
 .game:hover{
     transform: scale(1.04);
+}
+
+.profilePicture{
+    width: 3em;
+    height: 3em;
+    /* background-image: url("../images/defaultProfilePicture.png"); */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    float : right;
+}
+
+.profilePicture a{
+    width: 3em;
+    height: 3em;
+}
+
+.profilePicture a:hover{
+    opacity: 0.5 !important;
 }

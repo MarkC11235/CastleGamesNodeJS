@@ -11,6 +11,5 @@
 
 .item{
     border: 8px solid var(--border-color);
-    background-color: var(--background-secondary);
 }
 

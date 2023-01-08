@@ -1,5 +1,10 @@
 p{
     text-align: center;
+    color: var(--text-color);
+}
+
+h1{
+    color: var(--text-color);
 }
 
 body{

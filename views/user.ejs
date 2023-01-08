@@ -10,15 +10,6 @@
         <div class="container">
             <div class="item">
                 <p>User : <%=username%></p>
-                <p>Theme</p>
-                <center><button onclick = "themeButton('blue')" id = "blue">Blue</button></center>
-                <center><button onclick = "themeButton('purple')" id = "purple">Purple</button></center>
-                <!-- <center><button onclick = "themeButton('green')" id = "green">Green</button></center> -->
-                <center><button onclick = "themeButton('brown')" id = "brown">Brown</button></center>
-                <br>
-                <br>
-                <br>
-                <br>
                 <center><a href = "/logout">logout</a></center>
             </div>
     
@@ -27,6 +18,23 @@
                 <div class = "display">
                   
                 </div>
+            </div>
+
+            <div class="item">
+                <p>Theme</p>
+                <center><button onclick = "themeButton('blue')" id = "blue">Blue</button></center>
+                <center><button onclick = "themeButton('purple')" id = "purple">Purple</button></center>
+                <center><button onclick = "themeButton('green')" id = "green">Green</button></center>
+                <center><button onclick = "themeButton('brown')" id = "brown">Brown</button></center>
+                <center><button onclick = "themeButton('dark')" id = "dark">Dark</button></center>        
+            </div>
+
+            <div class="item">
+                <p>Profile Picture</p>
+                <center><button onclick = "profilePictureButton('default')" id = "default">Default</button></center>
+                <center><button onclick = "profilePictureButton('castle')" id = "castle">Castle</button></center>
+                <center><button onclick = "profilePictureButton('blueCastle')" id = "blueCastle">Blue Castle</button></center>
+                <center><button onclick = "profilePictureButton('muffin')" id = "muffin">Muffin</button></center>
             </div>
 
         </div>

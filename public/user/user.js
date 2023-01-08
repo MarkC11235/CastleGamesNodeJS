@@ -1,6 +1,5 @@
 //set theme to the one stored in the cookie
 var theme = getCookie("theme") == "" ? "blue" : getCookie("theme");
-console.log("Theme set to " + theme);
 
 function getCookie(cname) {
     let name = cname + "=";
@@ -40,23 +39,69 @@ function setTheme(){
             r.style.setProperty('--text-color', 'rgb(0, 0, 0)');
             break;
         case "purple":
-            r.style.setProperty('--background-main', '#531CB3');
-            r.style.setProperty('--background-secondary', '#944BBB');
-            r.style.setProperty('--border-color', '#AA7BC3');
-            r.style.setProperty('--text-color', 'rgb(0, 0, 0)');
+            r.style.setProperty('--background-main', '#7C238C');
+            r.style.setProperty('--background-secondary', '#680E4B');
+            r.style.setProperty('--border-color', '#42033D');
+            r.style.setProperty('--text-color', 'rgb(255, 255, 255)');
             break;
         case "green":
-            r.style.setProperty('--background-main', '#689689');
-            r.style.setProperty('--background-secondary', '#83E8BA');
+            r.style.setProperty('--background-main', '#048A4B');
+            r.style.setProperty('--background-secondary', '#283618');
             r.style.setProperty('--border-color', '#504136');
             r.style.setProperty('--text-color', 'rgb(0, 0, 0)');
+            break;
+        case "dark":
+            r.style.setProperty('--background-main', '#1E1E1E');
+            r.style.setProperty('--background-secondary', '#2E2E2E');
+            r.style.setProperty('--border-color', '#3E3E3E');
+            r.style.setProperty('--text-color', 'rgb(255, 255, 255)');
             break;
         default:
             setTheme("blue");
             break;
     }
-    document.cookie = "theme=" + theme;
+    //document.cookie = "theme=" + theme;
+    var date = new Date();
+    date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000));
+    document.cookie = "theme=" + theme + "; expires="+date.toUTCString()+"; path=/";
     console.log("Theme set to " + theme);
 }
 
 setTheme();
+
+
+//set profile picture to the one stored in the cookie
+var profilePicture = getCookie("profilePicture") == "" ? "default" : getCookie("profilePicture");
+
+function profilePictureButton(p){
+    profilePicture = p;
+    setProfilePicture();
+}
+
+function setProfilePicture(){
+    switch(profilePicture){
+        case "default":
+            document.getElementById("profilePicture").style.backgroundImage = "url(images/defaultProfilePicture.png)";
+            break;
+        case "castle":
+            document.getElementById("profilePicture").style.backgroundImage = "url(images/WebsiteIcon.png)";
+            break;
+        case "blueCastle":
+            document.getElementById("profilePicture").style.backgroundImage = "url(images/blueCastle.png)";
+            break;
+        case "muffin":
+            document.getElementById("profilePicture").style.backgroundImage = "url(images/MuffinMaker.gif)";
+            break;
+        default:
+            setProfilePicture("default");
+            break;
+    }
+    var date = new Date();
+    date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000));
+    document.cookie = "profilePicture=" + profilePicture + "; expires="+date.toUTCString()+"; path=/";
+    console.log("Profile picture set to " + profilePicture);
+}
+
+window.addEventListener('load', function() {
+    setProfilePicture();
+})
