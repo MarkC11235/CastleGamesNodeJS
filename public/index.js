@@ -7,7 +7,7 @@ const popNames = ['ZombieSurvival', 'SuperJumpMan', 'CubeDash', 'BlockStack', 'S
 
 const mobileFriendlyNames = ['Bird', 'BlackJack', 'MiniGolf', 'MuffinMaker', 'OppositesAttract'];
 
-const usedNames = gameNames.filter(name => !popNames.includes(name));
+let usedNames = gameNames.filter(name => !popNames.includes(name));
 usedNames.unshift('ZombieSurvival', 'SuperJumpMan', 'CubeDash', 'BlockStack', 'Serpent', 'MiniGolf');
 
 
