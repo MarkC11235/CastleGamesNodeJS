@@ -9,7 +9,7 @@ var muffin = {
     w : 150,
     h : 150,
 }
-muffin.img.src = "images/blueberryMuffin.png";
+muffin.img.src = "images/MuffinMaker.gif";
 
 canvas.addEventListener("click", async function(event) {
     event.preventDefault();
