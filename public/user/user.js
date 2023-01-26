@@ -104,4 +104,4 @@ function setProfilePicture(){
 
 window.addEventListener('load', function() {
     setProfilePicture();
-})
+});

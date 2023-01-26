@@ -142,7 +142,7 @@ function direct(request, response)
         request.session.password = "";
         response.clearCookie("username");
         response.clearCookie("password");  
-        response.clearCookie("theme");
+        //response.clearCookie("theme");
     }
     else if(path.substring(path.length-1) == "-") {
         path = path.substring(1, path.length-1);
