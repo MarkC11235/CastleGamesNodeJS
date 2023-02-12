@@ -5,7 +5,6 @@
     </head>
     <body>
 		<%- include('partials/topnav.ejs') %>
-		<%- include('partials/title.ejs') %>
 		
         <div class="login">
             <center>
@@ -20,14 +19,10 @@
 					<i class="fas fa-lock"></i>
 				</label>
 				<input type="password" name="password" placeholder="Password" id="password" required>
-				<input type="checkbox" name="keepLoggedIn" id="keepLoggedIn">
-				<label for="keepLoggedIn">
-					Keep me logged in
-				</label>
 				<input type="submit" value="Login">
 			</form>
             </center>
-            <p>Don't have an account? <a href="/register_">Register</a></p>
+            <p>Don't have an account? <a href="/register">Register</a></p>
 		</div>
         
     </body>
