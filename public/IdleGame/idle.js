@@ -30,7 +30,7 @@ canvas.addEventListener("click", async function(event) {
     muffin.y = 30;
 });
 canvas.addEventListener("dblclick", function(event) {
-    event.preventDefault();
+    return false;
 });
 
 class miniMuffin{
