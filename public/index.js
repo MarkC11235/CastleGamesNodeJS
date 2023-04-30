@@ -1,14 +1,18 @@
+//All games A-Z
 const gameNames = ['2048', 'Bird', 'BlackJack', 'BlockStack', 'CubeDash', 'HangMan', 'Minesweeper',
                  'Memory', 'MeteorShower', 'MiniGolf', 'MuffinMaker', 'OpenBattle', 'OppositesAttract',
-                  'Pong', 'Rocket', 'Serpent', 'SuperJumpMan', 'TargetPractice', 'TowerBuilder',
+                  'Pong', 'Rocket', 'Serpent', 'SpaceBattle', 'SuperJumpMan', 'TargetPractice', 'TowerBuilder',
                    'ZombieSurvival'];
 
-const popNames = ['ZombieSurvival', 'SuperJumpMan', 'CubeDash', 'BlockStack', 'Serpent', 'MiniGolf'];
+//These games are displayed at the top of the page
+const popNames = ['SpaceBattle', 'ZombieSurvival', 'SuperJumpMan', 'CubeDash', 'BlockStack', 'Serpent', 'MiniGolf'];
 
+//These games shown on mobile devices
 const mobileFriendlyNames = ['Bird', 'BlackJack', 'MiniGolf', 'MuffinMaker', 'OppositesAttract'];
 
+//makes sure that the popular/new games are displayed first
 let usedNames = gameNames.filter(name => !popNames.includes(name));
-usedNames.unshift('ZombieSurvival', 'SuperJumpMan', 'CubeDash', 'BlockStack', 'Serpent', 'MiniGolf');
+usedNames.unshift('SpaceBattle', 'ZombieSurvival', 'SuperJumpMan', 'CubeDash', 'BlockStack', 'Serpent', 'MiniGolf');
 
 
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
@@ -19,6 +23,7 @@ if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigat
 for(let i = 0; i < usedNames.length; i++){
     makeGameDiv(usedNames[i]);
 }
+//make the game divs that show game name and image
 function makeGameDiv(name){
     let gameDiv = document.createElement('div');
     gameDiv.innerHTML += '<center><p style = "font-size : 30px";>'+name+'</p></center><center><a href="/'+name+'-"><img src="images/'+name+'.gif"></a><center>';

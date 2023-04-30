@@ -30,7 +30,6 @@ const app = express();
 //imports the http module
 const http = require('http');
 
-
 //parses incoming request body's with urlencoded payloads
 //Ex: request.body.username;
 const bodyParser = require('body-parser');
