@@ -1,6 +1,6 @@
 //All games A-Z
 const gameNames = ['2048', 'Bird', 'BlackJack', 'BlockStack', 'CubeDash', 'HangMan', 'Minesweeper',
-                 'Memory', 'MeteorShower', 'MiniGolf', 'MuffinMaker', 'OpenBattle', 'OppositesAttract',
+                 'Memory', 'MeteorShower', 'MiniGolf', 'MuffinMaker', 'MuffinMaker2', 'OpenBattle', 'OppositesAttract',
                   'Pong', 'Rocket', 'Serpent', 'SpaceBattle', 'SuperJumpMan', 'TargetPractice', 'TowerBuilder',
                    'ZombieSurvival'];
 
@@ -12,7 +12,7 @@ const mobileFriendlyNames = ['Bird', 'BlackJack', 'MiniGolf', 'MuffinMaker', 'Op
 
 //makes sure that the popular/new games are displayed first
 let usedNames = gameNames.filter(name => !popNames.includes(name));
-usedNames.unshift('SpaceBattle', 'ZombieSurvival', 'SuperJumpMan', 'CubeDash', 'BlockStack', 'Serpent', 'MiniGolf');
+usedNames.unshift('MuffinMaker2','SpaceBattle', 'ZombieSurvival', 'SuperJumpMan', 'CubeDash', 'BlockStack', 'Serpent', 'MiniGolf');
 
 
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
