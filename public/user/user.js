@@ -1,5 +1,5 @@
 //set theme to the one stored in the cookie
-var theme = getCookie("theme") == "" ? "blue" : getCookie("theme");
+var theme = getCookie("theme") == "" ? "main" : getCookie("theme");  
 
 function getCookie(cname) {
     let name = cname + "=";
@@ -26,38 +26,45 @@ function themeButton(t){
 
 function setTheme(){
     switch(theme){
-        case "blue":
-            r.style.setProperty('--background-main', 'lightseagreen');
-            r.style.setProperty('--background-secondary', 'rgb(21, 21, 201)');
-            r.style.setProperty('--border-color', 'rgb(0, 1, 71)');
+        case "main":
+            r.style.setProperty('--background-main', 'rgb(25, 46, 75)');
+            r.style.setProperty('--background-secondary', '#3d6c8a');
+            r.style.setProperty('--background-game', '#7badad');
+            r.style.setProperty('--border-color', 'rgb(0, 0, 0)');
             r.style.setProperty('--text-color', 'rgb(0, 0, 0)');
             break;
-        case "brown":
-            r.style.setProperty('--background-main', '#6F1D1B');
-            r.style.setProperty('--background-secondary', '#99582A');
-            r.style.setProperty('--border-color', '#432818');
-            r.style.setProperty('--text-color', 'rgb(0, 0, 0)');
-            break;
-        case "purple":
-            r.style.setProperty('--background-main', '#7C238C');
-            r.style.setProperty('--background-secondary', '#680E4B');
-            r.style.setProperty('--border-color', '#42033D');
-            r.style.setProperty('--text-color', 'rgb(255, 255, 255)');
-            break;
-        case "green":
-            r.style.setProperty('--background-main', '#048A4B');
-            r.style.setProperty('--background-secondary', '#283618');
-            r.style.setProperty('--border-color', '#504136');
-            r.style.setProperty('--text-color', 'rgb(0, 0, 0)');
-            break;
-        case "dark":
-            r.style.setProperty('--background-main', '#1E1E1E');
-            r.style.setProperty('--background-secondary', '#2E2E2E');
-            r.style.setProperty('--border-color', '#3E3E3E');
-            r.style.setProperty('--text-color', 'rgb(255, 255, 255)');
-            break;
+        // case "blue":
+        //     r.style.setProperty('--background-main', 'lightseagreen');
+        //     r.style.setProperty('--background-secondary', 'rgb(21, 21, 201)');
+        //     r.style.setProperty('--border-color', 'rgb(0, 1, 71)');
+        //     r.style.setProperty('--text-color', 'rgb(0, 0, 0)');
+        //     break;
+        // case "brown":
+        //     r.style.setProperty('--background-main', '#6F1D1B');
+        //     r.style.setProperty('--background-secondary', '#99582A');
+        //     r.style.setProperty('--border-color', '#432818');
+        //     r.style.setProperty('--text-color', 'rgb(0, 0, 0)');
+        //     break;
+        // case "purple":
+        //     r.style.setProperty('--background-main', '#7C238C');
+        //     r.style.setProperty('--background-secondary', '#680E4B');
+        //     r.style.setProperty('--border-color', '#42033D');
+        //     r.style.setProperty('--text-color', 'rgb(255, 255, 255)');
+        //     break;
+        // case "green":
+        //     r.style.setProperty('--background-main', '#048A4B');
+        //     r.style.setProperty('--background-secondary', '#283618');
+        //     r.style.setProperty('--border-color', '#504136');
+        //     r.style.setProperty('--text-color', 'rgb(0, 0, 0)');
+        //     break;
+        // case "dark":
+        //     r.style.setProperty('--background-main', '#1E1E1E');
+        //     r.style.setProperty('--background-secondary', '#2E2E2E');
+        //     r.style.setProperty('--border-color', '#3E3E3E');
+        //     r.style.setProperty('--text-color', 'rgb(255, 255, 255)');
+        //     break;
         default:
-            setTheme("blue");
+            setTheme("main");
             break;
     }
     //document.cookie = "theme=" + theme;

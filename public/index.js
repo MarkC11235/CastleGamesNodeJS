@@ -1,6 +1,6 @@
 //All games A-Z
 const gameNames = ['2048', 'Bird', 'BlackJack', 'BlockStack', 'CubeDash', 'HangMan', 'Minesweeper',
-                 'Memory', 'MeteorShower', 'MiniGolf', 'MuffinMaker', 'MuffinMaker2', 'OpenBattle', 'OppositesAttract',
+                 'Memory', 'MeteorShower', 'MiniGolf', 'MuffinMaker', 'OpenBattle', 'OppositesAttract',
                   'Pong', 'Rocket', 'Serpent', 'SpaceBattle', 'SuperJumpMan', 'TargetPractice', 'TowerBuilder',
                    'ZombieSurvival'];
 
@@ -26,7 +26,7 @@ for(let i = 0; i < usedNames.length; i++){
 //make the game divs that show game name and image
 function makeGameDiv(name){
     let gameDiv = document.createElement('div');
-    gameDiv.innerHTML += '<center><p style = "font-size : 30px";>'+name+'</p></center><center><a href="/'+name+'-"><img src="images/'+name+'.gif"></a><center>';
+    gameDiv.innerHTML += '<center><a href="/'+name+'-"><p style = "font-size : 25px";>'+name+'</p></center><center><img src="images/'+name+'.gif"></a><center>';
     gameDiv.className = 'game';
     document.getElementById('content').appendChild(gameDiv);
 }

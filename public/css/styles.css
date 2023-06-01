@@ -1,9 +1,17 @@
 ﻿:root{
-    --background-main:  lightseagreen;
-    --background-secondary: rgb(21, 21, 201);
-    --border-color: rgb(0, 1, 71);
+    --background-main: rgb(25, 46, 75);
+    --background-secondary: #3d6c8a;
+    --background-game: #7badad;
+    --border-color: rgb(0, 0, 0);
     --text-color: black;
+    --font-family: 'Bebas Neue', sans-serif;
+    --font-weight: 550;
 }
+
+/* changes style of cursor no matter what it is hovering over */
+/* * {
+    cursor: crosshair;
+} */
 
 
 a:link {
@@ -27,13 +35,16 @@ a:link {
 body { 
     background-color: var(--background-main);
     margin: 0;
+    font-family: var(--font-family);
+    font-weight: var(--font-weight);
 }
 
 
 .topnav {
     background-color: var(--background-secondary);
-    border: 8px solid var(--border-color);
+    border: 5px solid var(--border-color);
     overflow: hidden;
+    border-radius: 1em;
 }
 .topnav a {
     float: left;
@@ -48,12 +59,12 @@ body {
 }
 
 .container{
-    width: 100vw;
+    width: 99vw;
     height: 100vh;
 
     display: grid;
 
-    grid-template-columns: 1fr repeat(3, 2fr);
+    grid-template-columns: 1fr repeat(4, 2fr);
     grid-template-rows: 1fr repeat(8, 1fr);
 
     size: fixed;
@@ -62,13 +73,13 @@ body {
 .sideBar{
     grid-column-start: 1;
     grid-column-end: 2;
-    grid-row-start: 1;
+    grid-row-start: 2;
     grid-row-end: span 100;
 
     color: var(--text-color);
 
-    border: 8px solid var(--border-color);
-    background-color: var(--background-secondary);
+    /* border: 8px solid var(--border-color); */
+    background-color: var(--background-main);
 }
 
 @keyframes Title {
@@ -80,15 +91,17 @@ body {
 }
 
 .header{
-    grid-column-start: 2;
-    grid-column-end: 5;
+    grid-column-start: 1;
+    grid-column: span 5;
 
     font-size: 50px;
     font-weight: bold;
     font-family: cursive;
 
-    border: 8px solid var(--border-color);
-    background-color: var(--background-secondary);
+    /* border: 5px solid var(--border-color);
+    border-radius: 1em; */
+
+    background-color: var(--background-main);
 
     animation-name: Title;
     animation-duration: 10s;
@@ -105,12 +118,20 @@ img{
     grid-row-end: span 1;
     grid-column-start: span 1;
     grid-column-end: span 1;
-    border: 8px solid var(--border-color);
+    border: 5px solid var(--border-color);
     color: var(--text-color);
+    border-radius: 3em;
+    margin: 1.5em;
+    background-color: var(--background-game);
+}
+
+.game a{
+    color: var(--text-color);
+    text-decoration: none;
 }
 
 .game:hover{
-    transform: scale(1.04);
+    transform: scale(1.1);
 }
 
 .profilePicture{

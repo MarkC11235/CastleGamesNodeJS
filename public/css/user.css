@@ -11,5 +11,6 @@
 
 .item{
     border: 8px solid var(--border-color);
+    border-radius: 5px;
 }
 
