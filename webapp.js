@@ -118,6 +118,7 @@ function direct(request, response)
     var path = request.path;
     var title = "Castle Games"
     var game = false;
+    var gameName = "";
     
     if(request.cookies.username != undefined)
     {
@@ -145,6 +146,7 @@ function direct(request, response)
     }
     else if(path.substring(path.length-1) == "-") {
         path = path.substring(1, path.length-1);
+        gameName = path;
         title = path + "|"+title;
         game = true;
     }
@@ -165,12 +167,14 @@ function direct(request, response)
         path = "index.ejs";
     }
    
+    //have to keep the title, game, and gameName variables because they are used in the ejs files
     response.render(path, {
         loggedIn: request.session.loggedin, 
         username: request.session.username, 
         title : title,
         game : game,
-        theme : request.cookies.theme == undefined ? "blue" : request.cookies.theme
+        theme : request.cookies.theme == undefined ? "blue" : request.cookies.theme,
+        gameName : gameName
     }, function(err, html) {
         //if the page doesn't exist 
         //this returns the user to the home page

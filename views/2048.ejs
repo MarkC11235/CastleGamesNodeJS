@@ -12,7 +12,6 @@
 
         <div class="containerGame">
             <div class="title">
-                <p><%=title.substring(0,title.indexOf("|"))%></p>
                 <p id = "Score" style="font-size: 20px;">Score : 0</p>
                 <button onclick = "Restart()">Start a new Game</button>
             </div>
@@ -38,16 +37,9 @@
                 </div> </center>
             </div>
 
-            <div class="instructions">
-                <p> Instructions :  <br><br>
-                    -use w a s d or arrow keys to move squares<br><br>
-                    -try to add cubes that have the same value together to make bigger tiles
-                </p>
-            </div>
-            
-            <div class="ads">
+            <%- include('partials/instructions.ejs', {ins : '-Use the arrow keys to move the tiles.<br><br> -When two tiles with the same number touch, they merge into one!'} ) %>
 
-            </div>
+            <% include('partials/ads.ejs') %>
 
         </div>
 

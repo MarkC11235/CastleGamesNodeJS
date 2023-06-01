@@ -8,6 +8,8 @@
         <div class="containerGame">
             <div class="title">
                 <p><%=title.substring(0,title.indexOf("|"))%></p>
+                <center><button id = "snakeColor" style = "background-color: limegreen;" onclick="ChangeColor(0)">Change Snake Color - limegreen</button>
+                    <button style = "background-color: red;" id = "appleColor" onclick="ChangeColor(1)">Change Apple Color - red</button></center>
                 <p id = "GameOver" style="font-size: 20px;">Click On Screen To Start</p>
                 <p id="Score"style="font-size: 20px;">HighScore : 0 :: Score : 0</p>
             </div>
@@ -18,18 +20,10 @@
                 </button></center>
             </div>
 
-            <div class="instructions">
-                <p> Instructions :  <br><br>
-                    Use w a s d or arrow keys to change direction and press p to pause
-                </p>
-                <center><button id = "snakeColor" style = "background-color: limegreen;" onclick="ChangeColor(0)">Change Snake Color - limegreen</button>
-                    <button style = "background-color: red;" id = "appleColor" onclick="ChangeColor(1)">Change Aplle Color - red</button></center>
-            </div>
+            <%- include('partials/instructions.ejs', {ins : 'Use w a s d or arrow keys to change direction and press p to pause'}) %>
+
+            <% include('partials/ads.ejs') %>
             
-            <div class="ads">
-
-            </div>
-
         </div>
     </body>
     <script src="Snake/snake.js"></script>

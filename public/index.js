@@ -12,7 +12,7 @@ const mobileFriendlyNames = ['Bird', 'BlackJack', 'MiniGolf', 'MuffinMaker', 'Op
 
 //makes sure that the popular/new games are displayed first
 let usedNames = gameNames.filter(name => !popNames.includes(name));
-usedNames.unshift('MuffinMaker2','SpaceBattle', 'ZombieSurvival', 'SuperJumpMan', 'CubeDash', 'BlockStack', 'Serpent', 'MiniGolf');
+usedNames.unshift('SpaceBattle', 'ZombieSurvival', 'SuperJumpMan', 'CubeDash', 'BlockStack', 'Serpent', 'MiniGolf');
 
 
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){

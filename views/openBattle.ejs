@@ -14,19 +14,11 @@
                 <center><canvas id = "canvas" style = "border: 2px solid black;" height="650px" width="650px"></canvas></center>
             </div>
 
-            <div class="instructions">
-                <p> Instructions :  <br><br>
-                    -use the arrow keys or wasd to move the character <br>
-                    -use the mouse to aim and click to shoot <br>
-                    -try to get the most kills without dying <br>
-                </p>
-            </div>
-            
-            <div class="ads">
+            <%- include('partials/instructions.ejs', {ins : '-use the arrow keys or wasd to move the character <br><br>\
+            -use the mouse to aim and click to shoot <br> <br>\
+            -try to get the most kills without dying ' }) %>
 
-            </div>
-
-        </div>
+            <% include('partials/ads.ejs') %>
 
         <script src = "/socket.io/socket.io.js"></script>
 	    <script src = "onlineMultiplayer/onlineMultiplayer.js";></script>

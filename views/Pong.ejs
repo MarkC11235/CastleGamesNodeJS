@@ -18,16 +18,10 @@
                 <center><canvas style = "border: solid black 10px;" id="GameScreen" width="700px" height="500px"></canvas></center>
             </div>
 
-            <div class="instructions">
-                <p> Instructions :  <br><br>
-                    -Left Player use w to move up and s to move down<br><br>
-                    -Right Player use k to move up and m to move down
-                </p>
-            </div>
-            
-            <div class="ads">
+            <%- include('partials/instructions.ejs', {ins : '-Left Player use w to move up and s to move down<br><br>\
+            -Right Player use k to move up and m to move down' }) %>
 
-            </div>
+            <% include('partials/ads.ejs') %>
 
         </div>
 

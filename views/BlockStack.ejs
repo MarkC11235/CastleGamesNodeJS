@@ -18,19 +18,12 @@
                     <canvas style = "visibility: visible;border: solid black 10px;"id="GameScreen" width="420px" height="660px"></canvas></button></center>
             </div>
 
-            <div class="instructions">
-                <p> Instructions :  <br><br>
-                    -Use a d or left right arrow keys to move<br><br>
-                    -w and up arrow to change rotation<br><br>
-                    -s and down arrow to make piece go down faster<br><br>
-                    -press p to pause
-                </p>
-            </div>
-            
-            <div class="ads">
+            <%- include('partials/instructions.ejs', {ins : '-Use a d or left right arrow keys to move<br><br>\
+            -w and up arrow to change rotation<br><br>\
+            -s and down arrow to make piece go down faster<br><br>\
+            -press p to pause'} ) %>
 
-            </div>
-
+            <% include('partials/ads.ejs') %>
         </div>
 
         <script src="Tetris/tetris.js"></script>

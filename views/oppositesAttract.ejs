@@ -1,9 +1,6 @@
 <html>
     <head>
-        <script src="OppositesAttract/Build/UnityLoader.js"></script>
-        <script>
-            var unityInstance = UnityLoader.instantiate("unityContainer", "OppositesAttract/Build/OppositesAttract.json");
-        </script>
+        <%- include('partials/unityGame.ejs') %>
 
         <%- include('partials/head.ejs') %>
     </head>
@@ -19,17 +16,11 @@
                 <center><div id="unityContainer" style="width: 750px; height: 500px; border: solid black 2px;"></div></center>
             </div>
 
-            <div class="instructions">
-                <p> Instructions :  <br><br>
-                    Use space bar to flip magnet to either repel or attract<br><br>
-                    Press p to pause the game<br><br>
-                    Try and last as long as possible without hitting an object and getting off the screen<br><br>
-                </p>
-            </div>
-            
-            <div class="ads">
+            <%- include('partials/instructions.ejs', {ins : 'Use space bar to flip magnet to either repel or attract<br><br>\
+            Press p to pause the game<br><br>\
+            Try and last as long as possible without hitting an object and getting off the screen<br><br>'}) %>
 
-            </div>
+            <% include('partials/ads.ejs') %>
 
         </div>
 

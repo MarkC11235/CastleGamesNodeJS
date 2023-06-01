@@ -1,8 +1,9 @@
 <html>
     <head>
+        <!--have to keep this instead of partial because superjump man is named platformer in files-->
         <script src="Platformer/Build/UnityLoader.js"></script>
         <script>
-             var unityInstance = UnityLoader.instantiate("unityContainer", "Platformer/Build/Platformer.json");
+        var unityInstance = UnityLoader.instantiate("unityContainer", "Platformer/Build/Platformer.json");
         </script>
 
         <%- include('partials/head.ejs') %>
@@ -19,17 +20,11 @@
                 <center><div id="unityContainer" style="width: 900px; height: 600px"></div></center>
             </div>
 
-            <div class="instructions">
-                <p> Instructions :  <br><br>
-                    - Use the left and right arrow keys or a and d to move<br>
-                    - Use the up arrow key or w to jump<br>
-                    - Use p to reset the current level <br>
-                </p>
-            </div>
-            
-            <div class="ads">
+            <%- include('partials/instructions.ejs', {ins : '- Use the left and right arrow keys or a and d to move<br><br>\
+            - Use the up arrow key or w to jump<br><br>\
+            - Use p to reset the current level <br><br>' }) %>
 
-            </div>
+            <% include('partials/ads.ejs') %>
 
         </div>
 

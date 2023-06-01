@@ -15,19 +15,13 @@
                 <center><canvas id = "GameScreen" style = "width: 600px; height: 600px; border: solid black 5px"></canvas></center>
             </div>
 
-            <div class="instructions">
-                <p> Instructions :  <br><br>
-                    -Try to stop the block on top of the previous block  <br><br>
-                    -Press space to stop the block  <br><br>
-                    -Blocks can spawn on the left or the right side <br><br>
-                    -Press space to start
-                </p>
-            </div>
+            <%- include('partials/instructions.ejs', {ins : '-Try to stop the block on top of the previous block  <br><br>\
+            -Press space to stop the block  <br><br>\
+            -Blocks can spawn on the left or the right side <br><br>\
+            -Press space to start'}) %>
+
+            <% include('partials/ads.ejs') %>
             
-            <div class="ads">
-
-            </div>
-
         </div>
 
         <script src = "Tower/tower.js"></script>
