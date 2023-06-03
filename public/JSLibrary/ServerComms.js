@@ -15,9 +15,9 @@ async function getGameData(route)
 {
     var temp;
     await fetch("/"+route+"Data", {method: "GET"}).then(response => response.json()).then(data => {
-        if(data.length > 0)
+        if(data)
         {
-            temp = data[0].data;
+            temp = data;
         }
         else
         {

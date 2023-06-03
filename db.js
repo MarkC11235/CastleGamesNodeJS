@@ -35,7 +35,6 @@ module.exports.db = function DB(app){
     sequelize.sync();
 
     //Register and Login
-
     app.post('/register', async function(request, response) {
         let username = request.body.username;
         let password = request.body.password;
@@ -81,7 +80,6 @@ module.exports.db = function DB(app){
         }
     });
 
-
     app.post('/login', async function(request, response) {
         let username = request.body.username;
         let password = request.body.password;
@@ -116,78 +114,57 @@ module.exports.db = function DB(app){
     
 
     // //Game Data
+    async function getGameData(request, response) {
+        var path = request.path;
+        path = path.substring(1);
+        if (request.session.loggedin) {
+            const user = await User.findOne({
+              where: {
+                username: request.session.username
+              }
+            });
+        
+            if (user && user.gameInfo && user.gameInfo[path]) {
+              response.json(user.gameInfo[path]);
+            } else {
+              response.status(404).send('User not found');
+            }
+          } else {
+            response.status(401).send('Unauthorized');
+          }
+    }
 
-    
-
-    // //takes request from user to get data from database
-    // //then queries the database for the data
-    // //then sends the data back to the user
-    // function getGameData(request, response){
-    //     var path = request.path;
-    //     path = path.substring(1);
-    //     if(request.session.loggedin){          
-    //         //gets one connection from connection pool
-    //         pool.getConnection(function(err, con) {
-    //             //query database for game data
-    //             con.query('SELECT * FROM ' + path + ' WHERE username = ? AND password = ?', [request.session.username, request.session.password], function(error, results, fields) {
-    //                 if (error) throw error;
-    //                 // If the account exists
-    //                 if (results.length > 0) {
-    //                     response.json(results);
-    //                 } else {
-    //                     response.json([]);
-    //                 }
-    //                 response.end();
-    //             });
-    //             con.release();
-    //         });
-    //     }
-    //     else{
-    //         response.json([]);
-    //         response.end();
-    //     }
-    // }
-
-    // //takes request from user to post data to database
-    // //then queries the database to see if data already exists
-    // //if data exists, update the data
-    // //if data does not exist, insert the data
-    // function postGameData(request, response){
-    //     var path = request.path;
-    //     path = path.substring(1);
-    //     if(request.session.loggedin){
-    //         pool.getConnection(function(err, con) {
-    //             //query database for game data
-    //             con.query('SELECT * FROM ' + path + ' WHERE username = ? AND password = ?', [request.session.username, request.session.password], function(error, results, fields) {
-    //                 if (error) 
-    //                     throw error;
-
-    //                 // If the account exists and the data is not empty
-    //                 // update the data
-    //                 if (results.length > 0) {
-    //                     con.query('UPDATE ' + path + ' SET data = ? WHERE username = ? AND password = ?', [request.body.data, request.session.username, request.session.password], function(error, results, fields) {
-    //                         if (error) 
-    //                             throw error;  
-    //                         response.end();
-    //                     });
-    //                 }
-    //                 // If the account exists and the data is empty
-    //                 // insert the data
-    //                 else{
-    //                     con.query('INSERT INTO '+path+' (username, password, data) VALUES (?, ?, ?)', [request.session.username, request.session.password, request.body.data], function(error, results, fields) {
-    //                         if (error) 
-    //                             throw error;
-    //                         response.end();
-    //                     });
-    //                 }
-    //             });
-    //             con.release();
-    //         });
-    //     }
-    //     else{
-    //         response.end();
-    //     }
-    // }
+    async function postGameData(request, response){
+        let path = request.path;
+        const NAME = path.substring(1);
+        if (request.session.loggedin) {
+            const user = await User.findOne({
+              where: {
+                username: request.session.username
+              }
+            });
+        
+            if (user) {
+              const gameData = {
+                [NAME] : request.body.data
+              };
+              console.log(gameData);
+              const updatedUser = await user.update({
+                gameInfo: {
+                  ...user.gameInfo,
+                  ...gameData
+                }
+              });
+              response.json(updatedUser);
+            } 
+            else {
+              response.status(404).send('User not found');
+            }
+        } 
+        else {
+            response.status(401).send('Unauthorized');
+        }
+    }
 
     //get data
     //uses regex to match any path that ends with Data

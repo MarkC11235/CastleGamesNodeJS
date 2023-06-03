@@ -48,6 +48,7 @@ function ChangeColor(x)
 async function GetHighScore()
 {
     var temp = await getGameData("Serpent");
+    console.log(temp);
     if(temp != null)
     {
         highScore = temp;
