@@ -1,0 +1,21 @@
+.form{
+    float: left;
+    padding: .8em;
+    position: relative;
+}
+
+.form input{
+    width: 20em;
+    padding: .3em;
+    border-radius: .5em;
+    border: 1px solid var(--border-color);
+    background-color: var(--background-game);
+}
+
+.form input::placeholder {
+    color: black;
+    opacity: 1;}
+
+.search-results{
+    position: absolute;
+}
