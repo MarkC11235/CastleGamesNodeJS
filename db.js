@@ -29,6 +29,10 @@ module.exports.db = function DB(app){
         gameInfo: {
             type: DataTypes.JSON,
             allowNull: true
+        },
+        userInfo: {
+            type: DataTypes.JSON,
+            allowNull: true
         }
     });
 
@@ -177,4 +181,66 @@ module.exports.db = function DB(app){
     app.post(/.*Data/, function(request, response){
         postGameData(request, response);
     }); 
+
+
+
+
+    // //User Data
+    async function getUserData(request, response) {
+        if (request.session.loggedin) {
+            const user = await User.findOne({
+              where: {
+                username: request.session.username
+              }
+            });
+        
+            if (user && user.userInfo) {
+              response.json(user.userInfo);
+            } else {
+              response.status(404).send('User not found');
+            }
+          } else {
+            response.status(401).send('Unauthorized');
+          }
+    }
+
+    async function postUserData(request, response){
+        if (request.session.loggedin) {
+            const user = await User.findOne({
+              where: {
+                username: request.session.username
+              }
+            });
+        
+            if (user) {
+              const userData = {
+                theme : request.body.theme,
+                profilePicture : request.body.profilePicture
+              };
+              const updatedUser = await user.update({
+                userInfo: {
+                    ...user.userInfo,
+                    ...userData
+                }
+              });
+              response.json(updatedUser);
+            } 
+            else {
+              response.status(404).send('User not found');
+            }
+        } 
+        else {
+            response.status(401).send('Unauthorized');
+        }
+    }
+
+    //get data
+    app.get('/userInfo', function(request, response){
+        getUserData(request, response);
+    });
+
+    //post data
+    app.post('/userInfo', function(request, response){
+        postUserData(request, response);
+    });
 }

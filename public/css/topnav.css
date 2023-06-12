@@ -1,0 +1,49 @@
+.topnav {
+    background-color: var(--background-secondary);
+    border: 5px solid var(--border-color);
+    overflow: hidden;
+    border-radius: 1em;
+
+    height: 3.2em;
+    /* 
+    this would be to shorten the width of the topnav and center it
+    width: 96%;
+
+    margin: 0 auto; */
+}
+.topnav a {
+    float: left;
+    color: var(--text-color);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+}
+.topnav a:hover {
+    background-color: var(--background-main);
+}
+
+
+.profilePicture{
+    float: right;
+    position: relative;
+    width: 3.2em;
+    height: 3.2em;
+}
+
+.profilePicture:hover{
+    background-color: var(--background-main);
+    opacity: 0.5 !important;
+}
+
+.profilePicture img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+    

@@ -11,6 +11,19 @@
 
 .item{
     border: 8px solid var(--border-color);
-    border-radius: 5px;
+    border-radius: 5em;
+    margin: 2em;
+}
+
+.profilePictures{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.profilePictureOption{
+    width: 100%;
+    height: 100%;
+    border-radius: 5em;
 }
 

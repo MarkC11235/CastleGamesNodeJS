@@ -76,10 +76,12 @@ const searchResults = document.getElementById('search-results');
 
 searchBar.addEventListener('keyup', (e) => {
   const input = e.target.value;
+  searchResults.innerHTML = '';
   if (input) {
     const results = trie.autoComplete(input.toLocaleLowerCase());
     for (let i = 0; i < results.length; i++) {
-      searchResults.appendChild(document.createElement('li')).innerHTML = `<a href="/${results[i]}-">${results[i]}</a>`;
+      const option = `<a href = ${results[i]}->${results[i]}</a><br>`;
+      searchResults.innerHTML += option;
     }
   }
 });

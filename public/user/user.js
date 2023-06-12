@@ -1,114 +1,100 @@
-//set theme to the one stored in the cookie
-var theme = getCookie("theme") == "" ? "main" : getCookie("theme");  
+const r = document.querySelector(':root');
 
-function getCookie(cname) {
-    let name = cname + "=";
-    let ca = document.cookie.split(';');
-    for(let i = 0; i < ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
+const themes = {
+    main: {
+        backgroundMain: 'rgb(25, 46, 75)',
+        backgroundSecondary: '#3d6c8a',
+        backgroundGame: '#7badad',
+        borderColor: 'rgb(0, 0, 0)',
+        textColor: 'rgb(0, 0, 0)'
+    },
+    blue: {
+        backgroundMain: 'rgb(32, 95, 178)',
+        backgroundSecondary: 'rgb(21, 21, 201)',
+        backgroundGame: ' rgb(44, 135, 143)',
+        borderColor: 'rgb(13, 14, 94)',
+        textColor: 'rgb(0, 0, 0)'
+    },
+    red: {
+        backgroundMain: '#9E2A2B',
+        backgroundSecondary: '#540B0E',
+        backgroundGame: '#d8bc9c',
+        borderColor: '#422f18',
+        textColor: '#9c9391'
     }
-    return "";
 }
 
-var r = document.querySelector(':root');
-var rs = getComputedStyle(r);
-
-function themeButton(t){
-    theme = t;
-    setTheme();
-}
-
-function setTheme(){
-    switch(theme){
-        case "main":
-            r.style.setProperty('--background-main', 'rgb(25, 46, 75)');
-            r.style.setProperty('--background-secondary', '#3d6c8a');
-            r.style.setProperty('--background-game', '#7badad');
-            r.style.setProperty('--border-color', 'rgb(0, 0, 0)');
-            r.style.setProperty('--text-color', 'rgb(0, 0, 0)');
-            break;
-        // case "blue":
-        //     r.style.setProperty('--background-main', 'lightseagreen');
-        //     r.style.setProperty('--background-secondary', 'rgb(21, 21, 201)');
-        //     r.style.setProperty('--border-color', 'rgb(0, 1, 71)');
-        //     r.style.setProperty('--text-color', 'rgb(0, 0, 0)');
-        //     break;
-        // case "brown":
-        //     r.style.setProperty('--background-main', '#6F1D1B');
-        //     r.style.setProperty('--background-secondary', '#99582A');
-        //     r.style.setProperty('--border-color', '#432818');
-        //     r.style.setProperty('--text-color', 'rgb(0, 0, 0)');
-        //     break;
-        // case "purple":
-        //     r.style.setProperty('--background-main', '#7C238C');
-        //     r.style.setProperty('--background-secondary', '#680E4B');
-        //     r.style.setProperty('--border-color', '#42033D');
-        //     r.style.setProperty('--text-color', 'rgb(255, 255, 255)');
-        //     break;
-        // case "green":
-        //     r.style.setProperty('--background-main', '#048A4B');
-        //     r.style.setProperty('--background-secondary', '#283618');
-        //     r.style.setProperty('--border-color', '#504136');
-        //     r.style.setProperty('--text-color', 'rgb(0, 0, 0)');
-        //     break;
-        // case "dark":
-        //     r.style.setProperty('--background-main', '#1E1E1E');
-        //     r.style.setProperty('--background-secondary', '#2E2E2E');
-        //     r.style.setProperty('--border-color', '#3E3E3E');
-        //     r.style.setProperty('--text-color', 'rgb(255, 255, 255)');
-        //     break;
-        default:
-            setTheme("main");
-            break;
+class user{
+    constructor(){
+        this.themeName = 'main';
+        this.profilePicture = 'default';
     }
-    //document.cookie = "theme=" + theme;
-    var date = new Date();
-    date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000));
-    document.cookie = "theme=" + theme + "; expires="+date.toUTCString()+"; path=/";
-    console.log("Theme set to " + theme);
-}
 
-setTheme();
-
-
-//set profile picture to the one stored in the cookie
-var profilePicture = getCookie("profilePicture") == "" ? "default" : getCookie("profilePicture");
-
-function profilePictureButton(p){
-    profilePicture = p;
-    setProfilePicture();
-}
-
-function setProfilePicture(){
-    switch(profilePicture){
-        case "default":
-            document.getElementById("profilePicture").style.backgroundImage = "url(images/defaultProfilePicture.png)";
-            break;
-        case "castle":
-            document.getElementById("profilePicture").style.backgroundImage = "url(images/WebsiteIcon.png)";
-            break;
-        case "blueCastle":
-            document.getElementById("profilePicture").style.backgroundImage = "url(images/blueCastle.png)";
-            break;
-        case "muffin":
-            document.getElementById("profilePicture").style.backgroundImage = "url(images/MuffinMaker.gif)";
-            break;
-        default:
-            setProfilePicture("default");
-            break;
+    setTheme(){
+        r.style.setProperty('--background-main', themes[this.themeName].backgroundMain);
+        r.style.setProperty('--background-secondary', themes[this.themeName].backgroundSecondary);
+        r.style.setProperty('--background-game', themes[this.themeName].backgroundGame);
+        r.style.setProperty('--border-color', themes[this.themeName].borderColor);
+        r.style.setProperty('--text-color', themes[this.themeName].textColor);
     }
-    var date = new Date();
-    date.setTime(date.getTime() + (365 * 24 * 60 * 60 * 1000));
-    document.cookie = "profilePicture=" + profilePicture + "; expires="+date.toUTCString()+"; path=/";
-    console.log("Profile picture set to " + profilePicture);
+
+    setProfilePicture(){
+        console.log(document.getElementById("profilePictureImage"));
+        document.getElementById("profilePictureImage").src = `images/${this.profilePicture}.png`;
+    }
+
+    async get(){
+        const info = await getUserInfo();
+        //console.log(info);
+        if(info == null){
+            return;
+        }
+        this.themeName = info.theme;
+        this.profilePicture = info.profilePicture;
+    }
+
+    set(){
+        postUserInfo({
+            theme: this.themeName,
+            profilePicture: this.profilePicture
+        });
+        //console.log("set" + this.themeName + this.profilePicture);
+        document.cookie = `themeName=${this.themeName}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+        document.cookie = `profilePicture=${this.profilePicture}; expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+    }
 }
 
-window.addEventListener('load', function() {
-    setProfilePicture();
+const user1 = new user();
+async function LoadData(){
+    await user1.get();
+    user1.setTheme();
+    user1.setProfilePicture();
+}
+
+//added cookies to this so that the colors will be loaded before the page renders
+let themeName = document.cookie.split('; ').find(row => row.startsWith('themeName=')).split('=')[1] || 'main';
+let profilePicture = document.cookie.split('; ').find(row => row.startsWith('profilePicture=')).split('=')[1] || 'default';
+updateTheme(themeName);
+updateProfilePicture(profilePicture);
+document.addEventListener("DOMContentLoaded", function(){
+    
 });
+LoadData();
+
+function updateTheme(themeName){
+    if(themeName == null){
+        return;
+    }
+    user1.themeName = themeName;
+    user1.set();
+    user1.setTheme(); 
+}
+
+function updateProfilePicture(profilePicture){
+    if(profilePicture == null){
+        return;
+    }
+    user1.profilePicture = profilePicture;
+    user1.set();
+    user1.setProfilePicture();
+}

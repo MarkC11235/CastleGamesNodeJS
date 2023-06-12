@@ -118,7 +118,7 @@ openBattle.start(io);
 //TODO: fix var game (currently is used for more than just them game pages)
 function direct(request, response)
 {
-    console.log("user: " + request.session.username + " logged in: " + request.session.loggedin + " path: " + path);
+    //console.log("user: " + request.session.username + " logged in: " + request.session.loggedin + " path: " + path);
     
     var path = request.path;
     var title = "Castle Games"
@@ -136,6 +136,8 @@ function direct(request, response)
     else if (path == "/logout"){     
         path = "index.ejs";
         request.session.destroy();
+        response.render('index.ejs', {loggedIn: false, username: "", title : title, game : false});
+        return;
     }
     else if(path.substring(path.length-1) == "-") {
         path = path.substring(1, path.length-1);
@@ -161,14 +163,12 @@ function direct(request, response)
     }
 
     
-   
     //have to keep the title, game, and gameName variables because they are used in the ejs files
     response.render(path, {
         loggedIn: request.session.loggedin, 
         username: request.session.username, 
         title : title,
         game : game,
-        theme : request.cookies.theme == undefined ? "main" : request.cookies.theme,
         gameName : gameName
     }, function(err, html) {
         //if the page doesn't exist 

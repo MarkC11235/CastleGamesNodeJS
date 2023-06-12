@@ -1,21 +1,21 @@
-.form{
-    float: left;
-    padding: .8em;
+#search-form{
     position: relative;
+    float: left;
+    padding: 0.9em;
 }
 
-.form input{
-    width: 20em;
-    padding: .3em;
-    border-radius: .5em;
-    border: 1px solid var(--border-color);
-    background-color: var(--background-game);
-}
-
-.form input::placeholder {
-    color: black;
-    opacity: 1;}
-
-.search-results{
+#search-results{
     position: absolute;
+    top: 3.2em;
+    left: 0;
+    background-color: var(--background-secondary);
+    border: 2px solid var(--border-color);
+    z-index: 999;
+}
+
+#search-results a{
+    display: block;
+    padding: 0.5em;
+    text-decoration: none;
+    color: var(--text-color);
 }
