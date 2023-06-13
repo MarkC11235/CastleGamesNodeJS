@@ -24,26 +24,24 @@
 }
 
 
-.profilePicture{
+/* not quite what i wanted because it looks different on hover than other things in the topnav but it works */
+.topnav > .right > .profilePictureTopRight{
     float: right;
-    position: relative;
-    width: 3.2em;
-    height: 3.2em;
+    width: 1.2em;
+    height: 1.2em;
+    background-image: var(--profile-picture);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
-.profilePicture:hover{
-    background-color: var(--background-main);
-    opacity: 0.5 !important;
+.topnav > .right > .profilePictureTopRight:hover{
+    opacity: .5;
 }
 
-.profilePicture img{
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+
+
+
 
 
     

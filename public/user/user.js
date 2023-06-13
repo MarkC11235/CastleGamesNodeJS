@@ -39,8 +39,8 @@ class user{
     }
 
     setProfilePicture(){
-        console.log(document.getElementById("profilePictureImage"));
-        document.getElementById("profilePictureImage").src = `images/${this.profilePicture}.png`;
+        r.style.setProperty('--profile-picture', `url(../images/${this.profilePicture}.png)`);
+        //console.log(this.profilePicture);
     }
 
     async get(){
@@ -74,27 +74,27 @@ async function LoadData(){
 //added cookies to this so that the colors will be loaded before the page renders
 let themeName = document.cookie.split('; ').find(row => row.startsWith('themeName=')).split('=')[1] || 'main';
 let profilePicture = document.cookie.split('; ').find(row => row.startsWith('profilePicture=')).split('=')[1] || 'default';
-updateTheme(themeName);
-updateProfilePicture(profilePicture);
-document.addEventListener("DOMContentLoaded", function(){
-    
-});
-LoadData();
+updateTheme(themeName, false);
+updateProfilePicture(profilePicture, false);
 
-function updateTheme(themeName){
+function updateTheme(themeName, set = true){
     if(themeName == null){
         return;
     }
     user1.themeName = themeName;
-    user1.set();
+    if(set){
+        user1.set();
+    }
     user1.setTheme(); 
 }
 
-function updateProfilePicture(profilePicture){
+function updateProfilePicture(profilePicture, set = true){
     if(profilePicture == null){
         return;
     }
     user1.profilePicture = profilePicture;
-    user1.set();
+    if(set){
+        user1.set();
+    }
     user1.setProfilePicture();
 }

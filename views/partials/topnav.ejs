@@ -9,9 +9,8 @@
     </div>
     <div class = "right">     
         <% if (loggedIn == true) { %>
-            <div class = "profilePicture" id = "profilePicture">
-                <a href = "user_"><img src = "images/default.png" id = "profilePictureImage"></a>
-            </div>
+            <a class = "profilePictureTopRight" href = "user_">
+            </a>
         <%} else { %>
             <a id = "login" style = "float : right"; href="/login_">Login</a>
             <a id = "register" style = "float : right"; href="/register_">Register</a>

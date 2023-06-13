@@ -124,6 +124,7 @@ function direct(request, response)
     var title = "Castle Games"
     var game = false;
     var gameName = "";
+    let initialLogin = false;
     
     //path 
     // "/" is home page
@@ -132,6 +133,10 @@ function direct(request, response)
     // "routeData" is a request to the database
     if(path == "/"){
         path = "index.ejs";
+    }
+    if(path == "/loggedIn"){
+        path = "index.ejs";
+        initialLogin = true;
     }
     else if (path == "/logout"){     
         path = "index.ejs";
@@ -169,7 +174,8 @@ function direct(request, response)
         username: request.session.username, 
         title : title,
         game : game,
-        gameName : gameName
+        gameName : gameName,
+        initialLogin : initialLogin 
     }, function(err, html) {
         //if the page doesn't exist 
         //this returns the user to the home page

@@ -100,7 +100,7 @@ module.exports.db = function DB(app){
                 if (user) {
                     request.session.username = username;
                     request.session.loggedin = true;
-                    response.redirect('/');
+                    response.redirect('/loggedIn');
                 } 
                 else {
                     response.redirect('/error');

@@ -6,6 +6,7 @@
     --text-color: #9c9391;
     --font-family: 'Bebas Neue', sans-serif;
     --font-weight: 550;
+    --profile-picture: url('../images/default.png');
 }
 
 /* changes style of cursor no matter what it is hovering over */
