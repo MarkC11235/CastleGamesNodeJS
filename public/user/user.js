@@ -2,11 +2,11 @@ const r = document.querySelector(':root');
 
 const themes = {
     main: {
-        backgroundMain: 'rgb(25, 46, 75)',
+        backgroundMain: '#192E4B',
         backgroundSecondary: '#3d6c8a',
         backgroundGame: '#7badad',
-        borderColor: 'rgb(0, 0, 0)',
-        textColor: 'rgb(0, 0, 0)'
+        borderColor: '#000000',
+        textColor: '#000000'
     },
     blue: {
         backgroundMain: 'rgb(32, 95, 178)',
@@ -21,7 +21,49 @@ const themes = {
         backgroundGame: '#d8bc9c',
         borderColor: '#422f18',
         textColor: '#9c9391'
-    }
+    },
+    violet: {
+        backgroundMain: '#820fcf',
+        backgroundSecondary: '#b81e63',
+        backgroundGame: '#3a0ca3',
+        borderColor: '#4361ee',
+        textColor: '#4cc9f0'
+    },
+    green: {
+        backgroundMain: '#131515',
+        backgroundSecondary: '#131515',
+        backgroundGame: '#2b3b3b',
+        borderColor: '#57f179',
+        textColor: '#57f179'
+    },
+    purple: {
+        backgroundMain: '#2E0219',
+        backgroundSecondary: '#4A001F',
+        backgroundGame: '#6A0F49',
+        borderColor: '#A7C4C2',
+        textColor: '#97EFE9'
+    },
+    orange: {
+        backgroundMain: '#ff8000',
+        backgroundSecondary: '#5A0002',
+        backgroundGame: '#6d3d06',
+        borderColor: '#000F08',
+        textColor: '#F8F2DC'
+    },
+    yellow: {
+        backgroundMain: '#E0BE36',
+        backgroundSecondary: '#F1D302',
+        backgroundGame: '#ad6c51',
+        borderColor: '#ad300a',
+        textColor: '#362a12'
+    },
+    darkblue: {
+        backgroundMain: '#07046b',
+        backgroundSecondary: '#1f0f53',
+        backgroundGame: '#3c3c8a',
+        borderColor: '#60a6f1',
+        textColor: '#a3b6a7'
+    },
 }
 
 class user{

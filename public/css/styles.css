@@ -1,9 +1,9 @@
 ﻿:root{
-    --background-main:#9E2A2B;
-    --background-secondary:#540B0E;
-    --background-game: #d8bc9c;
-    --border-color: #422f18;
-    --text-color: #9c9391;
+    --background-main:#192E4B;
+    --background-secondary: #3d6c8a;
+    --background-game: #7badad;
+    --border-color: #000000;
+    --text-color: #000000; 
     --font-family: 'Bebas Neue', sans-serif;
     --font-weight: 550;
     --profile-picture: url('../images/default.png');
