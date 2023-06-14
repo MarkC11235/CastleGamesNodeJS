@@ -1,0 +1,14 @@
+.download{
+    border: .5em solid var(--border-color);
+    border-radius: 2em;
+    padding: 3em;
+    background-color: var(--background-secondary);
+
+    text-align: center;
+    margin: auto;
+    width: max-content;
+}
+
+.download a{
+    color: var(--text-color);
+}

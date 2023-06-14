@@ -1,18 +1,29 @@
 .categoryContainer{
     width: 100%;
     height: 100%;
-    display: flex;
-    flex-direction: column;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr); 
 }
 
 .category{
-    border: 1em solid #000;
-    border-radius: 5px;
-    margin: 3em;
-    width: 10em;
-    float: left;
+    border: .5em solid var(--border-color);
+    border-radius: 2em;
+    padding: 1.4em;
+    background-color: var(--background-secondary);
+
+    width: 20em;
+    margin: auto;
 }
+
 .category h1{
     font-size: 2em;
     font-weight: bold;
+}
+
+.category a{
+    font-size: 1.2em;
+    text-align: left;
+    padding-left: 1.5em;
 }

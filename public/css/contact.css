@@ -1,0 +1,14 @@
+.contact-text{
+    border: .5em solid var(--border-color);
+    border-radius: 2em;
+    padding: 1.4em;
+    background-color: var(--background-secondary);
+
+    width: max-content;
+    text-align: center;
+    margin: auto;
+}
+
+.contact-text a{
+    color: var(--text-color);
+}

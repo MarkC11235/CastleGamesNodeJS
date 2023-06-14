@@ -1,0 +1,37 @@
+.patch-container{
+    margin-left : 10em;
+    margin-right : 10em;
+}
+
+.patch{
+    background-color: var(--background-main);
+    color: var(--text-color);
+    margin-bottom: 4em;
+    background-color: var(--background-secondary);
+    border-radius: 2em;
+    padding: 1em;
+    border: .5em solid var(--border-color);
+}
+
+.patch h1{
+    border: .1em solid var(--border-color);
+    border-radius: 1em;
+    padding: .1em;
+    margin: .5em;
+    width : max-content;
+    font-size: 2.5em;
+
+    background-color: var(--background-secondary);
+}
+
+.patch p{
+    text-align: left;
+    margin-top: 1.8em;
+    margin-left: 6em;
+    font-size: 1.3em;
+}
+
+.patch p::before {
+    content: "\2022"; /* Unicode character for a bullet point */
+    margin-right: 0.5em;
+}
