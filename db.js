@@ -138,6 +138,24 @@ module.exports.db = function DB(app){
           }
     }
 
+    async function getAllGameData(request, response) {
+      if (request.session.loggedin) {
+        const user = await User.findOne({
+          where: {
+            username: request.session.username
+          }
+        });
+
+        if (user && user.gameInfo) {
+          response.json(user.gameInfo);
+        } else {
+          response.status(404).send('User not found');
+        }
+      } else {
+        response.status(401).send('Unauthorized');
+      }
+    }
+
     async function postGameData(request, response){
         let path = request.path;
         const NAME = path.substring(1);
@@ -174,6 +192,10 @@ module.exports.db = function DB(app){
     //uses regex to match any path that ends with Data
     app.get(/.*Data/, function(request, response){
         getGameData(request, response);
+    });
+
+    app.get('/allGames', function(request, response){
+      getAllGameData(request, response);
     });
    
     //post data

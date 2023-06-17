@@ -27,6 +27,22 @@ async function getGameData(route)
     return temp;
 }
 
+async function getAllGameData()
+{
+    var temp;
+    await fetch("/allGames", {method: "GET"}).then(response => response.json()).then(data => {
+        if(data)
+        {
+            temp = data;
+        }
+        else
+        {
+            temp = null;
+        }
+    });
+    return temp;
+}
+
 
 async function postUserInfo(data)
 {

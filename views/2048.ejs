@@ -6,13 +6,14 @@
 
     </head>
 
-    <body onload="Start()">
+    <body>
 
         <%- include('partials/topnav.ejs') %>
 
         <div class="containerGame">
             <div class="title">
                 <p style="font-size: 30px;">2048</p>
+                <p id = "HighScore" style="font-size: 20px;">High Score : 0</p>
                 <p id = "Score" style="font-size: 20px;">Score : 0</p>
                 <button onclick = "Restart()">Start a new Game</button>
             </div>

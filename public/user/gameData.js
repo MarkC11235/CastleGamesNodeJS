@@ -1,28 +1,20 @@
 const userData = [];
 const display = document.getElementsByClassName('display')[0];
 
-//each route to get data from the server
-const games = ["ChipCount", "BlockStack", "Memory", 
-"MeteorShower", "Serpent", "TargetPractice",
-"TowerBuilder"];
-
 async function LoadData(){
-    for(let i = 0; i < games.length; i++)
-    {
-        userData.push();
-        var data = await getGameData(games[i]);
-        if(data != null){
-            userData[i] = data;
-        }
-        else{
-            continue;
-        }
+    const data = await getAllGameData();
+    console.log(data);
 
-        if(data.indexOf("-") == -1){
-            display.innerHTML += "<p>" + games[i] + ": " + data + "</p>";
+    for (const key in data) {
+        if(data[key] instanceof Object){
+            display.innerHTML += `<p style = "font-size: 1.5em; ">${key.substring(0, key.length - 4)}:</p>`;
+            for(const subKey in data[key]){
+                display.innerHTML += `<p style = "font-size: .7em">${subKey}: ${data[key][subKey]}</p>`;
+            }
         }
         else{
-            display.innerHTML += "<p>" + games[i] + ": " + data.split("-")[0] + "</p>";
+            display.innerHTML += `<p style = "font-size: 1.7em">${key}:</p>`;
+            display.innerHTML += `<p style = "font-size: 1em">${data[key]}</p>`;
         }
     }
 }

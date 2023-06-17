@@ -397,15 +397,9 @@ async function getData()
     var temp = await getGameData("ChipCount");
     if(temp != null)
     {
-        if(temp.indexOf("-") != -1)
-        {
-            chips = parseInt(temp.substring(0, temp.indexOf("-")));
-            lastChipsRecieved = parseInt(temp.substring(temp.indexOf("-")+1));
-        }
-        else
-        {
-            chips = parseInt(temp);
-        }
+        chips = temp.ChipCount || 100;
+        lastChipsRecieved = temp.TimeSinceLastFreeChips;
+        
         chipsText.innerHTML = "Chips : "+chips;
         await freeChips();
         chipsText.innerHTML = "Chips : "+chips;
@@ -414,7 +408,8 @@ async function getData()
 
 async function postData()
 {
-    postGameData("ChipCount", chips + "-" + lastChipsRecieved);
+    const data = {ChipCount: chips, TimeSinceLastFreeChips : lastChipsRecieved};
+    postGameData("ChipCount", data);
 }
 
 async function freeChips()

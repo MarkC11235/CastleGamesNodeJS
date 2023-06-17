@@ -15,6 +15,31 @@
     margin: 2em;
 }
 
+.item h1{
+    text-align: center;
+    font-size: 2em;
+}
+
+.scroll::-webkit-scrollbar {
+    display: none;
+}
+  
+.scroll::-webkit-scrollbar-track {
+    display: none;
+}
+  
+.scroll::-webkit-scrollbar-thumb {
+    display: none;
+}
+
+.scroll{
+    /* to add a scroll bar  */
+    overflow: scroll;
+    /* to hide the scroll bar */
+    scrollbar-width: none;
+}
+
+
 .profilePictures{
     display: grid;
     grid-template-columns: repeat(3, 1fr);

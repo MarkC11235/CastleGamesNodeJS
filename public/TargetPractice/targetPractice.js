@@ -138,11 +138,11 @@ async function EndGame()
     ctx.fillStyle = "black";
     ctx.fillText("Time's up", 250, 200);
 
-    if(score > highScore)
+    if(score > highScore || highScore == null)
     {
         highScore = score;
         highScoreText.innerHTML = "High Score : "+highScore;
-        await postGameData("TargetPractice", highScore);
+        await postGameData("TargetPractice", {highScore: highScore});
     }
 
     await sleep(1000);
@@ -190,7 +190,7 @@ async function getData()
     console.log(temp);
     if(temp != null)
     {
-        highScore = temp;
+        highScore = temp.highScore;
         highScoreText.innerHTML = "High Score : "+highScore;
     }
 }

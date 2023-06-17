@@ -48,7 +48,7 @@ async function getData()
     var temp = await getGameData("TowerBuilder");
     if(temp != null)
     {
-        highScore = temp;
+        highScore = temp.highScore;
         scoreText.innerHTML = "High Score : " + highScore + " :::: Score : " + score;
     }
 }
@@ -240,11 +240,11 @@ async function GameOver()
     }
     ctx.clearRect(0,0,600,600);
 
-    if(score > highScore)
+    if(score > highScore || highScore == null)
     {
         highScore = score;
         scoreText.innerHTML = "High Score : " + highScore + " :::: Score : " + score;
-        await postGameData("TowerBuilder", highScore);
+        await postGameData("TowerBuilder", {highScore : highScore});
     }
 }
 

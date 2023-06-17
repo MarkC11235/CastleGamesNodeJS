@@ -9,19 +9,19 @@
 
         <div class="container">
             <div class="item">
-                <p>User : <%=username%></p>
+                <h1>User : <%=username%></h1>
                 <center><a href = "/logout">logout</a></center>
             </div>
     
-            <div class="item">
-                <p>Game Data</p>
+            <div class="item scroll">
+                <h1>Game Data</h1>
                 <div class = "display">
                   
                 </div>
             </div>
 
             <div class="item">
-                <p>Themes</p>
+                <h1>Themes</h1>
                 <div class = "themes">
                     <center><button class = "themeOption" onclick = "updateTheme('main')" id = "main">Main</button></center>
                     <center><button class = "themeOption" onclick = "updateTheme('blue')" id = "blue">Blue</button></center>
@@ -36,7 +36,7 @@
             </div>
 
             <div class="item">
-                <p>Profile Pictures</p>
+                <h1>Profile Pictures</h1>
                 <div class = "profilePictures">
                     <center><button class = "profilePictureOption" onclick = "updateProfilePicture('default')" id = "default"><img src = "images/default.png"></button></center>
                     <center><button class = "profilePictureOption" onclick = "updateProfilePicture('WebsiteIcon')" id = "WebsiteIcon"><img src = "images/WebsiteIcon.png"></button></center>
