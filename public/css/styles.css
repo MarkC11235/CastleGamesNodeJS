@@ -22,7 +22,7 @@ a:link {
 }
   
 a:visited {
-    color: var(--background-secondary);
+    color: var(--background-game);
     background-color: transparent;
     text-decoration: underline;
 }
