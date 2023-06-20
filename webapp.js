@@ -169,6 +169,7 @@ function direct(request, response)
 
     
     //have to keep the title, game, and gameName variables because they are used in the ejs files
+    //console.log("user: " + request.session.username + " logged in: " + request.session.loggedin + " path: " + path);
     response.render(path, {
         loggedIn: request.session.loggedin, 
         username: request.session.username, 
@@ -187,6 +188,7 @@ function direct(request, response)
         }
         else {
             response.send(html);
+            //console.log("user: " + request.session.username + " logged in: " + request.session.loggedin + " path: " + path);
         }
     });
 }

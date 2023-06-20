@@ -44,6 +44,8 @@ module.exports.db = function DB(app){
         let password = request.body.password;
         let email = request.body.email;
 
+        console.log("username: " + username + " password: " + password + " email: " + email);
+
         if (username && password && email) {
             try {
                 //checks if the user already exists in the database
@@ -55,8 +57,9 @@ module.exports.db = function DB(app){
 
                 //if the user does exist, the user is redirected to the error page(fix this)
                 if (existingUser) {
-                    console.log('Account already exists');
-                    response.redirect('/error');
+                    // console.log('Account already exists');
+                    // response.redirect('/error');
+                    response.status(401).json({message : 'Account with email or username already exists!'});
                 } 
                 //if the user does not exist, the user is registered
                 else {
@@ -71,22 +74,24 @@ module.exports.db = function DB(app){
                     request.session.username = username;
                     request.session.loggedin = true;
 
-                    response.redirect('/');
+                    //response.redirect('/');
+                    response.json({redirectUrl: '/loggedIn'});
                 }
             } 
             catch (error) {
                 console.log('Error:', error);
-                response.redirect('/error');
+                response.status(401).json({redirectUrl: '/error'});
             }
         } 
         else {
-            response.redirect('/error');
+          response.status(401).json({redirectUrl: '/error'});
         }
     });
 
     app.post('/login', async function(request, response) {
         let username = request.body.username;
         let password = request.body.password;
+        console.log("username: " + username + " password: " + password);
 
         if (username && password) {
             try {
@@ -100,19 +105,22 @@ module.exports.db = function DB(app){
                 if (user) {
                     request.session.username = username;
                     request.session.loggedin = true;
-                    response.redirect('/loggedIn');
+                    response.json({redirectUrl: '/loggedIn'});
                 } 
-                else {
-                    response.redirect('/error');
+                else { 
+                    response.status(401).json({message : 'Incorrect Username and/or Password!'});
+                    //response.redirect('/error');
+                    return;
                 }
             } 
             catch (error) {
                 console.log('Error:', error);
-                response.redirect('/error');
+                response.status(401).json({redirectUrl: '/error'});
             }
         } 
         else {
-            response.redirect('/error');
+            response.status(401).json({message : 'Enter a Username and Password!'});
+            //response.redirect('/error');
         }
     });
     
