@@ -8,6 +8,13 @@ const themes = {
         borderColor: '#000000',
         textColor: '#000000'
     },
+    dark: {
+        backgroundMain: '#0d1b2a',
+        backgroundSecondary: '#1b263b',
+        backgroundGame: '#26405e',
+        borderColor: '#495666',
+        textColor: '#bcbdbb'
+    },
     blue: {
         backgroundMain: 'rgb(32, 95, 178)',
         backgroundSecondary: 'rgb(21, 21, 201)',
@@ -18,9 +25,9 @@ const themes = {
     red: {
         backgroundMain: '#9E2A2B',
         backgroundSecondary: '#540B0E',
-        backgroundGame: '#d8bc9c',
-        borderColor: '#422f18',
-        textColor: '#9c9391'
+        backgroundGame: '#945757',
+        borderColor: '#3f2a10',
+        textColor: '#aaaaaa'
     },
     violet: {
         backgroundMain: '#820fcf',
@@ -44,18 +51,11 @@ const themes = {
         textColor: '#97EFE9'
     },
     orange: {
-        backgroundMain: '#ff8000',
-        backgroundSecondary: '#5A0002',
-        backgroundGame: '#6d3d06',
-        borderColor: '#000F08',
-        textColor: '#F8F2DC'
-    },
-    yellow: {
-        backgroundMain: '#E0BE36',
-        backgroundSecondary: '#F1D302',
-        backgroundGame: '#ad6c51',
-        borderColor: '#ad300a',
-        textColor: '#362a12'
+        backgroundMain: '#a13007',
+        backgroundSecondary: '#831102',
+        backgroundGame: '#e47900',
+        borderColor: '#61190b',
+        textColor: '#220901'
     },
     darkblue: {
         backgroundMain: '#07046b',
