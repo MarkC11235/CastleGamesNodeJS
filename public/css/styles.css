@@ -115,3 +115,19 @@ img{
     transform: scale(1.1);
 }
 
+/* CHNAGE TO MAX AFTER YOURE DONE*/
+@media only screen and (max-width: 768px) {
+    .container{
+        width: 99vw;
+        height: 100vh;
+    
+        display: grid;
+    
+        grid-template-columns: 1fr repeat(2, 2fr);
+        grid-template-rows: 1fr repeat(16, 1fr);
+    }
+    .header{
+        grid-column-start: 1;
+        grid-column: span 3;
+    }
+}
