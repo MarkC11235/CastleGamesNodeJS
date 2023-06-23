@@ -7,6 +7,11 @@ var cellsToReveal = 100;
 
 const difficultyButton = document.getElementById("difficulty");
 
+let easyTime = 0;
+let mediumTime = 0;
+let hardTime = 0;
+const bestTimes = document.getElementById("bestTimes");
+
 var time = 0;
 const timeText = document.getElementById("time");
 var timeInt = 0;
@@ -16,6 +21,7 @@ var timeInt = 0;
 var difficulty = "easy";
 
 var playing = false;
+let startDifficulty = "easy";
 var canStartNewGame = true;
 
 function Start()
@@ -24,6 +30,8 @@ function Start()
     {
         clearInterval(timeInt);
         timeInt = 0;
+
+        startDifficulty = difficulty;
 
         time = 0;
         timeText.innerHTML = "Time : "+time.toFixed(0) +" seconds";
@@ -307,11 +315,37 @@ async function GameOver()
     canStartNewGame = true;
 }
 
-function Victory()
+async function Victory()
 {
     playing = false;
     clearInterval(timeInt);
     timeInt = 0;
+    await postData();
+}
+
+async function getData(){
+    let data = await getGameData("Minesweeper");
+    easyTime = data.Easy || 9999;
+    mediumTime = data.Medium || 9999;
+    hardTime = data.Hard || 9999;
+    //console.log(data);
+    bestTimes.innerHTML = "Best Times: Easy: "+easyTime+" :: Medium: "+mediumTime+" :: Hard: "+hardTime;
+}
+
+getData();
+
+function postData(){
+    if(startDifficulty == "easy"){
+        easyTime = time;
+    }
+    else if(startDifficulty == "medium"){
+        mediumTime = time;
+    }
+    else if(startDifficulty == "hard"){
+        hardTime = time;
+    }
+    bestTimes.innerHTML = "Best Times: Easy: "+easyTime+" :: Medium: "+mediumTime+" :: Hard: "+hardTime;
+    postGameData("Minesweeper", {Easy: easyTime, Medium: mediumTime, Hard: hardTime});
 }
 
 //window.onload = Start();   

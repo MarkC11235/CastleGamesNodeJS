@@ -51,15 +51,18 @@ app.use(cookieParser());
 
 //saves login
 //TODO: needs to be fixed (not meant for production because it can cause a memory leak)**************************
+//this is because the session is saved in memory by default
 const session = require('express-session');
 app.set("trust proxy", 1);
 app.use(session({
     secret: process.env.SESSION_SECRET,
-    resave: true,
+    resave: false,
     saveUninitialized: true,
-    cookie: {
-        maxAge: 1000 * 60 * 60 * 24 * 7,
-        secure: "auto"
+    cookie: { 
+        //ONLY SET TO TRUE FOR PRODUCTION, becuase it will only work with https
+        secure: false,
+        httpOnly: true,
+        maxAge: 1000 * 60 * 60 * 24 * 7 // 1 week
     }
 }));
 
@@ -115,17 +118,14 @@ openBattle.start(io);
 //TODO: fix var game (currently is used for more than just them game pages)
 function direct(request, response)
 {
+    //console.log("user: " + request.session.username + " logged in: " + request.session.loggedin + " path: " + path);
+    
     var path = request.path;
     var title = "Castle Games"
     var game = false;
+    var gameName = "";
+    let initialLogin = false;
     
-    if(request.cookies.username != undefined)
-    {
-        request.session.loggedin = true;
-        request.session.username = request.cookies.username;
-        request.session.password = request.cookies.password;
-    }
-
     //path 
     // "/" is home page
     // "route-" is a game page
@@ -134,17 +134,19 @@ function direct(request, response)
     if(path == "/"){
         path = "index.ejs";
     }
+    if(path == "/loggedIn"){
+        path = "index.ejs";
+        initialLogin = true;
+    }
     else if (path == "/logout"){     
         path = "index.ejs";
-        request.session.loggedin = false;
-        request.session.username = "";
-        request.session.password = "";
-        response.clearCookie("username");
-        response.clearCookie("password");  
-        //response.clearCookie("theme");
+        request.session.destroy();
+        response.render('index.ejs', {loggedIn: false, username: "", title : title, game : false});
+        return;
     }
     else if(path.substring(path.length-1) == "-") {
         path = path.substring(1, path.length-1);
+        gameName = path;
         title = path + "|"+title;
         game = true;
     }
@@ -164,13 +166,17 @@ function direct(request, response)
     else{
         path = "index.ejs";
     }
-   
+
+    
+    //have to keep the title, game, and gameName variables because they are used in the ejs files
+    //console.log("user: " + request.session.username + " logged in: " + request.session.loggedin + " path: " + path);
     response.render(path, {
         loggedIn: request.session.loggedin, 
         username: request.session.username, 
         title : title,
         game : game,
-        theme : request.cookies.theme == undefined ? "blue" : request.cookies.theme
+        gameName : gameName,
+        initialLogin : initialLogin 
     }, function(err, html) {
         //if the page doesn't exist 
         //this returns the user to the home page
@@ -182,6 +188,7 @@ function direct(request, response)
         }
         else {
             response.send(html);
+            //console.log("user: " + request.session.username + " logged in: " + request.session.loggedin + " path: " + path);
         }
     });
 }

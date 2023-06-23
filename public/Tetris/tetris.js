@@ -404,11 +404,11 @@ async function GameOver()
     colorGrid = Array.from(Array(22), _ => Array(14).fill("black"));
     pieces = [];
 
-    if(score > highScore)
+    if(score > highScore || highScore == null)
     {
         highScore = score;
         highScoreText.innerHTML = "High Score : "+highScore;
-        await postGameData("BlockStack", highScore);
+        await postGameData("BlockStack", {highScore : highScore});
     }
 
     score = 0;
@@ -434,7 +434,7 @@ async function getData(){
     var temp = await getGameData("BlockStack");
     if(temp != null)
     {
-        highScore = temp;
+        highScore = temp.highScore;
         highScoreText.innerHTML = "High Score : "+highScore;
     }
 }

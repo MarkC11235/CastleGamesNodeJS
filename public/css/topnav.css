@@ -1,0 +1,47 @@
+.topnav {
+    background-color: var(--background-secondary);
+    border: 5px solid var(--border-color);
+    overflow: hidden;
+    border-radius: 1em;
+
+    height: 3.2em;
+    /* 
+    this would be to shorten the width of the topnav and center it
+    width: 96%;
+
+    margin: 0 auto; */
+}
+.topnav a {
+    float: left;
+    color: var(--text-color);
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+}
+.topnav a:hover {
+    background-color: var(--background-main);
+}
+
+
+/* not quite what i wanted because it looks different on hover than other things in the topnav but it works */
+.topnav > .right > .profilePictureTopRight{
+    float: right;
+    width: 1.2em;
+    height: 1.2em;
+    background-image: var(--profile-picture);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.topnav > .right > .profilePictureTopRight:hover{
+    opacity: .5;
+}
+
+
+
+
+
+
+    

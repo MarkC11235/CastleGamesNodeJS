@@ -1,3 +1,4 @@
+//the problem with the page not loading could also be here(not sure)
 let muffins = 0;
 
 function loop(){
@@ -5,3 +6,5 @@ function loop(){
 }
 
 setInterval(loop, 1000);
+
+//save and load

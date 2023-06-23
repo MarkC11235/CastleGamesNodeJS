@@ -188,11 +188,11 @@ async function GameOver()
     timerInterval = 0;
     alreadyPlayed = true;
    
-    if(timer < bestTime)
+    if(timer < bestTime || bestTime == null)
     {
         bestTime = timer;
         bestTimeText.innerHTML = "Best Time: " + bestTime.toFixed(2) + " seconds";
-        await postGameData("Memory", bestTime);
+        await postGameData("Memory", {fastestTime: bestTime});
     }
 }
 
@@ -201,7 +201,7 @@ async function getData()
     var temp = await getGameData("Memory");
     if(temp != null)
     {
-        bestTime = parseFloat(temp);
+        bestTime = temp.fastestTime;
     }
     bestTimeText.innerHTML = "Best Time: " + bestTime.toFixed(2) + " seconds";
 }

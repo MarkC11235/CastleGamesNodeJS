@@ -16,21 +16,15 @@
                 <center><canvas id = "screen" style = "border: 5px solid black" width = "600px" height="600px"></canvas></center>
             </div>
 
-            <div class="instructions">
-                <p> Instructions :  <br><br>
-                    -Use w, a, s, d to move <br><br>
-                    -Use the left and right arrow keys to rotate <br><br>
-                    -Use the space bar or the up arrow key to shoot <br><br>
-                    -Avoid the asteroids and the enemy bullets <br><br>
-                    -Destroy enemy ships and asteroids to gain points and health <br><br>
-                    -Also gain points by survival time <br><br>
-                </p>
-            </div>
+            <%- include('partials/instructions.ejs', {ins : '-Use w, a, s, d to move <br><br>\
+            -Use the left and right arrow keys to rotate <br><br>\
+            -Use the space bar or the up arrow key to shoot <br><br>\
+            -Avoid the asteroids and the enemy bullets <br><br>\
+            -Destroy enemy ships and asteroids to gain points and health <br><br>\
+            -Also gain points by survival time <br><br>' }) %>
+
+            <% include('partials/ads.ejs') %>
             
-            <div class="ads">
-
-            </div>
-
         </div>
 
         <script src = "/SpaceBattle/spaceBattle.js"></script>

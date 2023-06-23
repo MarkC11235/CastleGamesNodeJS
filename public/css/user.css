@@ -11,5 +11,77 @@
 
 .item{
     border: 8px solid var(--border-color);
+    border-radius: 5em;
+    margin: 2em;
 }
+
+.item h1{
+    text-align: center;
+    font-size: 2em;
+}
+
+.scroll::-webkit-scrollbar {
+    display: none;
+}
+  
+.scroll::-webkit-scrollbar-track {
+    display: none;
+}
+  
+.scroll::-webkit-scrollbar-thumb {
+    display: none;
+}
+
+.scroll{
+    /* to add a scroll bar  */
+    overflow: scroll;
+    /* to hide the scroll bar */
+    scrollbar-width: none;
+}
+
+
+.profilePictures{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.profilePictureOption{
+    width: 6em;
+    height: 6em;
+    border-radius: 5em;
+    border: 3px solid var(--border-color);
+    margin: 1em;
+    background-color: var(--background-game);
+}
+
+.profilePictureOption:hover{
+    opacity: .5;
+}
+
+.profilePictureOption img{
+    width: 75%;
+    height: 75%;
+}
+
+.themes{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.themeOption{
+    width: 6em;
+    height: 6em;
+    border-radius: 5em;
+    border: 3px solid var(--border-color);
+    margin: 1em;
+    background-color: var(--background-game);
+}
+
+.themeOption:hover{
+    opacity: .5;
+}
+
+
 

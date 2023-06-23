@@ -1,31 +1,32 @@
 <html>
     <head>
+        <!--include this if the game is made unity to handle loading-->
+        <%- include('partials/unityGame.ejs') %>
+        
+        <!--contains things such as css, google tag, and handling tab title and image-->
         <%- include('partials/head.ejs') %>
     </head>
     <body>
+        <!--this is the navigation bar that is on every page-->
         <%- include('partials/topnav.ejs') %>
 
         <div class="containerGame">
-            <div class="title">
-                <p><%=title.substring(0,title.indexOf("|"))%></p>
-            </div>
-    
+            <!--place to put game-->
             <div class="content">
                 
             </div>
 
-            <div class="instructions">
-                <p> Instructions :  <br><br>
-                    
-                </p>
-            </div>
+            <!--inside of ins type in instructions and include <br><br> inbetween each instruction>-->
+            <%- include('partials/instructions.ejs', {ins : ''}) %>
             
-            <div class="ads">
-
-            </div>
+            <% include('partials/ads.ejs') %>
 
         </div>
 
+        <!--
+        only need this if game has js code, if so change script src to the name of the js file
         <script src = "blank.js"></script>
+        -->
+        
     </body>
 <html>

@@ -9,32 +9,45 @@
 
         <div class="container">
             <div class="item">
-                <p>User : <%=username%></p>
+                <h1>User : <%=username%></h1>
                 <center><a href = "/logout">logout</a></center>
             </div>
     
-            <div class="item">
-                <p>Game Data</p>
+            <div class="item scroll">
+                <h1>Game Data</h1>
                 <div class = "display">
                   
                 </div>
             </div>
 
             <div class="item">
-                <p>Theme</p>
-                <center><button onclick = "themeButton('blue')" id = "blue">Blue</button></center>
-                <center><button onclick = "themeButton('purple')" id = "purple">Purple</button></center>
-                <center><button onclick = "themeButton('green')" id = "green">Green</button></center>
-                <center><button onclick = "themeButton('brown')" id = "brown">Brown</button></center>
-                <center><button onclick = "themeButton('dark')" id = "dark">Dark</button></center>        
+                <h1>Themes</h1>
+                <div class = "themes">
+                    <center><button class = "themeOption" onclick = "updateTheme('main')" id = "main">Main</button></center>
+                    <center><button class = "themeOption" onclick = "updateTheme('dark')" id = "dark">Dark</button></center>
+                    <center><button class = "themeOption" onclick = "updateTheme('blue')" id = "blue">Blue</button></center>
+                    <center><button class = "themeOption" onclick = "updateTheme('red')" id = "red">Red</button></center>
+                    <center><button class = "themeOption" onclick = "updateTheme('violet')" id = "violet">Violet</button></center>
+                    <center><button class = "themeOption" onclick = "updateTheme('green')" id = "green">Green</button></center>
+                    <center><button class = "themeOption" onclick = "updateTheme('purple')" id = "purple">Purple</button></center>
+                    <center><button class = "themeOption" onclick = "updateTheme('orange')" id = "orange">Orange</button></center>
+                    <center><button class = "themeOption" onclick = "updateTheme('darkblue')" id = "darkblue">Dark Blue</button></center>
+                </div>
             </div>
 
             <div class="item">
-                <p>Profile Picture</p>
-                <center><button onclick = "profilePictureButton('default')" id = "default">Default</button></center>
-                <center><button onclick = "profilePictureButton('castle')" id = "castle">Castle</button></center>
-                <center><button onclick = "profilePictureButton('blueCastle')" id = "blueCastle">Blue Castle</button></center>
-                <center><button onclick = "profilePictureButton('muffin')" id = "muffin">Muffin</button></center>
+                <h1>Profile Pictures</h1>
+                <div class = "profilePictures">
+                    <center><button class = "profilePictureOption" onclick = "updateProfilePicture('default')" id = "default"><img src = "images/default.png"></button></center>
+                    <center><button class = "profilePictureOption" onclick = "updateProfilePicture('WebsiteIcon')" id = "WebsiteIcon"><img src = "images/WebsiteIcon.png"></button></center>
+                    <center><button class = "profilePictureOption" onclick = "updateProfilePicture('blueCastle')" id = "blueCastle"><img src = "images/blueCastle.png"></button></center>
+                    <center><button class = "profilePictureOption" onclick = "updateProfilePicture('shield')" id = "shield"><img src = "images/shield.png"></button></center>
+                    <center><button class = "profilePictureOption" onclick = "updateProfilePicture('sword')" id = "sword"><img src = "images/sword.png"></button></center>
+                    <center><button class = "profilePictureOption" onclick = "updateProfilePicture('shiningStar')" id = "shiningStar"><img src = "images/shiningStar.png"></button></center>
+                    <center><button class = "profilePictureOption" onclick = "updateProfilePicture('leaf')" id = "leaf"><img src = "images/leaf.png"></button></center>
+                    <center><button class = "profilePictureOption" onclick = "updateProfilePicture('controller')" id = "controller"><img src = "images/controller.png"></button></center>
+                    <center><button class = "profilePictureOption" onclick = "updateProfilePicture('waterdrop')" id = "waterdrop"><img src = "images/waterdrop.png"></button></center>
+                </div>
             </div>
 
         </div>

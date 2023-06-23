@@ -1,3 +1,6 @@
+//The setup with classes is good and I like the way the last couplke of lines of prod items are made 
+//but the classes might need some tweaking because the page is not working properly.
+
 class prod{
     constructor(items){
         this.items = [];

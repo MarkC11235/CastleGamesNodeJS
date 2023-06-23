@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
    <head>
+    <!--have to keep this instead of partial because Zombie Survival is named Zombie in files-->
     <script src="Zombie/Build/UnityLoader.js"></script>
     <script>
       var unityInstance = UnityLoader.instantiate("unityContainer", "Zombie/Build/Zombie.json");
@@ -20,17 +21,11 @@
         <center><div id="unityContainer" style="border: solid black 2px; width: 700px; height: 700px;"></div></center>
       </div>
 
-      <div class="instructions">
-          <p> Instructions :  <br><br>
-            -w a s d to move <br><br>
-            -e to switch weapons <br><br>
-            -r to reload <br><br>
-          </p>
-      </div>
-      
-      <div class="ads">
+      <%- include('partials/instructions.ejs', {ins : '-w a s d to move <br><br>\
+      -e to switch weapons <br><br>\
+      -r to reload' }) %>
 
-      </div>
+      <% include('partials/ads.ejs') %>
 
   </div>
 

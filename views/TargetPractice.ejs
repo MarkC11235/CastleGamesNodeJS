@@ -21,18 +21,12 @@
                 </center>
             </div>
 
-            <div class="instructions">
-                <p> Instructions :  <br><br>
-                    -Click on screen to start<br><br>
-                    -Try to click on targets as close to the center as you can<br><br>
-                    -Clicking anywhere besides a target will amke you lose points<br><br>
-                    -Try to hit as many targets in 30 seconds
-                </p>
-            </div>
-            
-            <div class="ads">
+            <%- include('partials/instructions.ejs', {ins : '-Click on screen to start<br><br>\
+            -Try to click on targets as close to the center as you can<br><br>\
+            -Clicking anywhere besides a target will amke you lose points<br><br>\
+            -Try to hit as many targets in 30 seconds' }) %>
 
-            </div>
+            <% include('partials/ads.ejs') %>
 
         </div>
 

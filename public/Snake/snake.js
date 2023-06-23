@@ -48,9 +48,10 @@ function ChangeColor(x)
 async function GetHighScore()
 {
     var temp = await getGameData("Serpent");
+    console.log(temp);
     if(temp != null)
     {
-        highScore = temp;
+        highScore = temp.highScore;
         document.getElementById("Score").innerHTML = "High Score : " + highScore + " :: Score : "+score;
     }
     return temp;
@@ -242,10 +243,10 @@ function GameOver()
     character = [[3,8],[2,8],[1,8]];
     playing = false;
 
-    if(score > highScore)
+    if(score > highScore || highScore == null)
     {
         highScore = score;
-        postGameData("Serpent", highScore);
+        postGameData("Serpent", {highScore: highScore});
         document.getElementById("Score").innerHTML = "High Score : " + highScore + " :: Score : "+score;
     }
 }

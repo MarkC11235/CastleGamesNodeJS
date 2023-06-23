@@ -1,17 +1,20 @@
+<link rel = "stylesheet" href = "css/topnav.css">
 <div class="topnav">
-    <a href="/">Home</a>
-    <!-- <a href="/categories">Game Categories</a> -->
-    <a href="/contact_">Contact</a>
-    <a href="/patchNotes_">Patch Notes</a>
-    <a href="/downloads_">Downloads</a>
-    
-    <% if (loggedIn == true) { %>
-        <div class = "profilePicture" id = "profilePicture">
-            <a href = "/user_"></a>
-        </div>
-    <%} else { %>
-        <a id = "login" style = "float : right"; href="/login_">Login</a>
-        <a id = "register" style = "float : right"; href="/register_">Register</a>
-    <% } %>
+    <div class = "left">
+        <a href="/">Home</a>
+        <!-- <a href="/categories_">Game Categories</a> -->
+        <a href="/contact_">Contact</a>
+        <a href="/patchNotes_">Patch Notes</a>
+        <a href="/downloads_">Downloads</a>
+    </div>
+    <div class = "right">     
+        <% if (loggedIn == true) { %>
+            <a class = "profilePictureTopRight" href = "user_">
+            </a>
+        <%} else { %>
+            <a id = "login" style = "float : right"; href="/login_">Login</a>
+            <a id = "register" style = "float : right"; href="/register_">Register</a>
+        <% } %>
+    </div>
     
 </div>

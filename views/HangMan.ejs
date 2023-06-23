@@ -19,18 +19,12 @@
                     <center><img style = "height: 80%;" id = "img" src = "HangMan/images/sprite_0.png"></center>
             </div>
 
-            <div class="instructions">
-                <p> Instructions :  <br><br>
-                    -Try to guess the letters to make the word or phrase<br><br>
-                    -Every time you guess a letter that is not in the word or phrase more of the person appears<br><br>
-                    -If the entire person is made before you guess the word you lose
-                </p>
-            </div>
+            <%- include('partials/instructions.ejs', {ins : '-Try to guess the letters to make the word or phrase<br><br>\
+            -Every time you guess a letter that is not in the word or phrase more of the person appears<br><br>\
+            -If the entire person is made before you guess the word you lose'}) %>
+
+            <% include('partials/ads.ejs') %>
             
-            <div class="ads">
-
-            </div>
-
         </div>
 
         <script src = "HangMan/hangman.js"></script>

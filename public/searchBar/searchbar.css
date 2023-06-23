@@ -1,0 +1,21 @@
+#search-form{
+    position: relative;
+    float: left;
+    padding: 0.9em;
+}
+
+#search-results{
+    position: absolute;
+    top: 3.2em;
+    left: 0;
+    background-color: var(--background-secondary);
+    border: 2px solid var(--border-color);
+    z-index: 999;
+}
+
+#search-results a{
+    display: block;
+    padding: 0.5em;
+    text-decoration: none;
+    color: var(--text-color);
+}

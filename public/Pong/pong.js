@@ -21,6 +21,8 @@ var rightPaddle =  [680,250,20,100,0,0];
 
 var ball = [340,240,20,20,1,0]; 
 
+const overallRecord = document.getElementById("OverallRecord");
+
 function switchModes()
 {
     if(updateLoop==null)
@@ -270,7 +272,10 @@ function Score(x)
             clearInterval(aiUpdateLoop);
             aiUpdateLoop=null;
         }
-        isPlaying = false;
+        isPlaying = false;       
+        record.wins++;
+        postGameData('Pong', record);
+        overallRecord.innerHTML = "Overall Record: " + record.wins + " - " + record.losses;
     }
     else if(rightPaddle[4]==5)
     {
@@ -286,6 +291,9 @@ function Score(x)
             aiUpdateLoop=null;
         }
         isPlaying = false;
+        record.losses++;
+        postGameData('Pong', record);       
+        overallRecord.innerHTML = "Overall Record: " + record.wins + " - " + record.losses;
     }
     else
     {
@@ -299,6 +307,19 @@ function Score(x)
         Start();
     }
 }
+
+
+let record = {wins : 0, losses : 0};
+async function getData(){
+    let temp = await getGameData('Pong');
+    if(temp != null){
+        record = temp;
+        overallRecord.innerHTML = "Overall Record: " + record.wins + " - " + record.losses;
+    }
+}
+
+getData();
+
 
 //Event Listeners
 window.addEventListener('keydown', function (e) {

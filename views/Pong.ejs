@@ -11,6 +11,7 @@
             </div>
     
             <div class="content">
+                <center><p id="OverallRecord"style="font-size: 20px;">Overall Record : 0 - 0</p></center>
                 <center><p><button id = "Modes" style="font-size: 20px;" onclick="switchModes()">Switch Modes : SinglePlayer</button>
                     <button id = "Difficulty" style="font-size: 20px;" onclick="Difficulty()">Easy</button>
                     <button style="font-size: 20px;" id = "StartButton" onclick="StartButton()">Start</button></p></center>
@@ -18,16 +19,10 @@
                 <center><canvas style = "border: solid black 10px;" id="GameScreen" width="700px" height="500px"></canvas></center>
             </div>
 
-            <div class="instructions">
-                <p> Instructions :  <br><br>
-                    -Left Player use w to move up and s to move down<br><br>
-                    -Right Player use k to move up and m to move down
-                </p>
-            </div>
-            
-            <div class="ads">
+            <%- include('partials/instructions.ejs', {ins : '-Left Player use w to move up and s to move down<br><br>\
+            -Right Player use k to move up and m to move down' }) %>
 
-            </div>
+            <% include('partials/ads.ejs') %>
 
         </div>
 

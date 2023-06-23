@@ -828,7 +828,7 @@ async function GetHighScore()
     var temp = await getGameData("SpaceBattle");
     if(temp != null)
     {
-        highScore = temp;
+        highScore = temp.highScore;
         document.getElementById("highScore").innerHTML = "High Score : " + highScore;
     }
     console.log(temp);
@@ -836,10 +836,10 @@ async function GetHighScore()
 }
 
 function setHighScore(){
-    if(p.score > highScore){
+    if(p.score > highScore || highScore == null){
         highScore = p.score;
         document.getElementById("highScore").innerHTML = "High Score : " + highScore;
-        postGameData("SpaceBattle", highScore);
+        postGameData("SpaceBattle", {highScore: highScore});
     }
 }
 

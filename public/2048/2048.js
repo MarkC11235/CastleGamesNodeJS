@@ -1,22 +1,42 @@
+//SAVES EVERY 5 MOVES AND ON RESTART
+//This is to limit the amount of saves to the database
+let keysUntilSave = 0;
 window.addEventListener("keydown",(event) => {
     var code = event.keyCode;
     event.preventDefault();
     if(code == 87 || code == 38)
     {
         Up();
+        keysUntilSave++;
     }
     if(code == 83 || code == 40)
     {
         Down();
+        keysUntilSave++;
     }
     if(code == 65 || code == 37)
     {
         Left();
+        keysUntilSave++;
     }
     if(code == 68 || code == 39)
     {
         Right();
+        keysUntilSave++;
     }
+
+    if(score > highScore)
+    {
+        highScore = score;
+        highScoreText.innerHTML = "High Score: " + highScore;
+    }
+
+    if(keysUntilSave >= 5)
+    {
+        Save();
+        keysUntilSave = 0;   
+    }
+
 })
 
 var grid = [
@@ -27,6 +47,8 @@ var grid = [
     ];
 var score = 0;
 var scoreText = document.getElementById("Score");
+var highScore = 0;
+var highScoreText = document.getElementById("HighScore");
 
 var table = [];
 var tableColors = [];
@@ -34,17 +56,49 @@ var tableColors = [];
     //origin is top left
     //only three posible checks between blocks in a line
     
-    //get image var x = 0; document.getElementById(x).src = "Blank.png";
-    
-    var canvas = document.getElementById("GameScreen");
-    var ctx = canvas.getContext("2d");
-
     function Restart()
     {
-        localStorage.clear();
+        // localStorage.clear();
+        if(score > highScore)
+        {
+            highScore = score;
+            highScoreText.innerHTML = "High Score: " + highScore;
+            Save();
+        }
+
+        score = 0;
         Start();
         //alert("restart");
     }
+
+    function Save()
+    {
+        console.log("save");
+        const data = {
+            grid: grid,
+            score: score,
+            highScore: highScore
+        }
+        
+        postGameData("2048", data);
+    }
+
+    async function Load(){
+        let temp = await getGameData("2048");
+        if(temp)
+        {
+            grid = temp.grid;
+            score = temp.score;
+            highScore = temp.highScore;
+
+            scoreText.innerHTML = "Score: " + score;
+            highScoreText.innerHTML = "High Score: " + highScore;
+        }
+        console.log(grid);
+        Start();
+    }
+
+    window.addEventListener("load", Load);
     
     function Start()
     {
@@ -52,25 +106,7 @@ var tableColors = [];
             table.push(document.getElementById(x));
             tableColors.push(document.getElementById(x).parentElement);
         }
-        if(localStorage.getItem("grid")!=null)
-        {       
-            var stringGrid = localStorage.getItem("grid");
-            //alert(stringGrid);
-            pregrid = stringGrid.split(",");
-            for(var x = 0 ; x<4;x++)
-            {
-                for(var y =0;y<4;y++)
-                {
-                    grid[x][y]=parseInt(pregrid[x*4+y]);
-                }
-            }
-            //alert(grid);
-            
-            score = parseInt(localStorage.getItem("score"));
-        }
-        else
-        {
-            
+        if(score == 0){
             grid = [
                 [0,0,0,0],
                 [0,0,0,0],
@@ -80,26 +116,22 @@ var tableColors = [];
             score = 0;
             
             SpawnBlocks();
-            SpawnBlocks();
-            
-            
+            SpawnBlocks();  
+        }
+        else{
+            scoreText.innerHTML = "Score: " + score;
+            highScoreText.innerHTML = "High Score: " + highScore;
+            for(var x = 0; x < 16; x++){
+                if(grid[Math.floor(x/4)][x%4] != 0){
+                    table[x].innerHTML = grid[Math.floor(x/4)][x%4];
+                }
+                else{
+                    table[x].innerHTML = "";
+                }
+            }
         }
         
         Draw();
-    }
-
-    function Save()
-    {
-        
-        var gridSaved = "";
-        for(var x =0;x<16;x++)
-        {
-            gridSaved += grid[Math.floor(x/4)][x%4]+",";
-        }
-        
-        localStorage.setItem("grid",gridSaved);
-        
-        localStorage.setItem("score",score);
     }
 
     function SpawnBlocks()
@@ -122,7 +154,7 @@ var tableColors = [];
                     break;
             } 
         }
-        Save();
+        //Save();
     }
     
     function Draw()

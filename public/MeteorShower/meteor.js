@@ -14,7 +14,7 @@ async function GetHighScore(){
     var temp = await getGameData("MeteorShower");
     if(temp != null)
     {
-        highScore = temp;
+        highScore = temp.highScore;
         highScoreText.innerHTML = "High Score : " + highScore;
     }
 }
@@ -371,10 +371,10 @@ async function GameOver()
     player.level = 1;
     player.guns = 1;
     document.getElementById('Gamescreen').style.cursor = "default";
-    if(player.score > highScore)
+    if(player.score > highScore || highScore == null)
     {
         highScore = player.score;
-        await postGameData("MeteorShower", highScore);
+        await postGameData("MeteorShower", {highScore : highScore});
         highScoreText.innerHTML = "High Score : " + highScore;
     }
     player.score = 0;

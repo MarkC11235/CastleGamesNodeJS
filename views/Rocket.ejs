@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script src="Rocket/Build/UnityLoader.js"></script>
-    <script>
-      var unityInstance = UnityLoader.instantiate("unityContainer", "Rocket/Build/Rocket.json");
-    </script>
+    <%- include('partials/unityGame.ejs') %>
 
     <%- include('partials/head.ejs') %>
   </head>
@@ -21,19 +18,13 @@
         <center><div id="unityContainer" style="width: 600px; height: 700px; border: solid black 2px;"></div></center>
       </div>
 
-      <div class="instructions">
-          <p> Instructions :  <br><br>
-            -Press on a,d or left and right buttons to move<br><br>
-            -Avoid crashing ino things<br><br>
-            -Collect fuel so your fuel meter doesn't get to 0 for too long<br><br>
-            -Pick up a shields to block crashes<br><br>
-            -Prees p to Pause
-          </p>
-      </div>
-      
-      <div class="ads">
+      <%- include('partials/instructions.ejs', {ins : '-Press on a,d or left and right buttons to move<br><br>\
+      -Avoid crashing ino things<br><br>\
+      -Collect fuel so your fuel meter doesn\'t get to 0 for too long<br><br>\
+      -Pick up a shields to block crashes<br><br>\
+      -Prees p to Pause'}) %>
 
-      </div>
+      <% include('partials/ads.ejs') %>
 
   </div>
 

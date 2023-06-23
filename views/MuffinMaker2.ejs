@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <%- include('partials/head.ejs') %>
+    </head>
+    <body>
+        <%- include('partials/topnav.ejs') %>
+
+        <div class="containerGame">
+            <div class="title">
+                <p><%=title.substring(0,title.indexOf("|"))%></p>
+            </div>
+    
+            <div class="content">
+                <!-- the style = "touch-action: manipulation;" makes it so double clicking on mobikle won't 
+                zoom in the page -->
+                <canvas style = "touch-action: manipulation;" id = "clickScreen" width="300px"; height="250px"></canvas>
+            </div>
+
+            <%- include('partials/instructions.ejs', {ins : ''}) %>
+
+            <% include('partials/ads.ejs') %>
+
+        </div>
+
+        <!-- <script src = "MuffinMaker2/main.js"></script>
+        <script src = "MuffinMaker2/prod.js"></script> -->
+    </body>
+<html>

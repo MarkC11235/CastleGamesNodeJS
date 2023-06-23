@@ -56,17 +56,11 @@
                 
             </div>
 
-            <div class="instructions">
-                <p> Instructions :  <br><br>
-                    -Click on the muffin to make muffins<br><br>
-                    -Buy the muffin production upgrades to passively collect muffins<br><br>
-                    -Buy the upgrades to increase the amount of muffins you make
-                </p>
-            </div>
-            
-            <div class="ads">
+           <%- include('partials/instructions.ejs', {ins :' -Click on the muffin to make muffins<br><br>\
+            -Buy the muffin production upgrades to passively collect muffins<br><br>\
+            -Buy the upgrades to increase the amount of muffins you make '}) %>
 
-            </div>
+            <%include('partials/ads.ejs')%>
 
         </div>
 

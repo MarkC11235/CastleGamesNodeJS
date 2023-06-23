@@ -2,6 +2,7 @@
 <html>
 <head>
 	<%- include('partials/head.ejs') %>
+	<link rel="stylesheet" type="text/css" href="/css/patchNotes.css">
 </head>
 <body>
 	
@@ -9,78 +10,144 @@
 	<%- include('partials/title.ejs') %>
     <center><p style="font-size: 50px;">Patch Notes</p></center>
 
-	<div style="padding-left: 20px;">
+	<div class = "patch-container">
+		
+		<!-- <div class = "patch">
+			<h1></h1>
+			<p></p>			
+		</div>	 -->
 
-		<h1 style = "font-size: 30px;"> 04 : 29 : 2023</h1>
-		<p style = "font-size: 20px;"> Added Space Battle
-		</p>
+		<div class = "patch">
+			<h1> 06 : 23 : 2023</h1>
+			<p> Chaged how the profiles code works, so users will have to make a new account</p>
+			<p> Added many themes and tweaked some old ones</p>
+			<p> Added more profile pictures </p>
+			<p> More games now save data and now with the profile system change it'll be easier to implement saving with most new games</p>
+			<p> Can see all game data on the user page</p>
+			<p> List of games that save: 2048, Pong, Memory, Serpent, BlackJack, BlockStack, 
+				Minesweeper, SpaceBattle, MeteorShower, TowerBuilder, TargetPractice
+			</p>
+			<p> Visual Changes throughout the site </p>
+		</div>
 
-		<h1 style = "font-size: 30px;"> 01 : 08 : 2023</h1>
-		<p style = "font-size: 20px;"> User page now has an option to change the theme of the site<br>
-			User page also now has options for profile pictures
-		</p>
+		<div class = "patch">
+			<h1> 05 : 23 : 2023</h1>
+			<p> Fixed a problem with the mobile version of MuffinMaker where the screen would zoom in when clicking the muffin too fast</p>
+		</div>
 
-		<h1 style = "font-size: 30px;"> 11 : 27 : 2022</h1>
-		<p style = "font-size: 20px;"> User page now shows data/highscores
-		</p>
-		<h1 style = "font-size: 30px;"> 11 : 26 : 2022</h1>
-		<p style = "font-size: 20px;"> Added a Downloads Page<br>
-			Added first version of Jeopardy to Downloads Page
-		</p>
-		<h1 style = "font-size: 30px;"> 09 : 14 : 2022</h1>
-		<p style = "font-size: 20px;"> Added Mini Golf
-		</p>
-		<h1 style = "font-size: 30px;"> 08 : 16 : 2022</h1>
-		<p style = "font-size: 20px;"> Added Opposites Attract
-		</p>
-		<h1 style = "font-size: 30px;"> 08 : 13 : 2022</h1>
-		<p style = "font-size: 20px;"> Updated Super Jump Man to have ten levels, sound, music, and bug fixes
-		</p>
-		<h1 style = "font-size: 30px;"> 07 : 25 : 2022</h1>
-		<p style = "font-size: 20px;">Changed title design
-		</p>
-		<h1 style = "font-size: 30px;"> 07 : 18 : 2022</h1>
-		<p style = "font-size: 20px;">Added BlackJack<br>
-			Accounts now save game data for - BlockStack, Memory, MeteorShower, Serpent, TargetPractice, TowerBuilder, and BlackJack<br>
-		</p>
-		<h1 style = "font-size: 30px;"> 06 : 17 : 2022</h1>
-		<p style = "font-size: 20px;">Added Accounts <br> 
-			(very limited use right now, but eventually will save game progress)
-		</p>
-		<h1 style = "font-size: 30px;"> 06 : 03 : 2022</h1>
-		<p style = "font-size: 20px;">Added Open Battle (first online multiplayer game on the site)</p>
-		<h1 style = "font-size: 30px;"> 05 : 04 : 2022</h1>
-		<p style = "font-size: 20px;">Added levels to Super Jump Man(was Platformer)</p>
-		<h1 style = "font-size: 30px;"> 05 : 01 : 2022</h1>
-		<p style = "font-size: 20px;">Added Muffin Maker <br>
-			Added Target Practice
-		</p>
-		<h1 style = "font-size: 30px;"> 03 : 28 : 2022</h1>
-		<p style = "font-size: 20px;">Zombie Survival now resets back to level 1-1 after beating 4-6 and ups the difficulty<br>
-			Added first 5 levels of Platformer(Still need a name)
-		</p>
-		<h1 style = "font-size: 30px;"> 03 : 21 : 2022</h1>
-		<p style = "font-size: 20px;">Added Minesweeper<br>
-			Added Memory	
-		</p>
-		<h1 style = "font-size: 30px;"> 03 : 07 : 2022</h1>
-		<p style = "font-size: 20px;">Added Hang Man</p>
-		<h1 style = "font-size: 30px;"> 02 : 22 : 2022</h1>
-		<p style = "font-size: 20px;">Change on Tower Builder : Now it will be considered a perfect place if you are
-			 within 5%	error and will adjust your block so it doesn't get smaller
-		</p>
-		<h1 style = "font-size: 30px;"> 02 : 08 : 2022</h1>
-		<p style = "font-size: 20px;">Fixed exploit on Tower Builder : blocks now spawn on both the left and right side	
-		</p>
-		<h1 style = "font-size: 30px;"> 02 : 06 : 2022</h1>
-		<p style = "font-size: 20px;">Added the game Tower Builder <br>
-			Fixed pausing bug on Block Stack <br>
-			Added grid lines to the blocks on Block Stack		
-		</p>
-		<h1 style = "font-size: 30px;"> 01 : 28 : 2022</h1>
-		<p style = "font-size: 20px;">Added the game Meteor Shower</p>
-		<h1 style = "font-size: 30px;"> 01 : 26 : 2022</h1>
-		<p style = "font-size: 20px;">Added Patch Notes</p>
+		<div class = "patch">
+			<h1> 04 : 29 : 2023</h1>
+			<p> Added Space Battle</p>
+		</div>
+
+		<div class = "patch">
+			<h1> 01 : 08 : 2023</h1>
+			<p> User page now has an option to change the theme of the site</p>
+			<p> User page also now has options for profile pictures</p>
+		</div>
+
+		<div class = "patch">
+			<h1> 11 : 27 : 2022</h1>
+			<p> User page now shows data/highscores</p>
+		</div>
+
+		<div class = "patch">
+			<h1> 11 : 26 : 2022</h1>
+			<p> Added a Downloads Page</p>
+			<p>	Added first version of Jeopardy to Downloads Page</p>
+		</div>
+
+		<div class = "patch">
+			<h1> 09 : 14 : 2022</h1>
+			<p> Added Mini Golf</p>
+		</div>
+		
+		<div class = "patch">
+			<h1> 08 : 16 : 2022</h1>
+			<p> Added Opposites Attract</p>
+		</div>
+
+		<div class = "patch">
+			<h1> 08 : 13 : 2022</h1>
+			<p> Updated Super Jump Man to have ten levels, sound, music, and bug fixes</p>
+		</div>
+
+		<div class = "patch">
+			<h1> 07 : 25 : 2022</h1>
+			<p>Changed title design</p>
+		</div>
+
+		<div class = "patch">
+			<h1> 07 : 18 : 2022</h1>
+			<p> Added BlackJack</p>
+			<p>	Accounts now save game data for - BlockStack, Memory, MeteorShower, Serpent, TargetPractice, TowerBuilder, and BlackJack</p>
+		</div>
+
+		<div class = "patch">
+			<h1> 06 : 17 : 2022</h1>
+			<p>Added Accounts (very limited use right now, but eventually will save game progress)</p>
+		</div>
+
+		<div class = "patch">
+			<h1> 06 : 03 : 2022</h1>
+			<p>Added Open Battle (first online multiplayer game on the site)</p>
+		</div>
+
+		<div class = "patch">
+			<h1> 05 : 04 : 2022</h1>
+			<p>Added levels to Super Jump Man(was Platformer)</p>
+		</div>
+		
+		<div class = "patch">
+			<h1> 05 : 01 : 2022</h1>
+			<p> Added Muffin Maker</p>
+			<p> Added Target Practice</p>
+		</div>
+
+		<div class = "patch">
+			<h1> 03 : 28 : 2022</h1>
+			<p> Zombie Survival now resets back to level 1-1 after beating 4-6 and ups the difficulty</p>
+			<p>	Added first 5 levels of Platformer(Still need a name)</p>
+		</div>
+
+		<div class = "patch">
+			<h1> 03 : 21 : 2022</h1>
+			<p>Added Minesweeper</p>
+			<p>Added Memory</p>
+		</div>
+
+		<div class = "patch">
+			<h1> 03 : 07 : 2022</h1>
+			<p>Added Hang Man</p>
+		</div>
+
+		<div class = "patch">
+			<h1> 02 : 22 : 2022</h1>
+			<p>Change on Tower Builder : Now it will be considered a perfect place if you are within 5%	error and will adjust your block so it doesn't get smaller</p>
+		</div>
+
+		<div class = "patch">
+			<h1> 02 : 08 : 2022</h1>
+			<p>Fixed exploit on Tower Builder : blocks now spawn on both the left and right side</p>
+		</div>
+
+		<div class = "patch">
+			<h1> 02 : 06 : 2022</h1>
+			<p>Added the game Tower Builder </p>
+			<p>Fixed pausing bug on Block Stack</p>
+			<p>Added grid lines to the blocks on Block Stack</p>		
+		</div>
+
+		<div class = "patch">
+			<h1> 01 : 28 : 2022</h1>
+			<p>Added the game Meteor Shower</p>
+		</div>
+
+		<div class = "patch">
+			<h1> 01 : 26 : 2022</h1>
+			<p>Added Patch Notes</p>
+		</div>
+
 	</div>
 	
 </body>
