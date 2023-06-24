@@ -35,3 +35,13 @@
     content: "\2022"; /* Unicode character for a bullet point */
     margin-right: 0.5em;
 }
+
+@media screen and (max-width: 768px) {
+    .patch-container{
+        margin-left : 1em;
+        margin-right : 1em;
+    }
+    .patch p{
+        margin-left: 1em;
+    }
+}

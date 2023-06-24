@@ -12,3 +12,14 @@
 .contact-text a{
     color: var(--background-game);
 }
+
+@media screen and (max-width: 768px) {
+    .contact-text{
+        font-size: 5px;
+        padding: .5em;
+        width : 70em;
+    }
+    .contact-text a{
+        font-size: .8em;
+    }
+}

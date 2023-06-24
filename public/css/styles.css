@@ -111,23 +111,69 @@ img{
     text-decoration: none;
 }
 
+.game a p {
+   font-size: 25px;
+}
+
 .game:hover{
     transform: scale(1.1);
 }
 
-/* CHNAGE TO MAX AFTER YOURE DONE*/
+
 @media only screen and (max-width: 768px) {
+    p{
+        font-size: 1em;
+    }
     .container{
         width: 99vw;
         height: 100vh;
-    
+
         display: grid;
-    
-        grid-template-columns: 1fr repeat(2, 2fr);
-        grid-template-rows: 1fr repeat(16, 1fr);
+
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr repeat(8, 1fr);
+        font-size: 10px;
     }
     .header{
         grid-column-start: 1;
-        grid-column: span 3;
+        grid-column: span 2;
+
+        font-size: 5px;
+        background-color: var(--background-main);
+        margin: 1em;
+    }
+    .header img{
+        width: 10em;
+        height: 10em;
+        margin: 1em;
+    }
+    .game{
+        border: 2px solid var(--border-color);
+        color: var(--text-color);
+        border-radius: 1em;
+        margin: .5em;
+        background-color: var(--background-game);
+
+        grid-row: span 1;
+        grid-column: span 1;
+        width: 18em;
+        height: 18em;
+    }
+    .game a{
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 1px;
+    }
+    .game a p {
+        font-size: 18px;
+    }
+    .game img{
+        font-size: 4.5px;
+        width: 25em;
+        height: 25em;
+    }
+    
+    #emptyImg{
+        display: none;
     }
 }

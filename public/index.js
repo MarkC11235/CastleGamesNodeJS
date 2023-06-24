@@ -26,7 +26,7 @@ for(let i = 0; i < usedNames.length; i++){
 //make the game divs that show game name and image
 function makeGameDiv(name){
     let gameDiv = document.createElement('div');
-    gameDiv.innerHTML += '<center><a href="/'+name+'-"><p style = "font-size : 25px";>'+name+'</p></center><center><img src="images/'+name+'.gif"></a><center>';
+    gameDiv.innerHTML += '<center><a href="/'+name+'-"><p>'+name+'</p><img src="images/'+name+'.gif"></a></center>';
     gameDiv.className = 'game';
     document.getElementById('content').appendChild(gameDiv);
 }

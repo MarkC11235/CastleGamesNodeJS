@@ -84,4 +84,17 @@
 }
 
 
+@media screen and (max-width: 768px){
+    .container{
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr 1fr 1fr;
+    }
+    .item{
+        width: 32em;
+        height: fit-content;
+    }
+    .scroll{
+        grid-row-start: 4;
+    }
+}
 
