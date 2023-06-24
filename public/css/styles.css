@@ -138,14 +138,14 @@ img{
         grid-column-start: 1;
         grid-column: span 2;
 
-        font-size: 5px;
+        font-size: 4.5px;
         background-color: var(--background-main);
         margin: 1em;
     }
     .header img{
         width: 10em;
         height: 10em;
-        margin: 1em;
+        margin: 1.5em;
     }
     .game{
         border: 2px solid var(--border-color);
