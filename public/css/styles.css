@@ -4,7 +4,7 @@
     --background-game: #7badad;
     --border-color: #000000;
     --text-color: #000000; 
-    --font-family: 'Bebas Neue', sans-serif;
+    --font-family: sans-serif;
     --font-weight: 550;
     --profile-picture: url('../images/default.png');
 }
@@ -123,6 +123,7 @@ img{
 @media only screen and (max-width: 768px) {
     p{
         font-size: 1em;
+        font-family: var(--font-family);
     }
     .container{
         width: 99vw;

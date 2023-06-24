@@ -54,7 +54,7 @@
         padding: .5em;
     }
     .topnav > .right{
-        float: none;
+        float: right;
     }
     .topnav > .right > a{
         font-size: 15px;
