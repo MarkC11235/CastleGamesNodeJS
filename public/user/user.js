@@ -109,15 +109,31 @@ class user{
 const user1 = new user();
 async function LoadData(){
     await user1.get();
-    user1.setTheme();
-    user1.setProfilePicture();
+    if(user1.themeName != themeName){
+        updateTheme(user1.themeName, true);
+    }
+    if(user1.profilePicture != profilePicture){
+        updateProfilePicture(user1.profilePicture, true);
+    }
 }
 
 //added cookies to this so that the colors will be loaded before the page renders
-let themeName = document.cookie.split('; ').find(row => row.startsWith('themeName=')).split('=')[1] || 'main';
-let profilePicture = document.cookie.split('; ').find(row => row.startsWith('profilePicture=')).split('=')[1] || 'default';
-updateTheme(themeName, false);
-updateProfilePicture(profilePicture, false);
+let themeName = document.cookie.split('; ').find(row => row.startsWith('themeName='));
+let profilePicture = document.cookie.split('; ').find(row => row.startsWith('profilePicture='));
+
+if(themeName != null){
+    themeName = themeName.split('=')[1];
+    updateTheme(themeName, false);
+}
+if(profilePicture != null){
+    profilePicture = profilePicture.split('=')[1];
+    updateProfilePicture(profilePicture, false);
+}
+
+LoadData();
+
+// updateTheme(themeName, false);
+// updateProfilePicture(profilePicture, false);
 
 function updateTheme(themeName, set = true){
     if(themeName == null){
