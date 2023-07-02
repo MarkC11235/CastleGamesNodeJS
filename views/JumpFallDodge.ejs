@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <!--contains things such as css, google tag, and handling tab title and image-->
+        <%- include('partials/head.ejs') %>
+    </head>
+    <body>
+        <!--this is the navigation bar that is on every page-->
+        <%- include('partials/topnav.ejs') %>
+
+        <div class="containerGame">
+            <!--place to put game-->
+            <div class = "title">
+                <p>Jump, Fall, Dodge</p>
+            </div>
+            <div class="content">
+                <center><canvas width = "400em" height = "600em" style = "border: 2px solid black;"></canvas></center>
+            </div>
+
+            <!--inside of ins type in instructions and include <br><br> inbetween each instruction>-->
+            <%- include('partials/instructions.ejs', {ins : ''}) %>
+            
+            <% include('partials/ads.ejs') %>
+
+        </div>
+
+        <script src = "main.js"></script>
+        
+    </body>
+<html>
