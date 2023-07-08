@@ -1,29 +1,42 @@
 // this.x and this.y is the top left corner of the object
-class Object{
-    constructor(x = 0, y = 0, color = "white", renderOrder = 0){
+class GameObject{
+    constructor(x = 0, y = 0, color = "white", renderOrder = 0, img = new Image(), imgSrc = ""){
         this.x = x;
         this.y = y;
         this.color = color;
         this.renderOrder = renderOrder;
+        this.img = img;
+        this.img.src = imgSrc;
+    }
+
+    draw(){
+
     }
 
     //object object collisions don't need to be normalized(I did the math to double check that it would work the same way)
     static collision(object1, object2){
-        if((object1 instanceof Rectangle || object1 instanceof Player) && (object2 instanceof Rectangle || object2 instanceof Player)){
-            return Object.rectRectCollision(object1, object2);
+        if(object1 == object2)
+            return false;
+
+        if(object1 instanceof Rectangle){
+            if(object2 instanceof Rectangle){
+                return GameObject.rectRectCollision(object1, object2);
+            }
+            if(object2 instanceof Circle){
+                return GameObject.rectCircleCollision(object1, object2);
+            }
         }
 
-        if(object1 instanceof Circle && object2 instanceof Circle){
-            return Object.circleCircleCollision(object1, object2);
+        if(object1 instanceof Circle){
+            if(object2 instanceof Rectangle){
+                return GameObject.rectCircleCollision(object2, object1);
+            }
+            if(object2 instanceof Circle){
+                return GameObject.circleCircleCollision(object1, object2);
+            }
         }
 
-        if((object1 instanceof Rectangle || object1 instanceof Player) && object2 instanceof Circle){
-            return Object.rectCircleCollision(object1, object2);
-        }
-
-        if(object1 instanceof Circle && (object2 instanceof Rectangle || object2 instanceof Player)){
-            return Object.rectCircleCollision(object2, object1);
-        }
+        return false;
     }
 
     static rectRectCollision(rect1, rect2){
@@ -60,11 +73,11 @@ class Object{
     //use the Graphics.UNITS constant to get the size of the screen and make the "wall"
     static wallCollision(object){
         if(object instanceof Rectangle || object instanceof Player){
-            return Object.rectWallCollision(object);
+            return GameObject.rectWallCollision(object);
         }
 
         if(object instanceof Circle){
-            return Object.circleWallCollision(object);
+            return GameObject.circleWallCollision(object);
         }
     }
 
@@ -100,35 +113,67 @@ class Object{
 
 }
 
-class Rectangle extends Object{
-    constructor(x = 0, y = 0, width = 0, height = 0, color = "white", renderOrder = 0){
-        super(x, y, color, renderOrder);
+class Rectangle extends GameObject{
+    constructor(x = 0, y = 0, width = 0, height = 0, color = "white", img = new Image(), imgSrc = "", renderOrder = 0){
+        super(x, y, color, renderOrder, img, imgSrc);
         this.width = width;
         this.height = height;
     }
+
+    draw(ctx){
+        ctx.fillStyle = this.color;
+
+        let x1 = GAME.GRAPHICS.normalize(this.x) + GAME.GRAPHICS.drawingArea.x;
+        let y1 = GAME.GRAPHICS.normalize(this.y) + GAME.GRAPHICS.drawingArea.y;
+        let width1 = GAME.GRAPHICS.normalize(this.width);
+        let height1 = GAME.GRAPHICS.normalize(this.height);
+
+        ctx.fillRect(x1, y1, width1, height1);
+
+        if(this.imgSrc != ""){
+            ctx.drawImage(this.img, x1, y1, width1, height1);
+        }
+    }
 }
 
-class Circle extends Object{
-    constructor(x = 0, y = 0, radius = 0, color = "white", renderOrder = 0){
-        super(x, y, color, renderOrder);
+class Circle extends GameObject{
+    constructor(x = 0, y = 0, radius = 0, color = "white", img = new Image(), imgSrc = "", renderOrder = 0){
+        super(x, y, color, renderOrder, img, imgSrc);
         this.radius = radius;
     }
-}
 
-class Img extends Object{
-    constructor(x = 0, y = 0, width = 0, height = 0, img = new Image(), imgSrc = ""){
-        super(x, y);
-        this.width = width;
-        this.height = height;
-        this.img = img;
-        this.img.src = imgSrc;
+    draw(ctx){
+        ctx.fillStyle = this.color;
+
+        let x1 = GAME.GRAPHICS.normalize(this.x) + GAME.GRAPHICS.drawingArea.x;
+        let y1 = GAME.GRAPHICS.normalize(this.y) + GAME.GRAPHICS.drawingArea.y;
+        let radius1 = GAME.GRAPHICS.normalize(this.radius);
+
+        ctx.beginPath();
+        ctx.arc(x1, y1, radius1, 0, 2 * Math.PI);
+        ctx.fill();
+
+        if(this.imgSrc != ""){
+            let shift = radius1 / Math.sqrt(2);
+            ctx.drawImage(this.img, x1 - shift, y1 - shift, shift * 2, shift * 2);
+        }
     }
 }
 
-class Moveable extends Object{
-    constructor(x = 0, y = 0, color = "white", renderOrder = 0, speed = 5){
-        super(x, y, color, renderOrder);
+
+
+class Moveable{
+    constructor(x = 0, y = 0, speed = 5, shape = "rectangle", size = 10, color = "white", img = new Image(), imgSrc = "", renderOrder = 0){
         this.speed = speed;
+        if(shape == "rectangle"){
+            this.shape = new Rectangle(x, y, size, size, color, img, imgSrc, renderOrder);
+        }
+        else if(shape == "circle"){
+            this.shape = new Circle(x, y, size, color, img, imgSrc, renderOrder);
+        }
+        else{
+            console.log("Invalid shape");
+        }
     }
 
     update(){
@@ -139,14 +184,18 @@ class Moveable extends Object{
         // Override this function
     }
 
+    draw(ctx){
+        this.shape.draw(ctx);
+    }
+
     checkCollision(){
         //Collision with walls
-        Object.wallCollision(this);
+        GameObject.wallCollision(this.shape);
 
         //Collision with other objects
         for(let i = 0; i < GAME.OBJECTS.length; i++){
             if(this != GAME.OBJECTS[i]){
-                if(Object.collision(this, GAME.OBJECTS[i])){
+                if(GameObject.collision(this.shape, GAME.OBJECTS[i]?.shape ? GAME.OBJECTS[i].shape : GAME.OBJECTS[i])){
                     // this.onCollision(GAME.objects[i]);
                     //console.log("Collision");
                     return true;
@@ -158,10 +207,8 @@ class Moveable extends Object{
 }
 
 class Player extends Moveable{
-    constructor(x = 0, y = 0, width = 0, height = 0, color = "white", speed = 5, renderOrder = 0){
-        super(x, y, color, renderOrder, speed);
-        this.width = width;
-        this.height = height;
+    constructor(x = 0, y = 0, speed = 5, shape = "rectangle", size = 10, color = "white", img = new Image(), imgSrc = "", renderOrder = 0){
+        super(x, y, speed, shape, size, color, img, imgSrc, renderOrder);
     }
 
     // Override this function
@@ -182,13 +229,25 @@ class Player extends Moveable{
         moveDir.normalize();
         moveDir.x *= this.speed;
         moveDir.y *= this.speed;
-        this.x += moveDir.x;
-        this.y += moveDir.y;
+        this.shape.x += moveDir.x;
+        this.shape.y += moveDir.y;
 
         if(this.checkCollision()){
-            this.x -= moveDir.x;
-            this.y -= moveDir.y;
+            this.shape.x -= moveDir.x;
+            this.shape.y -= moveDir.y;
         }
+    }
+}
+
+class Enemy extends Moveable{
+    constructor(x = 0, y = 0, speed = 5, shape = "rectangle", size = 10, color = "white", img = new Image(), imgSrc = "", renderOrder = 0, moveFunc = function(){}){
+        super(x, y, speed, shape, size, color, img, imgSrc, renderOrder);
+        this.moveFunc = moveFunc;
+    }
+
+    // Override this function
+    move(){
+        this.moveFunc();
     }
 }
 

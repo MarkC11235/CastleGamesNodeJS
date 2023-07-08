@@ -71,52 +71,6 @@ class Graphics{
         document.body.style.overflow = "auto";
     }
 
-    drawRect(x, y, width, height, color){
-        this.ctx.fillStyle = color;
-        let x1 = this.normalize(x) + this.drawingArea.x;
-        let y1 = this.normalize(y) + this.drawingArea.y;
-        let width1 = this.normalize(width);
-        let height1 = this.normalize(height);
-        // console.log(x, y, width, height);
-        // console.log(x1, y1, width1, height1);
-        this.ctx.fillRect(x1, y1, width1, height1);
-        //console.log(this.normalize(x) + this.drawingArea.x, this.normalize(y) + this.drawingArea.y, this.normalize(width), this.normalize(height));
-    }
-
-    drawCircle(x, y, radius, color){
-        this.ctx.fillStyle = color;
-        this.ctx.beginPath();
-        this.ctx.arc(this.normalize(x) + this.drawingArea.x, this.normalize(y) + this.drawingArea.y, this.normalize(radius), 0, 2 * Math.PI);
-        this.ctx.fill();
-    }
-
-    drawImage(img, x, y, width, height){
-        let x1 = this.normalize(x) + this.drawingArea.x - this.normalize(width) / 2;
-        let y1 = this.normalize(y) + this.drawingArea.y - this.normalize(height) / 2;
-        let width1 = this.normalize(width);
-        let height1 = this.normalize(height);
-
-        this.ctx.drawImage(img, x1, y1, width1, height1);
-    }
-
-    drawObject(object){
-        if(object instanceof Rectangle){
-            this.drawRect(object.x, object.y, object.width, object.height, object.color);
-        }
-
-        if(object instanceof Circle){
-            this.drawCircle(object.x, object.y, object.radius, object.color);
-        }
-
-        if(object instanceof Img){
-            this.drawImage(object.img, object.x, object.y, object.width, object.height);
-        }
-
-        if(object instanceof Player){
-            this.drawRect(object.x, object.y, object.width, object.height, object.color);
-        }
-    }
-
     clear(){
         this.ctx.fillStyle = "black";
         this.ctx.fillRect(0, 0, this.canvas.width, this.canvas.height);
@@ -144,7 +98,7 @@ class Graphics{
         this.clear();
 
         for(let i = 0; i < this.objects.length; i++){
-            this.drawObject(this.objects[i]);
+            this.objects[i].draw(this.ctx);
         }
 
         //keep this line at the end so that it will cut off anything that is outside of the drawing area
