@@ -174,6 +174,7 @@ class Moveable{
         else{
             console.log("Invalid shape");
         }
+        this.isColliding = false;
     }
 
     update(){
@@ -195,13 +196,16 @@ class Moveable{
         //Collision with other objects
         for(let i = 0; i < GAME.OBJECTS.length; i++){
             if(this != GAME.OBJECTS[i]){
-                if(GameObject.collision(this.shape, GAME.OBJECTS[i]?.shape ? GAME.OBJECTS[i].shape : GAME.OBJECTS[i])){
+                let collision = GameObject.collision(this.shape, GAME.OBJECTS[i]?.shape ? GAME.OBJECTS[i].shape : GAME.OBJECTS[i]);
+                if(collision){
                     // this.onCollision(GAME.objects[i]);
                     //console.log("Collision");
+                    this.isColliding = true;
                     return true;
                 }
             }
         }
+        this.isColliding = false;
         return false;
     }
 }
@@ -230,10 +234,14 @@ class Player extends Moveable{
         moveDir.x *= this.speed;
         moveDir.y *= this.speed;
         this.shape.x += moveDir.x;
-        this.shape.y += moveDir.y;
 
         if(this.checkCollision()){
             this.shape.x -= moveDir.x;
+        }
+
+        this.shape.y += moveDir.y;
+
+        if(this.checkCollision()){
             this.shape.y -= moveDir.y;
         }
     }
@@ -247,7 +255,23 @@ class Enemy extends Moveable{
 
     // Override this function
     move(){
-        this.moveFunc();
+        //should return a vector with the direction to move
+        let moveDir = this.moveFunc();
+        moveDir.normalize();
+        moveDir.x *= this.speed;
+        moveDir.y *= this.speed;
+
+        this.shape.x += moveDir.x;
+
+        if(this.checkCollision()){
+            this.shape.x -= moveDir.x;
+        }
+
+        this.shape.y += moveDir.y;
+
+        if(this.checkCollision()){
+            this.shape.y -= moveDir.y;
+        }
     }
 }
 

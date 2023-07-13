@@ -46,6 +46,16 @@ class Vector{
 const keyMap = {};
 onkeydown = onkeyup = function(e){
     keyMap[e.key] = e.type == 'keydown';
+
+    //Pause and unpause the game
+    if(e.key == "p" && e.type == "keydown"){
+        if(GAME.LOOP == null){
+            GAME.StartLoop();
+        }
+        else{
+            GAME.StopLoop();
+        }
+    }
     //console.log(keyMap);
 }
 

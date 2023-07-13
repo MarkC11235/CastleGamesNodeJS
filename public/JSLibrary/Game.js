@@ -8,25 +8,39 @@ class Game{
         this.GRAPHICS = new Graphics(canvas, this.OBJECTS);
         this.START = start;
         this.UPDATE = update;
+        this.LOOP = null;
     }
 
     Start(){
         this.GRAPHICS.fullScreen();
         this.START();
-        //console.log("Start");
-        setInterval(() => this.Update(), 1000 / 60);
+        console.log("Start");
+        this.StartLoop();
     }
     
     Update(){
-        this.UPDATE();
         //console.log("Update");
 
         for(let i = 0; i < this.OBJECTS.length; i++){
             if(typeof this.OBJECTS[i].update === "function")
                 this.OBJECTS[i].update();
         }
+
+        this.UPDATE();
     
         this.GRAPHICS.render();
+    }
+
+    StartLoop(){
+        this.LOOP = setInterval(() => this.Update(), 1000 / 60);
+        console.log("StartLoop");
+    }
+
+    StopLoop(){
+        clearInterval(this.LOOP);
+        this.LOOP = null;
+        console.log("StopLoop");
+        //this.OBJECTS = [];
     }
 
     addObject(object){
