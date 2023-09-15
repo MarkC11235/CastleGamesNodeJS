@@ -7,6 +7,12 @@
     --font-family: sans-serif;
     --font-weight: 550;
     --profile-picture: url('../images/default.png');
+
+    --games-per-row: 4;            /* 4 , 3 , 2, 1*/   
+                                   /* >1890px, >1400px, >1000px, <1000px */
+    
+    --games-em-width: 26em;        /* 26, 30, 34, 38 */
+    --games-em-height: 29em;       /* 29, 29, 29, 29 */
 }
 
 /* changes style of cursor no matter what it is hovering over */
@@ -35,8 +41,6 @@ body {
     font-family: var(--font-family);
     font-weight: var(--font-weight);
 }
-
-
 
 
 .container{
@@ -92,6 +96,24 @@ body {
 img{
     width: max-content;
     height: max-content;
+}
+
+.games{
+    /* font size determines what em is */
+    /* font-size: var(--games-font-for-em); */
+
+    grid-column-start: 2;
+    grid-column-end: 6;
+    grid-row-start: 2;
+    grid-row-end: span 100;
+
+    display: grid;
+    grid-template-columns: repeat(var(--games-per-row), var(--games-em-width));
+    grid-template-rows: repeat(100, var(--games-em-height));
+
+    /* border: 5px solid var(--border-color); */
+    background-color: var(--background-main);
+    margin: 1em;
 }
 
 .game{
