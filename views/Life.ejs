@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <!--contains things such as css, google tag, and handling tab title and image-->
+        <%- include('partials/head.ejs') %>
+    </head>
+    <body>
+        <!--this is the navigation bar that is on every page-->
+        <%- include('partials/topnav.ejs') %>
+
+        <div class="containerGame">
+            <div class = "title">
+                <p><%= gameName %></p>
+            </div>
+            <!--place to put game-->
+            <div class="content">
+                <canvas id="canvas"></canvas>
+            </div>
+
+            <!--inside of ins type in instructions and include <br><br> inbetween each instruction>-->
+            <%- include('partials/instructions.ejs', {ins : ''}) %>
+            
+            <% include('partials/ads.ejs') %>
+
+        </div>
+
+        <script src = "JSLibrary/Misc.js"></script>
+        <script src = "JSLibrary/Object.js"></script>
+        <script src = "JSLibrary/Graphics.js"></script>
+        <script src = "JSLibrary/Game.js"></script>
+        <script src = "Life/Life.js"></script>
+        
+    </body>
+<html>

@@ -114,13 +114,25 @@ class GameObject{
 }
 
 class Rectangle extends GameObject{
-    constructor(x = 0, y = 0, width = 0, height = 0, color = "white", img = new Image(), imgSrc = "", renderOrder = 0){
+    constructor(x = 0, y = 0, width = 0, height = 0, color = "white", img = new Image(), imgSrc = "", renderOrder = 0, border = false){
         super(x, y, color, renderOrder, img, imgSrc);
         this.width = width;
         this.height = height;
+        this.border = border;
     }
 
     draw(ctx){
+        if(this.border){
+            ctx.strokeStyle = "black";
+            ctx.lineWidth = 2;
+            let x1 = GAME.GRAPHICS.normalize(this.x) + GAME.GRAPHICS.drawingArea.x;
+            let y1 = GAME.GRAPHICS.normalize(this.y) + GAME.GRAPHICS.drawingArea.y;
+            let width1 = GAME.GRAPHICS.normalize(this.width);
+            let height1 = GAME.GRAPHICS.normalize(this.height);
+            
+            ctx.strokeRect(x1, y1, width1, height1);
+        }
+
         ctx.fillStyle = this.color;
 
         let x1 = GAME.GRAPHICS.normalize(this.x) + GAME.GRAPHICS.drawingArea.x;
@@ -133,6 +145,13 @@ class Rectangle extends GameObject{
         if(this.imgSrc != ""){
             ctx.drawImage(this.img, x1, y1, width1, height1);
         }
+    }
+
+    contains(x, y){
+        if(x > this.x && x < this.x + this.width && y > this.y && y < this.y + this.height){
+            return true;
+        }
+        return false;
     }
 }
 
