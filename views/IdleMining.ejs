@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <!--contains things such as css, google tag, and handling tab title and image-->
+        <%- include('partials/head.ejs') %>
+    </head>
+    <body>
+        <!--this is the navigation bar that is on every page-->
+        <%- include('partials/topnav.ejs') %>
+
+        <div class="containerGame">
+            <!--place to put game-->
+            <div class="content">
+                <center><canvas id = "canvas" width = "800" height = "800"></canvas></center>
+            </div>
+
+            <!--inside of ins type in instructions and include <br><br> inbetween each instruction>-->
+            <%- include('partials/instructions.ejs', {ins : ''}) %>
+            
+            <% include('partials/ads.ejs') %>
+
+        </div>
+
+        <!-- For any game that uses cgfw, must put game code below this -->
+        <%- include('partials/cgfwGame.ejs') %>
+        <script src = "IdleMining/idleMining.js"></script>
+        
+    </body>
+<html>
