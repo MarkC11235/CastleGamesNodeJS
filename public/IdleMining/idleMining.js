@@ -84,31 +84,31 @@ let money = 0;
 
 //auto mining
 let smallPickaxeCost = 100;
-let smallPickaxeCostMultiplier = 1.1;
+let smallPickaxeCostMultiplier = 1.35;
 let smallPickaxes = 0;
 
-let largePickaxeCost = 4500;
-let largePickaxeCostMultiplier = 1.5;
+let largePickaxeCost = 7000;
+let largePickaxeCostMultiplier = 1.65;
 let largePickaxes = 0;
 
 //upgrade pickaxe
-let newPickaxeCost = 6500;
-let newPickaxeCostMultiplier = 3;
+let newPickaxeCost = 15500;
+let newPickaxeCostMultiplier = 15;
 let pickaxeLevel = 0;
 
 //upgrade rock
-let newRockCost = 10000;
-let newRockCostMultiplier = 5;
+let newRockCost = 25000;
+let newRockCostMultiplier = 15;
 let rockLevel = 0;
 
 //upgrade rock depot
-let rockDepotCost = 20000;
-let rockDepotCostMultiplier = 5;
+let rockDepotCost = 250000;
+let rockDepotCostMultiplier = 15;
 let rockDepotLevel = 0;
 
 //mining drill
-let miningDrillCost = 100000;
-let miningDrillCostMultiplier = 7;
+let miningDrillCost = 5000000;
+let miningDrillCostMultiplier = 15;
 let miningDrillLevel = 0;
 
 //minecart
@@ -126,8 +126,8 @@ let rocksInMinecart = 0;
 let minecartFullness = 1;  // 1 = empty, 2 = 20%, 3 = 40%, 4 = 60%, 5 = 80%, 6 = full
 let minecartCapacity = 20;
 
-let minecartCapacityCost = 500;
-let minecartCapacityCostMultiplier = 2.5;
+let minecartCapacityCost = 300;
+let minecartCapacityCostMultiplier = 1.5;
 let minecartCapacityLevel = 0;
 
 let minecartManagerCost = 10000;//rn a one time purchase
@@ -324,7 +324,7 @@ function buyMiningDrill(){
         miningDrillCost *= miningDrillCostMultiplier;
         miningDrillCost = Math.round(miningDrillCost);
         miningDrillLevel++;
-        miningDrill.changeSprite(`sprites/mining_drill${miningDrillLevel}.png`);
+        miningDrill.changeSprite(`IdleMining/sprites/mining_drill${miningDrillLevel}.png`);
     }
 }
 
@@ -573,6 +573,6 @@ function UpdateUI(){
 
 const c = document.getElementById('canvas');
 c.addEventListener('click', handleClick);
-initCGFW(awake, logic, c, draw, 100, 100, true); //When the game is going to be published change this to false to make it not automatically fullscreen
+initCGFW(awake, logic, c, draw, 100, 100, false); 
 
 setFont('Papyrus', '10', 'white');

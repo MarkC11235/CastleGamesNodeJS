@@ -1,18 +1,18 @@
 //All games A-Z
-const gameNames = ['2048', 'Bird', 'BlackJack', 'BlockStack', 'CubeDash', 'HangMan', 'Minesweeper',
+const gameNames = ['2048', 'Bird', 'BlackJack', 'BlockStack', 'CubeDash', 'HangMan', 'IdleMining', 'Minesweeper',
                  'Memory', 'MeteorShower', 'MiniGolf', 'MuffinMaker', 'OpenBattle', 'OppositesAttract',
                   'Pong', 'Rocket', 'Serpent', 'SpaceBattle', 'SuperJumpMan', 'TargetPractice', 'TowerBuilder',
                    'ZombieSurvival'];
 
 //These games are displayed at the top of the page
-const popNames = ['SpaceBattle', 'ZombieSurvival', 'SuperJumpMan', 'CubeDash', 'BlockStack', 'Serpent', 'MiniGolf'];
+const popNames = ['SpaceBattle', 'ZombieSurvival', 'SuperJumpMan', 'IdleMining', 'CubeDash', 'BlockStack', 'Serpent', 'MiniGolf'];
 
 //These games shown on mobile devices
 const mobileFriendlyNames = ['Bird', 'BlackJack', 'MiniGolf', 'MuffinMaker', 'OppositesAttract'];
 
 //makes sure that the popular/new games are displayed first
 let usedNames = gameNames.filter(name => !popNames.includes(name));
-usedNames.unshift('SpaceBattle', 'ZombieSurvival', 'SuperJumpMan', 'CubeDash', 'BlockStack', 'Serpent', 'MiniGolf');
+usedNames.unshift('SpaceBattle', 'ZombieSurvival', 'SuperJumpMan', 'IdleMining', 'CubeDash', 'BlockStack', 'Serpent', 'MiniGolf');
 
 
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){

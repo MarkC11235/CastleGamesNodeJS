@@ -8,13 +8,21 @@
         <%- include('partials/topnav.ejs') %>
 
         <div class="containerGame">
+            <div class="title">
+                <p><%=title.substring(0,title.indexOf("|"))%></p>
+            </div>
             <!--place to put game-->
             <div class="content">
                 <center><canvas id = "canvas" width = "800" height = "800"></canvas></center>
             </div>
 
             <!--inside of ins type in instructions and include <br><br> inbetween each instruction>-->
-            <%- include('partials/instructions.ejs', {ins : ''}) %>
+            <%- include('partials/instructions.ejs', {ins : '-Click on the pickaxe to mine stone <br><br>\
+                                                             -The stone will be added to your minecart <br><br>\
+                                                             -Click on the minecart to send the minecart to the rock depot to sell the stone <br><br>\
+                                                             -As you earn money, buy upgrades to get more stone and money <br><br>\
+                                                             -Use escape key to fullscreen <br><br>\
+                                                             -Sign in to save your progress'}) %>
             
             <% include('partials/ads.ejs') %>
 
