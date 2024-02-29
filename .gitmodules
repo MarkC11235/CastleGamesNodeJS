@@ -1,0 +1,6 @@
+[submodule "public/JSLibrary/CastleGraphicsJS"]
+	path = public/JSLibrary/CastleGraphicsJS
+	url = https://github.com/MarkC11235/CastleGraphicsJS.git
+[submodule "public/JSLibrary/CastleGameFrameworkJS"]
+	path = public/JSLibrary/CastleGameFrameworkJS
+	url = https://github.com/MarkC11235/CastleGameFrameworkJS.git
