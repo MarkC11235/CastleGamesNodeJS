@@ -1,0 +1,74 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/styles.css">
+
+    <link rel="stylesheet" href="css/gamePage.css">
+
+
+<meta name="description" content="Free to play games">
+<meta name="keywords" content="game, videogames, web games, unblocked, unblocked games">
+<meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+
+<title>BlackJack|Castle Games</title>
+<link rel="icon" type="image/x-icon" href="images/WebsiteIcon.png">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MTH47KMST2"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-MTH47KMST2');
+</script>
+
+        <link rel="stylesheet" href="BlackJack/BlackJack.css">
+    </head>
+    <body>
+        <link rel = "stylesheet" href = "css/topnav.css">
+<div class="topnav">
+    <div class = "left">
+        <a href="index.html">Home</a>
+        <!-- <a href="categories_.html">Game Categories</a> -->
+        <a href="contact_.html">Contact</a>
+        <a href="patchNotes_.html">Patch Notes</a>
+        <a href="downloads_.html">Downloads</a>
+    </div>
+</div>
+
+        <div class="containerGame">
+            <div class="title">
+                <p><img id = "heart" src = "BlackJack/images/heart.png"><img id = "diamond" src = "BlackJack/images/diamond.png">
+                    BlackJack
+                    <img id = "club" src = "BlackJack/images/club.png"><img id = "spade" src = "BlackJack/images/spade.png">
+                </p>
+            </div>
+    
+            <div class="content">
+                <center>
+                    <button onclick="NewGame()">New Game</button>
+                    <p id = "chips">Chips : 100</p>
+                    <p>Ante - $ <input type = "number" id = "ante" value="1"></p>
+                    <p id = "buttons" style = "display : none"><button id = "hit" onclick = "hit()">Hit</button><button id = "stay" onclick = "stay()">Stay</button><button id = "split" onclick = "split()">Split</button></p>
+                    <p id = "end" style = "display : none"></p>
+                    <p id = "dealerVal"></p>
+                    <div id = "dealer" class = "dealer"></div>
+                    <p id = "playerVal"></p>
+                    <div id = "player" class = "player"></div>
+                    <p id = "playerVal2"></p>
+                    <div id = "player2nd" class = "player"></div>
+                </center>
+            </div>
+
+            <div class="instructions">
+    <p> Instructions :  <br><br>
+      Try to get as close to 21 as possible without going over. <br><br>            You can hit to get another card. <br><br>            You can stay to keep your current hand. <br><br>            You can split if you have two of the same card. <br><br>            The dealer must keep getting more cards until he reaches 17. <br><br>
+    </p>
+</div>
+
+            
+        </div>
+
+        <script src = "BlackJack/BlackJack.js"></script>
+    </body>
+<html>

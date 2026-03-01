@@ -1,0 +1,64 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="css/styles.css">
+
+    <link rel="stylesheet" href="css/gamePage.css">
+
+
+<meta name="description" content="Free to play games">
+<meta name="keywords" content="game, videogames, web games, unblocked, unblocked games">
+<meta name = "viewport" content = "width = device-width, initial-scale = 1.0">
+
+<title>Serpent|Castle Games</title>
+<link rel="icon" type="image/x-icon" href="images/WebsiteIcon.png">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-MTH47KMST2"></script>
+<script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-MTH47KMST2');
+</script>
+
+    </head>
+    <body>
+        <link rel = "stylesheet" href = "css/topnav.css">
+<div class="topnav">
+    <div class = "left">
+        <a href="index.html">Home</a>
+        <!-- <a href="categories_.html">Game Categories</a> -->
+        <a href="contact_.html">Contact</a>
+        <a href="patchNotes_.html">Patch Notes</a>
+        <a href="downloads_.html">Downloads</a>
+    </div>
+</div>
+
+        <div class="containerGame">
+            <div class="title">
+                <p>Serpent</p>
+                <center><button id = "snakeColor" style = "background-color: limegreen;" onclick="ChangeColor(0)">Change Snake Color - limegreen</button>
+                    <button style = "background-color: red;" id = "appleColor" onclick="ChangeColor(1)">Change Apple Color - red</button></center>
+                <p id = "GameOver" style="font-size: 20px;">Click On Screen To Start</p>
+                <p id="Score"style="font-size: 20px;">HighScore : 0 :: Score : 0</p>
+            </div>
+    
+            <div class="content">
+                <center><button style = "visibility: hidden;"id = "StartButton" onclick="Start()">
+                    <canvas style = "visibility: visible;border: solid black 10px;"id="GameScreen" width="560px" height="560px"></canvas>
+                </button></center>
+            </div>
+
+            <div class="instructions">
+    <p> Instructions :  <br><br>
+      Use w a s d or arrow keys to change direction and press p to pause
+    </p>
+</div>
+
+            
+            
+        </div>
+    </body>
+    <script src="Snake/snake.js"></script>
+</html>

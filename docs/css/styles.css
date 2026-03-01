@@ -1,0 +1,180 @@
+﻿:root{
+    --background-main:#192E4B;
+    --background-secondary: #3d6c8a;
+    --background-game: #7badad;
+    --border-color: #000000;
+    --text-color: #000000; 
+    --font-family: sans-serif;
+    --font-weight: 550;
+    --profile-picture: url('../images/default.png');
+}
+
+/* changes style of cursor no matter what it is hovering over */
+/* * {
+    cursor: crosshair;
+} */
+
+
+a:link {
+    color: var(--background-game);
+    background-color: transparent;
+    text-decoration: underline;
+}
+  
+a:visited {
+    color: var(--background-game);
+    background-color: transparent;
+    text-decoration: underline;
+}
+  
+
+  
+body { 
+    background-color: var(--background-main);
+    margin: 0;
+    font-family: var(--font-family);
+    font-weight: var(--font-weight);
+}
+
+
+
+
+.container{
+    width: 99vw;
+    height: 100vh;
+
+    display: grid;
+
+    grid-template-columns: 1fr repeat(4, 2fr);
+    grid-template-rows: 1fr repeat(8, 1fr);
+
+    size: fixed;
+}
+
+.sideBar{
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: span 100;
+
+    color: var(--text-color);
+
+    /* border: 8px solid var(--border-color); */
+    background-color: var(--background-main);
+}
+
+@keyframes Title {
+    0%{color: coral;text-shadow: 5px 5px 10px coral;}
+    25%{color: red;text-shadow: 5px 5px 10px red;}
+    50%{color: violet;text-shadow: 5px 5px 10px violet;}
+    75%{color: lightgreen;text-shadow: 5px 5px 10px lightgreen;}
+    100%{color: coral;text-shadow: 5px 5px 10px coral;}
+}
+
+.header{
+    grid-column-start: 1;
+    grid-column: span 5;
+
+    font-size: 50px;
+    font-weight: bold;
+    font-family: cursive;
+
+    /* border: 5px solid var(--border-color);
+    border-radius: 1em; */
+
+    background-color: var(--background-main);
+
+    animation-name: Title;
+    animation-duration: 10s;
+    animation-iteration-count: infinite;
+}
+
+img{
+    width: max-content;
+    height: max-content;
+}
+
+.game{
+    grid-row-start: span 1;
+    grid-row-end: span 1;
+    grid-column-start: span 1;
+    grid-column-end: span 1;
+    border: 5px solid var(--border-color);
+    color: var(--text-color);
+    border-radius: 3em;
+    margin: 1.5em;
+    background-color: var(--background-game);
+}
+
+.game a{
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.game a p {
+   font-size: 25px;
+}
+
+.game:hover{
+    transform: scale(1.1);
+}
+
+
+@media only screen and (max-width: 768px) {
+    p{
+        font-size: 1em;
+        font-family: var(--font-family);
+    }
+    .container{
+        width: 99vw;
+        height: 100vh;
+
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr repeat(8, 1fr);
+        font-size: 10px;
+    }
+    .header{
+        grid-column-start: 1;
+        grid-column: span 2;
+
+        font-size: 4.5px;
+        background-color: var(--background-main);
+        margin: 1em;
+    }
+    .header img{
+        width: 10em;
+        height: 10em;
+        margin: 1.5em;
+    }
+    .game{
+        border: 2px solid var(--border-color);
+        color: var(--text-color);
+        border-radius: 1em;
+        margin: .5em;
+        background-color: var(--background-game);
+
+        grid-row: span 1;
+        grid-column: span 1;
+        width: 18em;
+        height: 18em;
+    }
+    .game a{
+        color: var(--text-color);
+        text-decoration: none;
+        font-size: 1px;
+    }
+    .game a p {
+        font-size: 18px;
+    }
+    .game img{
+        font-size: 4.5px;
+        width: 25em;
+        height: 25em;
+    }
+    
+    #emptyImg{
+        display: none;
+    }
+}
