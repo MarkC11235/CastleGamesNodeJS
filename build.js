@@ -72,6 +72,9 @@ for (const p of pages) {
     }
 }
 
-// Copy all public/ assets into docs/
-fs.cpSync(PUBLIC, OUT, { recursive: true });
+// Copy all public/ assets into docs/, skipping .git entries from submodules
+fs.cpSync(PUBLIC, OUT, {
+    recursive: true,
+    filter: (src) => !src.split(path.sep).includes('.git')
+});
 console.log(`\nDone. Built ${built} pages, skipped ${skipped}. Assets copied from public/.`);
