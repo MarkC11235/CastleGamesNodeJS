@@ -825,13 +825,12 @@ ctx.fillText("Press any key to start", 135, 275);
 let highScore = 0;
 async function GetHighScore()
 {
-    var temp = await getGameData("SpaceBattle");
+    var temp = JSON.parse(localStorage.getItem("SpaceBattle"));
     if(temp != null)
     {
         highScore = temp.highScore;
         document.getElementById("highScore").innerHTML = "High Score : " + highScore;
     }
-    console.log(temp);
     return temp;
 }
 
@@ -839,7 +838,7 @@ function setHighScore(){
     if(p.score > highScore || highScore == null){
         highScore = p.score;
         document.getElementById("highScore").innerHTML = "High Score : " + highScore;
-        postGameData("SpaceBattle", {highScore: highScore});
+        localStorage.setItem("SpaceBattle", JSON.stringify({highScore: highScore}));
     }
 }
 

@@ -47,8 +47,7 @@ function ChangeColor(x)
 
 async function GetHighScore()
 {
-    var temp = await getGameData("Serpent");
-    console.log(temp);
+    var temp = JSON.parse(localStorage.getItem("Serpent"));
     if(temp != null)
     {
         highScore = temp.highScore;
@@ -246,7 +245,7 @@ function GameOver()
     if(score > highScore || highScore == null)
     {
         highScore = score;
-        postGameData("Serpent", {highScore: highScore});
+        localStorage.setItem("Serpent", JSON.stringify({highScore: highScore}));
         document.getElementById("Score").innerHTML = "High Score : " + highScore + " :: Score : "+score;
     }
 }

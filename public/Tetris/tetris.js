@@ -408,7 +408,7 @@ async function GameOver()
     {
         highScore = score;
         highScoreText.innerHTML = "High Score : "+highScore;
-        await postGameData("BlockStack", {highScore : highScore});
+        localStorage.setItem("BlockStack", JSON.stringify({highScore: highScore}));
     }
 
     score = 0;
@@ -431,7 +431,7 @@ function Pause()
 }
 
 async function getData(){
-    var temp = await getGameData("BlockStack");
+    var temp = JSON.parse(localStorage.getItem("BlockStack"));
     if(temp != null)
     {
         highScore = temp.highScore;

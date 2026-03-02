@@ -274,7 +274,7 @@ function Score(x)
         }
         isPlaying = false;       
         record.wins++;
-        postGameData('Pong', record);
+        localStorage.setItem('Pong', JSON.stringify(record));
         overallRecord.innerHTML = "Overall Record: " + record.wins + " - " + record.losses;
     }
     else if(rightPaddle[4]==5)
@@ -292,7 +292,7 @@ function Score(x)
         }
         isPlaying = false;
         record.losses++;
-        postGameData('Pong', record);       
+        localStorage.setItem('Pong', JSON.stringify(record));       
         overallRecord.innerHTML = "Overall Record: " + record.wins + " - " + record.losses;
     }
     else
@@ -311,7 +311,7 @@ function Score(x)
 
 let record = {wins : 0, losses : 0};
 async function getData(){
-    let temp = await getGameData('Pong');
+    let temp = JSON.parse(localStorage.getItem('Pong'));
     if(temp != null){
         record = temp;
         overallRecord.innerHTML = "Overall Record: " + record.wins + " - " + record.losses;

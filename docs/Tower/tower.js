@@ -45,7 +45,7 @@ var highScore = 0;
 
 async function getData()
 {
-    var temp = await getGameData("TowerBuilder");
+    var temp = JSON.parse(localStorage.getItem("TowerBuilder"));
     if(temp != null)
     {
         highScore = temp.highScore;
@@ -244,7 +244,7 @@ async function GameOver()
     {
         highScore = score;
         scoreText.innerHTML = "High Score : " + highScore + " :::: Score : " + score;
-        await postGameData("TowerBuilder", {highScore : highScore});
+        localStorage.setItem("TowerBuilder", JSON.stringify({highScore: highScore}));
     }
 }
 

@@ -142,7 +142,7 @@ async function EndGame()
     {
         highScore = score;
         highScoreText.innerHTML = "High Score : "+highScore;
-        await postGameData("TargetPractice", {highScore: highScore});
+        localStorage.setItem("TargetPractice", JSON.stringify({highScore: highScore}));
     }
 
     await sleep(1000);
@@ -186,8 +186,7 @@ document.addEventListener("mousedown",function(e){
 
 async function getData()
 {
-    var temp = await getGameData("TargetPractice");
-    console.log(temp);
+    var temp = JSON.parse(localStorage.getItem("TargetPractice"));
     if(temp != null)
     {
         highScore = temp.highScore;

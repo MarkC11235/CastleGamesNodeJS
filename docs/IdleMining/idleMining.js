@@ -73,7 +73,7 @@ function setSprites(){
 }
 
 async function ClearSave(){
-    await postGameData("IdleMining", null);
+    localStorage.removeItem("IdleMining");
 }
 //-------------------------------------------------------------------------------------------
 

@@ -192,13 +192,13 @@ async function GameOver()
     {
         bestTime = timer;
         bestTimeText.innerHTML = "Best Time: " + bestTime.toFixed(2) + " seconds";
-        await postGameData("Memory", {fastestTime: bestTime});
+        localStorage.setItem("Memory", JSON.stringify({fastestTime: bestTime}));
     }
 }
 
 async function getData()
 {
-    var temp = await getGameData("Memory");
+    var temp = JSON.parse(localStorage.getItem("Memory"));
     if(temp != null)
     {
         bestTime = temp.fastestTime;

@@ -324,11 +324,12 @@ async function Victory()
 }
 
 async function getData(){
-    let data = await getGameData("Minesweeper");
-    easyTime = data.Easy || 9999;
-    mediumTime = data.Medium || 9999;
-    hardTime = data.Hard || 9999;
-    //console.log(data);
+    let data = JSON.parse(localStorage.getItem("Minesweeper"));
+    if(data != null){
+        easyTime = data.Easy || 9999;
+        mediumTime = data.Medium || 9999;
+        hardTime = data.Hard || 9999;
+    }
     bestTimes.innerHTML = "Best Times: Easy: "+easyTime+" :: Medium: "+mediumTime+" :: Hard: "+hardTime;
 }
 
@@ -345,7 +346,7 @@ function postData(){
         hardTime = time;
     }
     bestTimes.innerHTML = "Best Times: Easy: "+easyTime+" :: Medium: "+mediumTime+" :: Hard: "+hardTime;
-    postGameData("Minesweeper", {Easy: easyTime, Medium: mediumTime, Hard: hardTime});
+    localStorage.setItem("Minesweeper", JSON.stringify({Easy: easyTime, Medium: mediumTime, Hard: hardTime}));
 }
 
 //window.onload = Start();   

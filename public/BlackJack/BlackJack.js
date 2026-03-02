@@ -391,15 +391,15 @@ async function split()
     }
 }
 
-//save chips to database
+//save chips to localStorage
 async function getData()
 {
-    var temp = await getGameData("ChipCount");
+    var temp = JSON.parse(localStorage.getItem("ChipCount"));
     if(temp != null)
     {
         chips = temp.ChipCount || 100;
         lastChipsRecieved = temp.TimeSinceLastFreeChips;
-        
+
         chipsText.innerHTML = "Chips : "+chips;
         await freeChips();
         chipsText.innerHTML = "Chips : "+chips;
@@ -409,7 +409,7 @@ async function getData()
 async function postData()
 {
     const data = {ChipCount: chips, TimeSinceLastFreeChips : lastChipsRecieved};
-    postGameData("ChipCount", data);
+    localStorage.setItem("ChipCount", JSON.stringify(data));
 }
 
 async function freeChips()

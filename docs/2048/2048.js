@@ -80,11 +80,11 @@ var tableColors = [];
             highScore: highScore
         }
         
-        postGameData("2048", data);
+        localStorage.setItem("2048", JSON.stringify(data));
     }
 
     async function Load(){
-        let temp = await getGameData("2048");
+        let temp = JSON.parse(localStorage.getItem("2048"));
         if(temp)
         {
             grid = temp.grid;

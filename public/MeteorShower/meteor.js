@@ -11,7 +11,7 @@ const highScoreText = document.getElementById("HighScore");
 var highScore = 0;
 
 async function GetHighScore(){
-    var temp = await getGameData("MeteorShower");
+    var temp = JSON.parse(localStorage.getItem("MeteorShower"));
     if(temp != null)
     {
         highScore = temp.highScore;
@@ -374,7 +374,7 @@ async function GameOver()
     if(player.score > highScore || highScore == null)
     {
         highScore = player.score;
-        await postGameData("MeteorShower", {highScore : highScore});
+        localStorage.setItem("MeteorShower", JSON.stringify({highScore: highScore}));
         highScoreText.innerHTML = "High Score : " + highScore;
     }
     player.score = 0;
