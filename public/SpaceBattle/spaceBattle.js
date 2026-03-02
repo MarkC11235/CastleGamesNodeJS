@@ -25,7 +25,7 @@ class player {
     isHurt = false;
 
     constructor() {
-        this.sprite.src = '/SpaceBattle/blueSpaceShip.png';
+        this.sprite.src = 'SpaceBattle/blueSpaceShip.png';
     }
 
     shoot() {
@@ -239,7 +239,7 @@ class bullet {
     sprite = new Image()
 
     constructor(x, y, rotation, speed) {
-        this.sprite.src = '/SpaceBattle/bullet.png';
+        this.sprite.src = 'SpaceBattle/bullet.png';
         this.x = x
         this.y = y
         this.movement.rotation = rotation
@@ -340,7 +340,7 @@ class enemy{
         enemies.splice(enemies.indexOf(this), 1);
         deadEnemies.push(this);
         this.bullets = [];
-        this.sprite.src = '/SpaceBattle/explosion.png';
+        this.sprite.src = 'SpaceBattle/explosion.png';
         this.r = 15;
         await sleep(500);
         this.r = 25;
@@ -376,7 +376,7 @@ class asteroid extends enemy{
         this.r = Math.random() * 40 + 10;
         this.health = this.r/10;
         this.maxHealth = this.r/10;
-        this.sprite.src = '/SpaceBattle/asteroid.png';
+        this.sprite.src = 'SpaceBattle/asteroid.png';
         this.speed = Math.random() * totalGameTime / 60 + 1;
     }
 
@@ -407,7 +407,7 @@ class normalEnemy extends enemy{
         this.r = 25;
         this.health = 4;
         this.maxHealth = 4;
-        this.sprite.src = '/SpaceBattle/redSpaceShip.png';
+        this.sprite.src = 'SpaceBattle/redSpaceShip.png';
     }
 
     move(){
@@ -439,7 +439,7 @@ class octoEnemy extends enemy{
         this.health = 6;
         this.maxHealth = 6;
         this.bulletTimerMax = 2.5;
-        this.sprite.src = '/SpaceBattle/octoRedSpaceShip.png';
+        this.sprite.src = 'SpaceBattle/octoRedSpaceShip.png';
     }
 
     move(){
@@ -472,7 +472,7 @@ class machineGunner extends enemy{
         this.r = 25;
         this.health = 2;
         this.maxHealth = 2;
-        this.sprite.src = '/SpaceBattle/machineGunnerShips.png';
+        this.sprite.src = 'SpaceBattle/machineGunnerShips.png';
     }
 
     move(){
