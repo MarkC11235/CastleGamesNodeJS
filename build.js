@@ -57,7 +57,13 @@ for (const p of pages) {
             },
             { filename: tplPath, views: [VIEWS] }
         );
-        fs.writeFileSync(path.join(OUT, p.out), html);
+        // Ensure every page is in Standards Mode
+        const withDoctype = html.trimStart().toLowerCase().startsWith('<!doctype')
+            ? html
+            : '<!DOCTYPE html>\n' + html;
+        // Fix common template error: stray <html> at end should be </html>
+        const out = withDoctype.replace(/<html>\s*$/i, '</html>\n');
+        fs.writeFileSync(path.join(OUT, p.out), out);
         console.log(`built: ${p.out}`);
         built++;
     } catch (err) {
