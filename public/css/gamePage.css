@@ -53,13 +53,5 @@ body{
     font-size: 20px;
 }
 
-.ads{
-    grid-row-start: 2;
-    grid-row-end: 5;
-    grid-column-start: 4;
-    grid-column-end: 5;
-    
-}
-
 
 
